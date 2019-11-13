@@ -1,0 +1,122 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+/* live code chunk */
+pre.livecode {
+  background: #f7fcf5 !important;
+}
+/* dont run chunk */
+pre.dontrun {
+  background: #fff5f0 !important;
+}
+
+/* boxes */
+.checkpoint {
+  background-color: #fff5f0;
+  padding: 0 5px 5px 5px;
+  border: 1px solid;
+  border-color: #ef3b2c;
+  border-radius: 4px;
+  margin: 15px 5px 10px 0;
+}
+
+.checkpoint h2 {
+  padding: 5px;
+  font-size: 1.2em !important;
+  background-color: #ef3b2c;
+  border-color: #ef3b2c;
+  margin: 0 -5px 0 -5px !important;
+}
+
+.checkpoint p {
+  margin: 10px 0 10px 0 !important;
+}
+
+.exercise {
+  background-color: #f7fbff;
+  padding: 0 5px 5px 5px;
+  border: 1px solid;
+  border-color: #4292c6;
+  border-radius: 4px;
+  margin: 15px 5px 10px 0;
+}
+
+.exercise h2 {
+  padding: 5px;
+  font-size: 1.2em !important;
+  background-color: #4292c6;
+  border-color: #4292c6;
+  margin: 0 -5px 0 -5px !important;
+}
+
+.exercise p {
+  margin: 10px 0 10px 0 !important;
+}
+
+.tip {
+  background-color: #7ae78e20;
+  padding: 0 5px 5px 5px;
+  border: 1px solid;
+  border-color: #7ae78e;
+  border-radius: 4px;
+  margin: 15px 5px 10px 0;
+}
+
+.tip h2 {
+  padding: 5px;
+  font-size: 1em !important;
+  background-color: #7ae78e;
+  border-color: #7ae78e;
+  margin: 0 -5px 0 -5px !important;
+}
+
+.tip p {
+  margin: 10px 0 10px 0 !important;
+}
+ 
+.solution {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.solution-content {
+  padding: 10px 10px 0 10px;
+  display: none;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #777;
+}
+
+button.solution:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+#advanced-unmarked th {
+  background-color: #888888;
+  color: white;
+}

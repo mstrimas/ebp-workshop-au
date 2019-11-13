@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 1 Introduction | eBird Best Practices Workshop</title>
+  <meta name="description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 1 Introduction | eBird Best Practices Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="github-repo" content="mstrimas/ebp-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 1 Introduction | eBird Best Practices Workshop" />
+  
+  <meta name="twitter:description" content="Best practices for using eBird data to estimate species distributions" />
+  
+
+<meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ebird-intro.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">eBird Best Practices Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-data"><i class="fa fa-check"></i><b>1.1</b> Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-setup"><i class="fa fa-check"></i><b>1.3</b> Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#intro-tidyverse"><i class="fa fa-check"></i><b>1.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="part"><span><b>I eBird Data</b></span></li>
+<li class="chapter" data-level="2" data-path="ebird-intro.html"><a href="ebird-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="ebird-intro.html"><a href="ebird-intro.html#the-auk-workflow"><i class="fa fa-check"></i><b>2.1</b> The <code>auk</code> workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="access.html"><a href="access.html"><i class="fa fa-check"></i><b>3</b> Data Access</a></li>
+<li class="chapter" data-level="4" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>4</b> Filtering</a><ul>
+<li class="chapter" data-level="4.1" data-path="filter.html"><a href="filter.html#filter-define"><i class="fa fa-check"></i><b>4.1</b> Defining filters</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="filter.html"><a href="filter.html#filter-define-complete"><i class="fa fa-check"></i><b>4.1.1</b> Complete checklists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="filter.html"><a href="filter.html#filter-execute"><i class="fa fa-check"></i><b>4.2</b> Execute filters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Importing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#import-group"><i class="fa fa-check"></i><b>5.1</b> Group checklists</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-taxonomy"><i class="fa fa-check"></i><b>5.2</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="presabs.html"><a href="presabs.html"><i class="fa fa-check"></i><b>6</b> Presence-absence Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="presabs.html"><a href="presabs.html#presabs-filter"><i class="fa fa-check"></i><b>6.1</b> Filtering</a></li>
+<li class="chapter" data-level="6.2" data-path="presabs.html"><a href="presabs.html#presabs-zerofill"><i class="fa fa-check"></i><b>6.2</b> Zero-filling</a></li>
+<li class="chapter" data-level="6.3" data-path="presabs.html"><a href="presabs.html#presabs-tidy"><i class="fa fa-check"></i><b>6.3</b> Tidying up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="subsampling.html"><a href="subsampling.html"><i class="fa fa-check"></i><b>7</b> Spatiotemporal Subsampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="subsampling.html"><a href="subsampling.html#subsampling-toy"><i class="fa fa-check"></i><b>7.1</b> A toy example</a></li>
+<li class="chapter" data-level="7.2" data-path="subsampling.html"><a href="subsampling.html#subsampling-ebird"><i class="fa fa-check"></i><b>7.2</b> Subsampling eBird data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>8</b> Applications</a><ul>
+<li class="chapter" data-level="8.1" data-path="applications.html"><a href="applications.html#applications-trajectory"><i class="fa fa-check"></i><b>8.1</b> Frequency trajectories</a></li>
+<li class="chapter" data-level="8.2" data-path="applications.html"><a href="applications.html#applications-maps"><i class="fa fa-check"></i><b>8.2</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="9.1" data-path="advanced.html"><a href="advanced.html#advanced-unmarked"><i class="fa fa-check"></i><b>9.1</b> Preparing for occupancy modeling</a></li>
+<li class="chapter" data-level="9.2" data-path="advanced.html"><a href="advanced.html#advanced-modis"><i class="fa fa-check"></i><b>9.2</b> Land cover covariates</a></li>
+<li class="chapter" data-level="9.3" data-path="advanced.html"><a href="advanced.html#advanced-custom"><i class="fa fa-check"></i><b>9.3</b> Custom downloads</a></li>
+<li class="chapter" data-level="9.4" data-path="advanced.html"><a href="advanced.html#advanced-size"><i class="fa fa-check"></i><b>9.4</b> Reducing file size</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="advanced.html"><a href="advanced.html#advanced-size-strict"><i class="fa fa-check"></i><b>9.4.1</b> Stricter filtering</a></li>
+<li class="chapter" data-level="9.4.2" data-path="advanced.html"><a href="advanced.html#advanced-size-columns"><i class="fa fa-check"></i><b>9.4.2</b> Removing columns</a></li>
+<li class="chapter" data-level="9.4.3" data-path="advanced.html"><a href="advanced.html#advanced-size-split"><i class="fa fa-check"></i><b>9.4.3</b> Splitting by species</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Distribution Modeling</b></span></li>
+<li class="chapter" data-level="10" data-path="model-intro.html"><a href="model-intro.html"><i class="fa fa-check"></i><b>10</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1" data-path="model-intro.html"><a href="model-intro.html#model-intro-data"><i class="fa fa-check"></i><b>10.1</b> Example data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="encounter.html"><a href="encounter.html"><i class="fa fa-check"></i><b>11</b> Encounter Rate</a><ul>
+<li class="chapter" data-level="11.1" data-path="encounter.html"><a href="encounter.html#encounter-prep"><i class="fa fa-check"></i><b>11.1</b> Data preparation</a></li>
+<li class="chapter" data-level="11.2" data-path="encounter.html"><a href="encounter.html#encounter-rf"><i class="fa fa-check"></i><b>11.2</b> Random forests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="encounter.html"><a href="encounter.html#encounter-rf-cal"><i class="fa fa-check"></i><b>11.2.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.2.2" data-path="encounter.html"><a href="encounter.html#encounter-rf-assess"><i class="fa fa-check"></i><b>11.2.2</b> Model assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="encounter.html"><a href="encounter.html#encounter-habitat"><i class="fa fa-check"></i><b>11.3</b> Habitat associations</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pi"><i class="fa fa-check"></i><b>11.3.1</b> Predictor importance</a></li>
+<li class="chapter" data-level="11.3.2" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pd"><i class="fa fa-check"></i><b>11.3.2</b> Partial dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="encounter.html"><a href="encounter.html#encounter-predict"><i class="fa fa-check"></i><b>11.4</b> Prediction</a></li>
+<li class="chapter" data-level="11.5" data-path="encounter.html"><a href="encounter.html#encouter-exercises"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="occupancy.html"><a href="occupancy.html"><i class="fa fa-check"></i><b>12</b> Occupancy</a><ul>
+<li class="chapter" data-level="12.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-prep"><i class="fa fa-check"></i><b>12.1</b> Data preparation</a></li>
+<li class="chapter" data-level="12.2" data-path="occupancy.html"><a href="occupancy.html#occupancy-model"><i class="fa fa-check"></i><b>12.2</b> Occupancy modeling</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-model-assess"><i class="fa fa-check"></i><b>12.2.1</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="occupancy.html"><a href="occupancy.html#occupancy-predict"><i class="fa fa-check"></i><b>12.3</b> Prediction</a></li>
+<li class="chapter" data-level="12.4" data-path="occupancy.html"><a href="occupancy.html#occupancy-select"><i class="fa fa-check"></i><b>12.4</b> Model selection</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-select-detection"><i class="fa fa-check"></i><b>12.4.1</b> Detection model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="occupancy.html"><a href="occupancy.html#occupancy-exercises"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="abundance.html"><a href="abundance.html"><i class="fa fa-check"></i><b>13</b> Abundance</a><ul>
+<li class="chapter" data-level="13.1" data-path="abundance.html"><a href="abundance.html#abundance-prep"><i class="fa fa-check"></i><b>13.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="abundance.html"><a href="abundance.html#abundance-explore"><i class="fa fa-check"></i><b>13.2</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="abundance.html"><a href="abundance.html#abundance-model"><i class="fa fa-check"></i><b>13.3</b> Abundance models</a></li>
+<li class="chapter" data-level="13.4" data-path="abundance.html"><a href="abundance.html#abundance-assess"><i class="fa fa-check"></i><b>13.4</b> Asssessment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="abundance.html"><a href="abundance.html#abundance-assess-cov"><i class="fa fa-check"></i><b>13.4.1</b> Assessing covariate effects</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="abundance.html"><a href="abundance.html#abundance-predict"><i class="fa fa-check"></i><b>13.5</b> Prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="abundance.html"><a href="abundance.html#abundance-exercises"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">eBird Best Practices Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Lesson 1</span> Introduction</h1>
+<p>The contents of this website comprise the notes for a workshop on best practices for using eBird data. <a href="ebird-intro.html#ebird-intro">Part I</a> of this workshop will focus on extracting and processing eBird data, while <a href="model-intro.html#model-intro">Part II</a> will cover using these data to model species distributions. The two parts are intentionally designed to be independent, which allows you to attend Part I, Part II, or both depending on your skills, background, and interests.</p>
+<div id="intro-data" class="section level2">
+<h2><span class="header-section-number">1.1</span> Data</h2>
+<p>To follow along with the lessons in this workshop <a href="https://github.com/mstrimas/ebp-workshop-au/raw/master/raw-data/ebp-workshop.zip">download the workshop data package</a>. This package contains a variety of datasets for Parts I and II of this workshop. Instructions for how to use each dataset will be given in the relevant lesson.</p>
+</div>
+<div id="intro-format" class="section level2">
+<h2><span class="header-section-number">1.2</span> Format</h2>
+<p>This format of this workshop will be loosely based on <a href="https://software-carpentry.org/">Software Carpentry</a>, the gold standard for workshops teaching scientific computing. As much as possible, the instructor will work through the lessons in real time, entering code live, while you code-along. Interspersed with the live coding will be exercises designed to give you a chance to practice on your own. This approach, known as <a href="https://carpentries.github.io/instructor-training/14-live/">participatory live coding</a>, has been shown to be a much more effective means of learning to code than using slides or a pre-written script.</p>
+<p>Another Software Carpentry technique that we’ve adopted is the use of sticky notes. You should have two sticky notes at your desk, one blue and one yellow. Throughout the workshop, if you’ve completed an exercise or have passed a checkpoint, put the blue sticky note on your laptop to indicate that you’re done. Similarly, if you’re lost, stuck, or have a problem and need help, place the yellow sticky on your laptop.</p>
+<p>In addition to the instructor, we have several helpers roaming the room helping to troubleshoot problems. The sticky notes are the most effective way of flagging a helper down.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Let’s stop here for a quick round on introductions, let us know who you are and how you hope to use eBird data!</p>
+</div>
+</div>
+<div id="intro-setup" class="section level2">
+<h2><span class="header-section-number">1.3</span> Setup</h2>
+<p>Before we dive into writing code, let’s take a few minutes to ensure our systems are properly set up with all the correct software and R packages. Devoting some time to this up front will reduce errors and make troubleshooting easier later in the workshop. If you followed the pre-workshop setup instructions, most of this setup should already be complete; however, we include it here to ensure everyone’s on the same page.</p>
+<p>Start by opening a browser window with four tabs pointing to the following websites:</p>
+<ol style="list-style-type: decimal">
+<li>The shared Google Doc for this workshop (your instructor will provide a link). This will act as a collaborative notepad, which we can use to share code and links. Make sure you can edit the document.</li>
+<li>The <a href="https://ebird.org">eBird homepage</a></li>
+<li>The <a href="https://cornelllabofornithology.github.io/auk/">auk website</a>. This <code>auk</code> R package is used to access eBird data and we’ll be using the website to view the documentation.</li>
+<li>The <a href="http://strimas.com/ebp-workshop-au">online lessons</a> for this workshop.</li>
+</ol>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Are all tabs correctly opened? Can you edit the shared notepad?</p>
+</div>
+<p>Next <a href="https://www.rstudio.com/products/rstudio/download/#download">install or update RStudio</a>, then open it. Look at the top line of the console, which gives your R version. If you have a version older than 3.5.0, you should consider <a href="https://cloud.r-project.org/">updating R</a>.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Is your R version at least 3.5.0? Do you need help updating R?</p>
+</div>
+<p>Create a new RStudio project called <code>ebird-best-practices</code>. Next, install all the packages required for this workshop and Part II, by running the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;mstrimas/ebppackages&quot;</span>)</a></code></pre></div>
+<p>The <code>auk</code> package uses the unix command line tool AWK to access eBird data. AWK comes installed by default on Mac OS and Linux systems, but Windows users will need to install it. To do so, install the <a href="https://cygwin.com/install.html">Cygwin software</a> making sure to use the default install location.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Is AWK installed?</p>
+</div>
+<p>Run the following code to test that <code>auk</code> is installed correctly and AWK is working:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(auk)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">tf &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">system.file</span>(<span class="st">&quot;extdata/ebd-sample.txt&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;auk&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw">auk_ebd</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw">auk_species</span>(<span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;Canada Jay&quot;</span>, <span class="st">&quot;Blue Jay&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">  </span><span class="kw">auk_country</span>(<span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;US&quot;</span>, <span class="st">&quot;Canada&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">  </span><span class="kw">auk_bbox</span>(<span class="dt">bbox =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">37</span>, <span class="dv">-80</span>, <span class="dv">52</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span><span class="kw">auk_date</span>(<span class="dt">date =</span> <span class="kw">c</span>(<span class="st">&quot;2012-01-01&quot;</span>, <span class="st">&quot;2012-12-31&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">  </span><span class="kw">auk_time</span>(<span class="dt">start_time =</span> <span class="kw">c</span>(<span class="st">&quot;06:00&quot;</span>, <span class="st">&quot;09:00&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="st">  </span><span class="kw">auk_duration</span>(<span class="dt">duration =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">60</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="st">  </span><span class="kw">auk_complete</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="st">  </span><span class="kw">auk_filter</span>(tf) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">  </span><span class="kw">read_ebd</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">  </span><span class="kw">pull</span>(common_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="st">  </span><span class="kw">message</span>()</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw">unlink</span>(tf)</a></code></pre></div>
+<p>It should print <code>Blue Jay</code>.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Did “Blue Jay” print without errors?</p>
+</div>
+<p>If you’re running into any setup issues that can’t be resolved, use RStudio Cloud for this workshop instead. Your instructor will explain how to connect to RStudio Cloud.</p>
+</div>
+<div id="intro-tidyverse" class="section level2">
+<h2><span class="header-section-number">1.4</span> Tidyverse</h2>
+<p>Throughout this workshop, we’ll be using functions from the Tidyverse. This is an opinionated set of packages for working with data in R. Packages such as <code>dplyr</code>, <code>ggplot2</code>, and <code>purrr</code> are part of the Tidyverse. We’ll try to explain any functions as they come up; however, there’s one important operator from the Tidyverse that needs to be explained up front: the pipe operator <code>%&gt;%</code>. The pipe operator takes the expression to the left of it and “pipes” it into the first argument of the expression on the right.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># without pipe</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] 5.5</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># with pipe</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [1] 5.5</span></a></code></pre></div>
+<p>The value of the pipe operator becomes clear when we have several operations in a row. Using the pipe makes code easier to read and reduces the need for intermediate variables.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># without pipes</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">ran_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">ran_norm_pos &lt;-<span class="st"> </span><span class="kw">abs</span>(ran_norm)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">ran_norm_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(ran_norm_pos)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">ran_norm_round &lt;-<span class="st"> </span><span class="kw">round</span>(ran_norm_sort, <span class="dt">digits =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">ran_norm_round</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;  [1] 0.9 1.5 1.6 2.4 2.9 3.1 3.7 4.1 4.2 8.0</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co"># with pipes</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st">  </span><span class="kw">abs</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">  </span><span class="kw">sort</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="st">  </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;  [1] 0.9 1.5 1.6 2.4 2.9 3.1 3.7 4.1 4.2 8.0</span></a></code></pre></div>
+<p>For those that have never used the pipe, it probably looks strange, but if you stick with it, you’ll quickly come to appreciate it.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Any questions about the pipe?</p>
+</div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Rewrite the following code using pipes:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">round</span>(<span class="kw">log</span>(<span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">min =</span> <span class="fl">0.5</span>)), <span class="dv">1</span>)</a></code></pre></div>
+<button class="solution">
+Solution
+</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">min =</span> <span class="fl">0.5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">log</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;  [1] -0.5 -0.4 -0.2  0.0 -0.5 -0.1  0.0 -0.2 -0.2 -0.6</span></a></code></pre></div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+var coll = document.getElementsByClassName("solution");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ebird-intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mstrimas/ebp-workshop/edit/master/01_introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

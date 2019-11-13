@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 7 Spatiotemporal Subsampling | eBird Best Practices Workshop</title>
+  <meta name="description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 7 Spatiotemporal Subsampling | eBird Best Practices Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="github-repo" content="mstrimas/ebp-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 7 Spatiotemporal Subsampling | eBird Best Practices Workshop" />
+  
+  <meta name="twitter:description" content="Best practices for using eBird data to estimate species distributions" />
+  
+
+<meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="presabs.html"/>
+<link rel="next" href="applications.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">eBird Best Practices Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-data"><i class="fa fa-check"></i><b>1.1</b> Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-setup"><i class="fa fa-check"></i><b>1.3</b> Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#intro-tidyverse"><i class="fa fa-check"></i><b>1.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="part"><span><b>I eBird Data</b></span></li>
+<li class="chapter" data-level="2" data-path="ebird-intro.html"><a href="ebird-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="ebird-intro.html"><a href="ebird-intro.html#the-auk-workflow"><i class="fa fa-check"></i><b>2.1</b> The <code>auk</code> workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="access.html"><a href="access.html"><i class="fa fa-check"></i><b>3</b> Data Access</a></li>
+<li class="chapter" data-level="4" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>4</b> Filtering</a><ul>
+<li class="chapter" data-level="4.1" data-path="filter.html"><a href="filter.html#filter-define"><i class="fa fa-check"></i><b>4.1</b> Defining filters</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="filter.html"><a href="filter.html#filter-define-complete"><i class="fa fa-check"></i><b>4.1.1</b> Complete checklists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="filter.html"><a href="filter.html#filter-execute"><i class="fa fa-check"></i><b>4.2</b> Execute filters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Importing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#import-group"><i class="fa fa-check"></i><b>5.1</b> Group checklists</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-taxonomy"><i class="fa fa-check"></i><b>5.2</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="presabs.html"><a href="presabs.html"><i class="fa fa-check"></i><b>6</b> Presence-absence Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="presabs.html"><a href="presabs.html#presabs-filter"><i class="fa fa-check"></i><b>6.1</b> Filtering</a></li>
+<li class="chapter" data-level="6.2" data-path="presabs.html"><a href="presabs.html#presabs-zerofill"><i class="fa fa-check"></i><b>6.2</b> Zero-filling</a></li>
+<li class="chapter" data-level="6.3" data-path="presabs.html"><a href="presabs.html#presabs-tidy"><i class="fa fa-check"></i><b>6.3</b> Tidying up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="subsampling.html"><a href="subsampling.html"><i class="fa fa-check"></i><b>7</b> Spatiotemporal Subsampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="subsampling.html"><a href="subsampling.html#subsampling-toy"><i class="fa fa-check"></i><b>7.1</b> A toy example</a></li>
+<li class="chapter" data-level="7.2" data-path="subsampling.html"><a href="subsampling.html#subsampling-ebird"><i class="fa fa-check"></i><b>7.2</b> Subsampling eBird data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>8</b> Applications</a><ul>
+<li class="chapter" data-level="8.1" data-path="applications.html"><a href="applications.html#applications-trajectory"><i class="fa fa-check"></i><b>8.1</b> Frequency trajectories</a></li>
+<li class="chapter" data-level="8.2" data-path="applications.html"><a href="applications.html#applications-maps"><i class="fa fa-check"></i><b>8.2</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="9.1" data-path="advanced.html"><a href="advanced.html#advanced-unmarked"><i class="fa fa-check"></i><b>9.1</b> Preparing for occupancy modeling</a></li>
+<li class="chapter" data-level="9.2" data-path="advanced.html"><a href="advanced.html#advanced-modis"><i class="fa fa-check"></i><b>9.2</b> Land cover covariates</a></li>
+<li class="chapter" data-level="9.3" data-path="advanced.html"><a href="advanced.html#advanced-custom"><i class="fa fa-check"></i><b>9.3</b> Custom downloads</a></li>
+<li class="chapter" data-level="9.4" data-path="advanced.html"><a href="advanced.html#advanced-size"><i class="fa fa-check"></i><b>9.4</b> Reducing file size</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="advanced.html"><a href="advanced.html#advanced-size-strict"><i class="fa fa-check"></i><b>9.4.1</b> Stricter filtering</a></li>
+<li class="chapter" data-level="9.4.2" data-path="advanced.html"><a href="advanced.html#advanced-size-columns"><i class="fa fa-check"></i><b>9.4.2</b> Removing columns</a></li>
+<li class="chapter" data-level="9.4.3" data-path="advanced.html"><a href="advanced.html#advanced-size-split"><i class="fa fa-check"></i><b>9.4.3</b> Splitting by species</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Distribution Modeling</b></span></li>
+<li class="chapter" data-level="10" data-path="model-intro.html"><a href="model-intro.html"><i class="fa fa-check"></i><b>10</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1" data-path="model-intro.html"><a href="model-intro.html#model-intro-data"><i class="fa fa-check"></i><b>10.1</b> Example data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="encounter.html"><a href="encounter.html"><i class="fa fa-check"></i><b>11</b> Encounter Rate</a><ul>
+<li class="chapter" data-level="11.1" data-path="encounter.html"><a href="encounter.html#encounter-prep"><i class="fa fa-check"></i><b>11.1</b> Data preparation</a></li>
+<li class="chapter" data-level="11.2" data-path="encounter.html"><a href="encounter.html#encounter-rf"><i class="fa fa-check"></i><b>11.2</b> Random forests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="encounter.html"><a href="encounter.html#encounter-rf-cal"><i class="fa fa-check"></i><b>11.2.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.2.2" data-path="encounter.html"><a href="encounter.html#encounter-rf-assess"><i class="fa fa-check"></i><b>11.2.2</b> Model assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="encounter.html"><a href="encounter.html#encounter-habitat"><i class="fa fa-check"></i><b>11.3</b> Habitat associations</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pi"><i class="fa fa-check"></i><b>11.3.1</b> Predictor importance</a></li>
+<li class="chapter" data-level="11.3.2" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pd"><i class="fa fa-check"></i><b>11.3.2</b> Partial dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="encounter.html"><a href="encounter.html#encounter-predict"><i class="fa fa-check"></i><b>11.4</b> Prediction</a></li>
+<li class="chapter" data-level="11.5" data-path="encounter.html"><a href="encounter.html#encouter-exercises"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="occupancy.html"><a href="occupancy.html"><i class="fa fa-check"></i><b>12</b> Occupancy</a><ul>
+<li class="chapter" data-level="12.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-prep"><i class="fa fa-check"></i><b>12.1</b> Data preparation</a></li>
+<li class="chapter" data-level="12.2" data-path="occupancy.html"><a href="occupancy.html#occupancy-model"><i class="fa fa-check"></i><b>12.2</b> Occupancy modeling</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-model-assess"><i class="fa fa-check"></i><b>12.2.1</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="occupancy.html"><a href="occupancy.html#occupancy-predict"><i class="fa fa-check"></i><b>12.3</b> Prediction</a></li>
+<li class="chapter" data-level="12.4" data-path="occupancy.html"><a href="occupancy.html#occupancy-select"><i class="fa fa-check"></i><b>12.4</b> Model selection</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-select-detection"><i class="fa fa-check"></i><b>12.4.1</b> Detection model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="occupancy.html"><a href="occupancy.html#occupancy-exercises"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="abundance.html"><a href="abundance.html"><i class="fa fa-check"></i><b>13</b> Abundance</a><ul>
+<li class="chapter" data-level="13.1" data-path="abundance.html"><a href="abundance.html#abundance-prep"><i class="fa fa-check"></i><b>13.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="abundance.html"><a href="abundance.html#abundance-explore"><i class="fa fa-check"></i><b>13.2</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="abundance.html"><a href="abundance.html#abundance-model"><i class="fa fa-check"></i><b>13.3</b> Abundance models</a></li>
+<li class="chapter" data-level="13.4" data-path="abundance.html"><a href="abundance.html#abundance-assess"><i class="fa fa-check"></i><b>13.4</b> Asssessment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="abundance.html"><a href="abundance.html#abundance-assess-cov"><i class="fa fa-check"></i><b>13.4.1</b> Assessing covariate effects</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="abundance.html"><a href="abundance.html#abundance-predict"><i class="fa fa-check"></i><b>13.5</b> Prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="abundance.html"><a href="abundance.html#abundance-exercises"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">eBird Best Practices Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="subsampling" class="section level1">
+<h1><span class="header-section-number">Lesson 7</span> Spatiotemporal Subsampling</h1>
+<p>Despite the strengths of eBird data, species observations collected through citizen science projects present a number of challenges that are not found in conventional scientific data. In this chapter, we’ll discuss three of these challenges: <strong>spatial bias</strong>, <strong>temporal bias</strong>, and <strong>class imbalance</strong>. Spatial and temporal bias refers to the tendency of eBird checklists to be distributed non-randomly in space and time, while class imbalance refers to fact that there will be many more non-detections than detections for most species. All three can impact our ability to make reliable inferences from eBird data.</p>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Think of some examples of birder behavior that can lead to spatial and temporal bias.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<ul>
+<li><strong>Spatial bias:</strong> most eBirders sample near their homes, in easily accessible areas such as roadsides, or in areas and habitats of known high biodiversity.</li>
+<li><strong>Temporal bias:</strong> eBirders preferentially sample when they are available, such as weekends, and at times of year when they expect to observe more birds, such as spring migration in North America.</li>
+</ul>
+</div>
+</div>
+<p>Fortunately, all three of these challenges can largely be addressed by spatiotemporal subsampling of the eBird data prior to modeling. In particular, this consists of dividing space and time up into a regular grid (e.g. 5 km x 5 km x 1 week), and only selecting a subset of checklists from each grid cell. To deal with class imbalance, we can subsample detections and non-detections separately to ensure we don’t lose too many detections.</p>
+<p>For the spatial part of the subsampling we’ll use the package <code>dggridR</code> to generate a regular hexagonal grid and assign points to the cells of this grid. Hexagonal grids are preferable to square grids because they exhibit significantly less spatial distortion.</p>
+<div id="subsampling-toy" class="section level2">
+<h2><span class="header-section-number">7.1</span> A toy example</h2>
+<p>To illustrate how spatial sampling on a hexagonal grid works, let’s start with a simpe toy example. We’ll generate 500 randomly placed points, construct a hexagonal grid with 5 km spacing, assign each point to a grid cell, then select a single point within each cell.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">library</span>(auk)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="kw">library</span>(dggridR)</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co"># bounding box to generate points from</span></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">bb &lt;-<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">c</span>(<span class="dt">xmin =</span> <span class="fl">-0.1</span>, <span class="dt">xmax =</span> <span class="fl">0.1</span>, <span class="dt">ymin =</span> <span class="fl">-0.1</span>, <span class="dt">ymax =</span> <span class="fl">0.1</span>), </a>
+<a class="sourceLine" id="cb42-9" data-line-number="9">              <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10"><span class="st">  </span><span class="kw">st_as_sfc</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="st">  </span><span class="kw">st_sf</span>()</a>
+<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co"># random points</span></a>
+<a class="sourceLine" id="cb42-13" data-line-number="13">pts &lt;-<span class="st"> </span><span class="kw">st_sample</span>(bb, <span class="dv">500</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-14" data-line-number="14"><span class="st">  </span><span class="kw">st_sf</span>(<span class="kw">as.data.frame</span>(<span class="kw">st_coordinates</span>(.)), <span class="dt">geometry =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">lat =</span> Y, <span class="dt">lon =</span> X)</a>
+<a class="sourceLine" id="cb42-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb42-17" data-line-number="17"><span class="co"># contruct a hexagonal grid with ~ 5 km between cells</span></a>
+<a class="sourceLine" id="cb42-18" data-line-number="18">dggs &lt;-<span class="st"> </span><span class="kw">dgconstruct</span>(<span class="dt">spacing =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb42-19" data-line-number="19"><span class="co">#&gt; Resolution: 13, Area (km^2): 31.9926151554038, Spacing (km): 5.58632116604266, CLS (km): 6.38233997895802</span></a>
+<a class="sourceLine" id="cb42-20" data-line-number="20"><span class="co"># for each point, get the grid cell</span></a>
+<a class="sourceLine" id="cb42-21" data-line-number="21">pts<span class="op">$</span>cell &lt;-<span class="st"> </span><span class="kw">dgGEO_to_SEQNUM</span>(dggs, pts<span class="op">$</span>lon, pts<span class="op">$</span>lat)<span class="op">$</span>seqnum</a>
+<a class="sourceLine" id="cb42-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb42-23" data-line-number="23"><span class="co"># sample one checklist per grid cell</span></a>
+<a class="sourceLine" id="cb42-24" data-line-number="24">pts_ss &lt;-<span class="st"> </span>pts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-25" data-line-number="25"><span class="st">  </span><span class="kw">group_by</span>(cell) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-26" data-line-number="26"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-27" data-line-number="27"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb42-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb42-29" data-line-number="29"><span class="co"># generate polygons for the grid cells</span></a>
+<a class="sourceLine" id="cb42-30" data-line-number="30">hexagons &lt;-<span class="st"> </span><span class="kw">dgcellstogrid</span>(dggs, <span class="kw">unique</span>(pts<span class="op">$</span>cell), <span class="dt">frame =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-31" data-line-number="31"><span class="st">  </span><span class="kw">st_as_sf</span>()</a>
+<a class="sourceLine" id="cb42-32" data-line-number="32"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-33" data-line-number="33"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> hexagons) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-34" data-line-number="34"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> pts, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-35" data-line-number="35"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> pts_ss, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-36" data-line-number="36"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/subsampling-toy-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>In the above plot, black dots represent the original set of 500 randomly placed points, while red dots represent the subsampled data, one point per hexagonal cell.</p>
+</div>
+<div id="subsampling-ebird" class="section level2">
+<h2><span class="header-section-number">7.2</span> Subsampling eBird data</h2>
+<p>Now let’s apply this same approach to the zero-filled American Flamingo data we produced in the <a href="presabs.html#presabs">previous lesson</a>; however, now we’ll temporally sample as well, at a resolution of one week, and sample presences and absences separately. We start by reading in the eBird data and assigning each checklist to a hexagonal grid cell and a week.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># generate hexagonal grid with ~ 5 km betweeen cells</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">dggs &lt;-<span class="st"> </span><span class="kw">dgconstruct</span>(<span class="dt">spacing =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co">#&gt; Resolution: 13, Area (km^2): 31.9926151554038, Spacing (km): 5.58632116604266, CLS (km): 6.38233997895802</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co"># read in data</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">ebird &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ebird_amefla_zf.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="st">  </span><span class="co"># get hexagonal cell id and week number for each checklist</span></a>
+<a class="sourceLine" id="cb43-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cell =</span> <span class="kw">dgGEO_to_SEQNUM</span>(dggs, longitude, latitude)<span class="op">$</span>seqnum,</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">         <span class="dt">year =</span> <span class="kw">year</span>(observation_date),</a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">         <span class="dt">week =</span> <span class="kw">week</span>(observation_date))</a></code></pre></div>
+<p>Now we sample a single checklist from each grid cell for each week, using <code>group_by()</code> to sample presences and absences separetely.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">ebird_ss &lt;-<span class="st"> </span>ebird <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(species_observed, year, week, cell) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>How did the spatiotemporal subsampling affect the overall sample size as well as the prevalence of detections?</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># original data</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">nrow</span>(ebird)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#&gt; [1] 242</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="kw">count</span>(ebird, species_observed) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">#&gt; # A tibble: 2 x 3</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">#&gt;   species_observed     n percent</span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">#&gt;   &lt;lgl&gt;            &lt;int&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">#&gt; 1 FALSE              217   0.897</span></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="co">#&gt; 2 TRUE                25   0.103</span></a>
+<a class="sourceLine" id="cb45-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb45-12" data-line-number="12"><span class="co"># after sampling</span></a>
+<a class="sourceLine" id="cb45-13" data-line-number="13"><span class="kw">nrow</span>(ebird_ss)</a>
+<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co">#&gt; [1] 147</span></a>
+<a class="sourceLine" id="cb45-15" data-line-number="15"><span class="kw">count</span>(ebird_ss, species_observed) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</a>
+<a class="sourceLine" id="cb45-17" data-line-number="17"><span class="co">#&gt; # A tibble: 2 x 3</span></a>
+<a class="sourceLine" id="cb45-18" data-line-number="18"><span class="co">#&gt;   species_observed     n percent</span></a>
+<a class="sourceLine" id="cb45-19" data-line-number="19"><span class="co">#&gt;   &lt;lgl&gt;            &lt;int&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb45-20" data-line-number="20"><span class="co">#&gt; 1 FALSE              126   0.857</span></a>
+<a class="sourceLine" id="cb45-21" data-line-number="21"><span class="co">#&gt; 2 TRUE                21   0.143</span></a></code></pre></div>
+<p>So, the subsampling <em>decreased</em> the overall number of checklists from 242 to 147, but <em>increased</em> the prevalence of detections from 10.3% to 14.3%.</p>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+var coll = document.getElementsByClassName("solution");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="presabs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mstrimas/ebp-workshop/edit/master/07_subsampling.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

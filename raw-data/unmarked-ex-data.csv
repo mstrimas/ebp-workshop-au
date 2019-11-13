@@ -1,0 +1,6 @@
+site_id,y.1,y.2,y.3,latitude,longitude,forest_cover,distance.1,distance.2,distance.3,time.1,time.2,time.3
+site1,TRUE,FALSE,TRUE,20.25,182.22,0.12,14.51,10.01,12.41,33.72,43.46,20.73
+site2,FALSE,TRUE,,20.55,183.11,0.45,9.84,11.9,,26.37,23.77,
+site3,TRUE,FALSE,FALSE,19.95,182.45,0.98,8.95,12.63,9.78,23.44,30.07,13.32
+site4,TRUE,FALSE,,21.01,183.01,0.23,10.26,6,,31.86,26.95,
+site5,FALSE,FALSE,FALSE,29.75,182.85,0.43,11.34,7.58,16.88,24.76,25.03,23.65

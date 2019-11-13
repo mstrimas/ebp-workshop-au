@@ -1,0 +1,15 @@
+--- 
+knit: "bookdown::render_book"
+title: "eBird Best Practices Workshop"
+author: "Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: mstrimas/ebp-workshop
+description: "Best practices for using eBird data to estimate species distributions"
+---
+
+# Welcome {-}
+
+These lessons comprise a two part workshop on best practices for using eBird data. Part I of this workshop focuses on extracting and processing eBird data with R, while Part II covers using these data to model species distributions. The workshop as a whole is typically given over two days; however, it is designed to be modular and a half-day or one-day workshop can be given based on a subset of the material. In particular, Part I and II are largely independent of each other and can be taught individually. This workshop acts as a complement to the free online book [eBird Best Practices](http://strimas.com/ebird-best-practices) as well as an [associated paper](https://www.biorxiv.org/content/10.1101/574392v2) on best practices for making reliable inferences from citizen science data. The contents of this workshop are addressed in greater detail in these resources.

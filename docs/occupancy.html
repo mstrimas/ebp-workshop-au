@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 12 Occupancy | eBird Best Practices Workshop</title>
+  <meta name="description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 12 Occupancy | eBird Best Practices Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="github-repo" content="mstrimas/ebp-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 12 Occupancy | eBird Best Practices Workshop" />
+  
+  <meta name="twitter:description" content="Best practices for using eBird data to estimate species distributions" />
+  
+
+<meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="encounter.html"/>
+<link rel="next" href="abundance.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">eBird Best Practices Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-data"><i class="fa fa-check"></i><b>1.1</b> Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-setup"><i class="fa fa-check"></i><b>1.3</b> Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#intro-tidyverse"><i class="fa fa-check"></i><b>1.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="part"><span><b>I eBird Data</b></span></li>
+<li class="chapter" data-level="2" data-path="ebird-intro.html"><a href="ebird-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="ebird-intro.html"><a href="ebird-intro.html#the-auk-workflow"><i class="fa fa-check"></i><b>2.1</b> The <code>auk</code> workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="access.html"><a href="access.html"><i class="fa fa-check"></i><b>3</b> Data Access</a></li>
+<li class="chapter" data-level="4" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>4</b> Filtering</a><ul>
+<li class="chapter" data-level="4.1" data-path="filter.html"><a href="filter.html#filter-define"><i class="fa fa-check"></i><b>4.1</b> Defining filters</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="filter.html"><a href="filter.html#filter-define-complete"><i class="fa fa-check"></i><b>4.1.1</b> Complete checklists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="filter.html"><a href="filter.html#filter-execute"><i class="fa fa-check"></i><b>4.2</b> Execute filters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Importing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#import-group"><i class="fa fa-check"></i><b>5.1</b> Group checklists</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-taxonomy"><i class="fa fa-check"></i><b>5.2</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="presabs.html"><a href="presabs.html"><i class="fa fa-check"></i><b>6</b> Presence-absence Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="presabs.html"><a href="presabs.html#presabs-filter"><i class="fa fa-check"></i><b>6.1</b> Filtering</a></li>
+<li class="chapter" data-level="6.2" data-path="presabs.html"><a href="presabs.html#presabs-zerofill"><i class="fa fa-check"></i><b>6.2</b> Zero-filling</a></li>
+<li class="chapter" data-level="6.3" data-path="presabs.html"><a href="presabs.html#presabs-tidy"><i class="fa fa-check"></i><b>6.3</b> Tidying up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="subsampling.html"><a href="subsampling.html"><i class="fa fa-check"></i><b>7</b> Spatiotemporal Subsampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="subsampling.html"><a href="subsampling.html#subsampling-toy"><i class="fa fa-check"></i><b>7.1</b> A toy example</a></li>
+<li class="chapter" data-level="7.2" data-path="subsampling.html"><a href="subsampling.html#subsampling-ebird"><i class="fa fa-check"></i><b>7.2</b> Subsampling eBird data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>8</b> Applications</a><ul>
+<li class="chapter" data-level="8.1" data-path="applications.html"><a href="applications.html#applications-trajectory"><i class="fa fa-check"></i><b>8.1</b> Frequency trajectories</a></li>
+<li class="chapter" data-level="8.2" data-path="applications.html"><a href="applications.html#applications-maps"><i class="fa fa-check"></i><b>8.2</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="9.1" data-path="advanced.html"><a href="advanced.html#advanced-unmarked"><i class="fa fa-check"></i><b>9.1</b> Preparing for occupancy modeling</a></li>
+<li class="chapter" data-level="9.2" data-path="advanced.html"><a href="advanced.html#advanced-modis"><i class="fa fa-check"></i><b>9.2</b> Land cover covariates</a></li>
+<li class="chapter" data-level="9.3" data-path="advanced.html"><a href="advanced.html#advanced-custom"><i class="fa fa-check"></i><b>9.3</b> Custom downloads</a></li>
+<li class="chapter" data-level="9.4" data-path="advanced.html"><a href="advanced.html#advanced-size"><i class="fa fa-check"></i><b>9.4</b> Reducing file size</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="advanced.html"><a href="advanced.html#advanced-size-strict"><i class="fa fa-check"></i><b>9.4.1</b> Stricter filtering</a></li>
+<li class="chapter" data-level="9.4.2" data-path="advanced.html"><a href="advanced.html#advanced-size-columns"><i class="fa fa-check"></i><b>9.4.2</b> Removing columns</a></li>
+<li class="chapter" data-level="9.4.3" data-path="advanced.html"><a href="advanced.html#advanced-size-split"><i class="fa fa-check"></i><b>9.4.3</b> Splitting by species</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Distribution Modeling</b></span></li>
+<li class="chapter" data-level="10" data-path="model-intro.html"><a href="model-intro.html"><i class="fa fa-check"></i><b>10</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1" data-path="model-intro.html"><a href="model-intro.html#model-intro-data"><i class="fa fa-check"></i><b>10.1</b> Example data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="encounter.html"><a href="encounter.html"><i class="fa fa-check"></i><b>11</b> Encounter Rate</a><ul>
+<li class="chapter" data-level="11.1" data-path="encounter.html"><a href="encounter.html#encounter-prep"><i class="fa fa-check"></i><b>11.1</b> Data preparation</a></li>
+<li class="chapter" data-level="11.2" data-path="encounter.html"><a href="encounter.html#encounter-rf"><i class="fa fa-check"></i><b>11.2</b> Random forests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="encounter.html"><a href="encounter.html#encounter-rf-cal"><i class="fa fa-check"></i><b>11.2.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.2.2" data-path="encounter.html"><a href="encounter.html#encounter-rf-assess"><i class="fa fa-check"></i><b>11.2.2</b> Model assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="encounter.html"><a href="encounter.html#encounter-habitat"><i class="fa fa-check"></i><b>11.3</b> Habitat associations</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pi"><i class="fa fa-check"></i><b>11.3.1</b> Predictor importance</a></li>
+<li class="chapter" data-level="11.3.2" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pd"><i class="fa fa-check"></i><b>11.3.2</b> Partial dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="encounter.html"><a href="encounter.html#encounter-predict"><i class="fa fa-check"></i><b>11.4</b> Prediction</a></li>
+<li class="chapter" data-level="11.5" data-path="encounter.html"><a href="encounter.html#encouter-exercises"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="occupancy.html"><a href="occupancy.html"><i class="fa fa-check"></i><b>12</b> Occupancy</a><ul>
+<li class="chapter" data-level="12.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-prep"><i class="fa fa-check"></i><b>12.1</b> Data preparation</a></li>
+<li class="chapter" data-level="12.2" data-path="occupancy.html"><a href="occupancy.html#occupancy-model"><i class="fa fa-check"></i><b>12.2</b> Occupancy modeling</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-model-assess"><i class="fa fa-check"></i><b>12.2.1</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="occupancy.html"><a href="occupancy.html#occupancy-predict"><i class="fa fa-check"></i><b>12.3</b> Prediction</a></li>
+<li class="chapter" data-level="12.4" data-path="occupancy.html"><a href="occupancy.html#occupancy-select"><i class="fa fa-check"></i><b>12.4</b> Model selection</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-select-detection"><i class="fa fa-check"></i><b>12.4.1</b> Detection model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="occupancy.html"><a href="occupancy.html#occupancy-exercises"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="abundance.html"><a href="abundance.html"><i class="fa fa-check"></i><b>13</b> Abundance</a><ul>
+<li class="chapter" data-level="13.1" data-path="abundance.html"><a href="abundance.html#abundance-prep"><i class="fa fa-check"></i><b>13.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="abundance.html"><a href="abundance.html#abundance-explore"><i class="fa fa-check"></i><b>13.2</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="abundance.html"><a href="abundance.html#abundance-model"><i class="fa fa-check"></i><b>13.3</b> Abundance models</a></li>
+<li class="chapter" data-level="13.4" data-path="abundance.html"><a href="abundance.html#abundance-assess"><i class="fa fa-check"></i><b>13.4</b> Asssessment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="abundance.html"><a href="abundance.html#abundance-assess-cov"><i class="fa fa-check"></i><b>13.4.1</b> Assessing covariate effects</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="abundance.html"><a href="abundance.html#abundance-predict"><i class="fa fa-check"></i><b>13.5</b> Prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="abundance.html"><a href="abundance.html#abundance-exercises"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">eBird Best Practices Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="occupancy" class="section level1">
+<h1><span class="header-section-number">Lesson 12</span> Occupancy</h1>
+<p>In this lesson, we’ll use occupancy models to estimate the occupancy of occupancy of Australian Ibis on eBird checklists in September in the Temperate and Subtropical Forest CMZ, while explicitly accounting for imperfect detection. First, we’ll give a short presentation introducing occupancy modeling. The presentation can be downloaded in <a href="https://github.com/mstrimas/ebp-workshop/raw/master/12_occupancy.pptx">PowerPoint</a> or <a href="https://github.com/mstrimas/ebp-workshop/raw/master/12_occupancy.pdf">PDF</a> format, or <a href="https://speakerdeck.com/mstrimas/ebird-best-practices-ii-occupancy">viewed on SpeakerDeck</a>.</p>
+<iframe src="https://speakerdeck.com/player/7375bae455c04703a770c0c6ab26dc6a" width="700px" height="400px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+</iframe>
+<p>Let’s start by loading the packages and data required for this lesson.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">library</span>(auk)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="kw">library</span>(dggridR)</a>
+<a class="sourceLine" id="cb85-5" data-line-number="5"><span class="kw">library</span>(unmarked)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb85-7" data-line-number="7"><span class="kw">library</span>(ebirdst)</a>
+<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="kw">library</span>(MuMIn)</a>
+<a class="sourceLine" id="cb85-9" data-line-number="9"><span class="kw">library</span>(AICcmodavg)</a>
+<a class="sourceLine" id="cb85-10" data-line-number="10"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb85-11" data-line-number="11"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb85-12" data-line-number="12"><span class="co"># resolve namespace conflicts</span></a>
+<a class="sourceLine" id="cb85-13" data-line-number="13">select &lt;-<span class="st"> </span>dplyr<span class="op">::</span>select</a>
+<a class="sourceLine" id="cb85-14" data-line-number="14">projection &lt;-<span class="st"> </span>raster<span class="op">::</span>projection</a>
+<a class="sourceLine" id="cb85-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb85-16" data-line-number="16"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb85-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb85-18" data-line-number="18"><span class="co"># ebird data</span></a>
+<a class="sourceLine" id="cb85-19" data-line-number="19">ebird &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ebd_zf_sep_tst.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-20" data-line-number="20"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;Australian Ibis&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-21" data-line-number="21"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(observation_date),</a>
+<a class="sourceLine" id="cb85-22" data-line-number="22">         <span class="co"># occupancy modeling requires an integer response</span></a>
+<a class="sourceLine" id="cb85-23" data-line-number="23">         <span class="dt">species_observed =</span> <span class="kw">as.integer</span>(species_observed))</a>
+<a class="sourceLine" id="cb85-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb85-25" data-line-number="25"><span class="co"># modis land cover covariates</span></a>
+<a class="sourceLine" id="cb85-26" data-line-number="26">habitat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/pland-elev_location-year.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-27" data-line-number="27"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))</a>
+<a class="sourceLine" id="cb85-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb85-29" data-line-number="29"><span class="co"># combine ebird and modis data</span></a>
+<a class="sourceLine" id="cb85-30" data-line-number="30">ebird_habitat &lt;-<span class="st"> </span><span class="kw">inner_join</span>(ebird, habitat, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;locality_id&quot;</span>, <span class="st">&quot;year&quot;</span>))</a>
+<a class="sourceLine" id="cb85-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb85-32" data-line-number="32"><span class="co"># prediction surface</span></a>
+<a class="sourceLine" id="cb85-33" data-line-number="33">pred_surface &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/pland-elev_prediction-surface.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb85-34" data-line-number="34"><span class="co"># latest year of landcover data</span></a>
+<a class="sourceLine" id="cb85-35" data-line-number="35">max_lc_year &lt;-<span class="st"> </span>pred_surface<span class="op">$</span>year[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb85-36" data-line-number="36">r &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;data/prediction-surface.tif&quot;</span>)</a>
+<a class="sourceLine" id="cb85-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb85-38" data-line-number="38"><span class="co"># load gis data for making maps</span></a>
+<a class="sourceLine" id="cb85-39" data-line-number="39">map_proj &lt;-<span class="st"> </span><span class="kw">st_crs</span>(<span class="dv">3577</span>)</a>
+<a class="sourceLine" id="cb85-40" data-line-number="40">ne_land &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;ne_country&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-41" data-line-number="41"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-42" data-line-number="42"><span class="st">  </span><span class="kw">st_geometry</span>()</a>
+<a class="sourceLine" id="cb85-43" data-line-number="43">cmz &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;cmz&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-44" data-line-number="44"><span class="st">  </span><span class="kw">filter</span>(cmz_name <span class="op">==</span><span class="st"> &quot;Eastern Australia Temperate and Subtropical forests&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-45" data-line-number="45"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-46" data-line-number="46"><span class="st">  </span><span class="kw">st_geometry</span>()</a>
+<a class="sourceLine" id="cb85-47" data-line-number="47">ne_state_lines &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;ne_state_lines&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-48" data-line-number="48"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-49" data-line-number="49"><span class="st">  </span><span class="kw">st_geometry</span>()</a></code></pre></div>
+<div id="occupancy-prep" class="section level2">
+<h2><span class="header-section-number">12.1</span> Data preparation</h2>
+<p>Since we’ll be fitting a single-season occupancy models, we’ll need to start by focusing on observations from September of a single year, in this case the most recent year for which we have data. At this point, we also suggest subsetting the data to observations with 5 or fewer observers since there are few checklists with more than 5 observers.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co"># filter to a single year of data</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">ebird_filtered &lt;-<span class="st"> </span><span class="kw">filter</span>(ebird_habitat, </a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">                         number_observers <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb86-4" data-line-number="4">                         year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year))</a></code></pre></div>
+<p>As we learned in <a href="advanced.html#advanced-unmarked">Part I</a> of this workshop, we can use the <code>auk</code> function <code>filter_repeat_visits()</code> to extract just the eBird records that are suitable for occupancy modeling. Specifically, we want repeat visits to the same location by the same observer, so we’ll use latitude, longitude, and observer ID to define ‘sites’.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="co"># subset for occupancy modeling</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">occ &lt;-<span class="st"> </span><span class="kw">filter_repeat_visits</span>(ebird_filtered, </a>
+<a class="sourceLine" id="cb87-3" data-line-number="3">                            <span class="dt">min_obs =</span> <span class="dv">2</span>, <span class="dt">max_obs =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb87-4" data-line-number="4">                            <span class="dt">annual_closure =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb87-5" data-line-number="5">                            <span class="dt">date_var =</span> <span class="st">&quot;observation_date&quot;</span>,</a>
+<a class="sourceLine" id="cb87-6" data-line-number="6">                            <span class="dt">site_vars =</span> <span class="kw">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, </a>
+<a class="sourceLine" id="cb87-7" data-line-number="7">                                          <span class="st">&quot;observer_id&quot;</span>))</a></code></pre></div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Suppose you define the temporal period of closure as week long blocks, rather than the whole month of September. Use <code>filter_repeat_visits()</code> to extract eBird data accordingly.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">occ_days &lt;-<span class="st"> </span><span class="kw">filter_repeat_visits</span>(ebird_filtered, </a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">                                 <span class="dt">min_obs =</span> <span class="dv">2</span>, <span class="dt">max_obs =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">                                 <span class="dt">n_days =</span> <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb88-4" data-line-number="4">                                 <span class="dt">date_var =</span> <span class="st">&quot;observation_date&quot;</span>,</a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">                                 <span class="dt">site_vars =</span> <span class="kw">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, </a>
+<a class="sourceLine" id="cb88-6" data-line-number="6">                                               <span class="st">&quot;observer_id&quot;</span>))</a></code></pre></div>
+</div>
+</div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Subsetting eBird data to just the observations suitable for occupancy modeling will inevitably reduce the amount of data. What proportion of observations remain after calling <code>filter_repeat_visits()</code>? How many unique sites do we have?</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">nrow</span>(occ) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(ebird_habitat)</a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="co">#&gt; [1] 0.111</span></a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="kw">n_distinct</span>(occ<span class="op">$</span>site)</a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="co">#&gt; [1] 392</span></a></code></pre></div>
+</div>
+</div>
+<p>Next, we’ll use the <code>auk</code> function <code>format_unmarked_occu()</code> to put data in the specific format required by <code>unmarked</code>, as discussed in <a href="advanced.html#advanced-unmarked">Part I</a>. Prior knowledge of Australian Ibis, as well as the predictor importance results from the <a href="encounter.html#encounter-habitat">encounter rate</a> lesson, inform what land cover variables we choose as occupancy covariates. The five effort variables should always be included as detection covariates, but we’ll also examine whether different habitat types affect the detection probability.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co"># format for unmarked, select occupancy and detection covariates</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">occ_wide &lt;-<span class="st"> </span><span class="kw">format_unmarked_occu</span>(occ, </a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">                                 <span class="dt">site_id =</span> <span class="st">&quot;site&quot;</span>, </a>
+<a class="sourceLine" id="cb90-4" data-line-number="4">                                 <span class="dt">response =</span> <span class="st">&quot;species_observed&quot;</span>,</a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">                                 <span class="dt">site_covs =</span> <span class="kw">c</span>(<span class="st">&quot;n_observations&quot;</span>, </a>
+<a class="sourceLine" id="cb90-6" data-line-number="6">                                               <span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, </a>
+<a class="sourceLine" id="cb90-7" data-line-number="7">                                               <span class="co"># % urban</span></a>
+<a class="sourceLine" id="cb90-8" data-line-number="8">                                               <span class="st">&quot;pland_13&quot;</span>, </a>
+<a class="sourceLine" id="cb90-9" data-line-number="9">                                               <span class="co"># % savanna</span></a>
+<a class="sourceLine" id="cb90-10" data-line-number="10">                                               <span class="st">&quot;pland_09&quot;</span>,</a>
+<a class="sourceLine" id="cb90-11" data-line-number="11">                                               <span class="co"># % evergreen broadleaf forest</span></a>
+<a class="sourceLine" id="cb90-12" data-line-number="12">                                               <span class="st">&quot;pland_02&quot;</span>,</a>
+<a class="sourceLine" id="cb90-13" data-line-number="13">                                               <span class="co"># % woody savanna</span></a>
+<a class="sourceLine" id="cb90-14" data-line-number="14">                                               <span class="st">&quot;pland_08&quot;</span>),</a>
+<a class="sourceLine" id="cb90-15" data-line-number="15">                                 <span class="dt">obs_covs =</span> <span class="kw">c</span>(<span class="st">&quot;time_observations_started&quot;</span>, </a>
+<a class="sourceLine" id="cb90-16" data-line-number="16">                                              <span class="st">&quot;duration_minutes&quot;</span>, </a>
+<a class="sourceLine" id="cb90-17" data-line-number="17">                                              <span class="st">&quot;effort_distance_km&quot;</span>, </a>
+<a class="sourceLine" id="cb90-18" data-line-number="18">                                              <span class="st">&quot;number_observers&quot;</span>, </a>
+<a class="sourceLine" id="cb90-19" data-line-number="19">                                              <span class="st">&quot;protocol_type&quot;</span>,</a>
+<a class="sourceLine" id="cb90-20" data-line-number="20">                                              <span class="st">&quot;pland_13&quot;</span>, </a>
+<a class="sourceLine" id="cb90-21" data-line-number="21">                                              <span class="st">&quot;pland_09&quot;</span>))</a></code></pre></div>
+<p>As described in lesson <a href="subsampling.html#subsampling">7</a>, we’ll use spatial subsampling to reduce spatial bias. However, here we’ll subsample at the level of ‘sites’ rather than observations.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># generate hexagonal grid with ~ 5 km betweeen cells</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">dggs &lt;-<span class="st"> </span><span class="kw">dgconstruct</span>(<span class="dt">spacing =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="co"># get hexagonal cell id for each site</span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4">occ_wide_cell &lt;-<span class="st"> </span>occ_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cell =</span> <span class="kw">dgGEO_to_SEQNUM</span>(dggs, longitude, latitude)<span class="op">$</span>seqnum)</a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co"># sample one checklist per grid cell</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7">occ_ss &lt;-<span class="st"> </span>occ_wide_cell <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="st">  </span><span class="kw">group_by</span>(cell) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>cell)</a></code></pre></div>
+<p>Finally, we’ll convert this data frame of observations into an <code>unmarked</code> object in order to fit occupancy models.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># creat unmarked object</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">occ_um &lt;-<span class="st"> </span><span class="kw">formatWide</span>(occ_ss, <span class="dt">type =</span> <span class="st">&quot;unmarkedFrameOccu&quot;</span>)</a></code></pre></div>
+</div>
+<div id="occupancy-model" class="section level2">
+<h2><span class="header-section-number">12.2</span> Occupancy modeling</h2>
+<p>Now that the data are prepared, we can fit a single-season occupancy model to using the <code>occu()</code> function, specifying the detection and occupancy covariates, respectively, via a double right-hand sided formula of the form <code>~ detection covariates ~ occupancy covariates</code>.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># fit model</span></a>
+<a class="sourceLine" id="cb93-2" data-line-number="2">occ_model &lt;-<span class="st"> </span><span class="kw">occu</span>(<span class="op">~</span><span class="st"> </span>time_observations_started <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">                    </span>duration_minutes <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">                    </span>effort_distance_km <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">                    </span>number_observers <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="st">                    </span>protocol_type <span class="op">+</span></a>
+<a class="sourceLine" id="cb93-7" data-line-number="7"><span class="st">                    </span>pland_<span class="dv">02</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">08</span></a>
+<a class="sourceLine" id="cb93-8" data-line-number="8">                  <span class="op">~</span><span class="st"> </span>pland_<span class="dv">13</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">09</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">02</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">08</span>, </a>
+<a class="sourceLine" id="cb93-9" data-line-number="9">                  <span class="dt">data =</span> occ_um)</a>
+<a class="sourceLine" id="cb93-10" data-line-number="10"><span class="co"># look at the regression coefficients from the model</span></a>
+<a class="sourceLine" id="cb93-11" data-line-number="11"><span class="kw">summary</span>(occ_model)</a>
+<a class="sourceLine" id="cb93-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb93-13" data-line-number="13"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb93-14" data-line-number="14"><span class="co">#&gt; occu(formula = ~time_observations_started + duration_minutes + </span></a>
+<a class="sourceLine" id="cb93-15" data-line-number="15"><span class="co">#&gt;     effort_distance_km + number_observers + protocol_type + pland_02 + </span></a>
+<a class="sourceLine" id="cb93-16" data-line-number="16"><span class="co">#&gt;     pland_08 ~ pland_13 + pland_09 + pland_02 + pland_08, data = occ_um)</span></a>
+<a class="sourceLine" id="cb93-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb93-18" data-line-number="18"><span class="co">#&gt; Occupancy (logit-scale):</span></a>
+<a class="sourceLine" id="cb93-19" data-line-number="19"><span class="co">#&gt;             Estimate    SE      z P(&gt;|z|)</span></a>
+<a class="sourceLine" id="cb93-20" data-line-number="20"><span class="co">#&gt; (Intercept)   -0.621 0.501 -1.240 0.21484</span></a>
+<a class="sourceLine" id="cb93-21" data-line-number="21"><span class="co">#&gt; pland_13       0.911 0.644  1.416 0.15690</span></a>
+<a class="sourceLine" id="cb93-22" data-line-number="22"><span class="co">#&gt; pland_09       0.420 0.831  0.506 0.61303</span></a>
+<a class="sourceLine" id="cb93-23" data-line-number="23"><span class="co">#&gt; pland_02      -3.013 1.122 -2.687 0.00722</span></a>
+<a class="sourceLine" id="cb93-24" data-line-number="24"><span class="co">#&gt; pland_08      12.563 5.675  2.214 0.02685</span></a>
+<a class="sourceLine" id="cb93-25" data-line-number="25"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb93-26" data-line-number="26"><span class="co">#&gt; Detection (logit-scale):</span></a>
+<a class="sourceLine" id="cb93-27" data-line-number="27"><span class="co">#&gt;                            Estimate      SE       z  P(&gt;|z|)</span></a>
+<a class="sourceLine" id="cb93-28" data-line-number="28"><span class="co">#&gt; (Intercept)                -0.17286 0.66587 -0.2596 7.95e-01</span></a>
+<a class="sourceLine" id="cb93-29" data-line-number="29"><span class="co">#&gt; time_observations_started  -0.02826 0.04196 -0.6735 5.01e-01</span></a>
+<a class="sourceLine" id="cb93-30" data-line-number="30"><span class="co">#&gt; duration_minutes            0.01648 0.00472  3.4936 4.76e-04</span></a>
+<a class="sourceLine" id="cb93-31" data-line-number="31"><span class="co">#&gt; effort_distance_km          0.04264 0.16428  0.2595 7.95e-01</span></a>
+<a class="sourceLine" id="cb93-32" data-line-number="32"><span class="co">#&gt; number_observers           -0.38447 0.21758 -1.7670 7.72e-02</span></a>
+<a class="sourceLine" id="cb93-33" data-line-number="33"><span class="co">#&gt; protocol_typeTraveling      0.61871 0.45763  1.3520 1.76e-01</span></a>
+<a class="sourceLine" id="cb93-34" data-line-number="34"><span class="co">#&gt; pland_02                    0.00581 1.11851  0.0052 9.96e-01</span></a>
+<a class="sourceLine" id="cb93-35" data-line-number="35"><span class="co">#&gt; pland_08                  -11.29335 2.34432 -4.8173 1.45e-06</span></a>
+<a class="sourceLine" id="cb93-36" data-line-number="36"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb93-37" data-line-number="37"><span class="co">#&gt; AIC: 468 </span></a>
+<a class="sourceLine" id="cb93-38" data-line-number="38"><span class="co">#&gt; Number of sites: 208</span></a>
+<a class="sourceLine" id="cb93-39" data-line-number="39"><span class="co">#&gt; optim convergence code: 0</span></a>
+<a class="sourceLine" id="cb93-40" data-line-number="40"><span class="co">#&gt; optim iterations: 66 </span></a>
+<a class="sourceLine" id="cb93-41" data-line-number="41"><span class="co">#&gt; Bootstrap iterations: 0</span></a></code></pre></div>
+<div id="occupancy-model-assess" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Assessment</h3>
+<p>The MacKenzie and Bailey <span class="citation">[-@mackenzieAssessingFitSiteoccupancy2004]</span> goodness-of-fit test can be used to assess the occupancy model fit. Note that to produce accurate results, this process requires simulating about 1,000 bootstrap samples, which can take a long time to run. For the sake of speed, if you want to run the below code, we suggest using <code>nsim = 5</code>.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r dontrun"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">occ_gof &lt;-<span class="st"> </span><span class="kw">mb.gof.test</span>(occ_model, <span class="dt">nsim =</span> <span class="dv">1000</span>, <span class="dt">plot.hist =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="kw">print</span>(occ_gof)</a></code></pre></div>
+<pre><code>#&gt; 
+#&gt; MacKenzie and Bailey goodness-of-fit for single-season occupancy model
+#&gt; 
+#&gt; Chi-square statistic = 612 
+#&gt; Number of bootstrap samples = 1000
+#&gt; P-value = 0.989
+#&gt; 
+#&gt; Quantiles of bootstrapped statistics:
+#&gt;    0%   25%   50%   75%  100% 
+#&gt;   451  1248  1609  2072 26914 
+#&gt; 
+#&gt; Estimate of c-hat = 0.31</code></pre>
+</div>
+</div>
+<div id="occupancy-predict" class="section level2">
+<h2><span class="header-section-number">12.3</span> Prediction</h2>
+<p>Now we can estimate the distribution of Australian Ibis in the CMZ and produce a map. Recall that when we <a href="encounter.html#encounter-predict">predicted encouter rate</a>, we had to include effort variables in our prediction surface. We don’t need to do that here because the estimated occupancy doesn’t depend on the effort covariates, these only occur in the detection submodel. In addition, <code>predict()</code> can produce both predictions as well as estimates of the standard error.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="co"># make prediction</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">occ_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(occ_model, </a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">                    <span class="dt">newdata =</span> <span class="kw">as.data.frame</span>(pred_surface), </a>
+<a class="sourceLine" id="cb96-4" data-line-number="4">                    <span class="dt">type =</span> <span class="st">&quot;state&quot;</span>)</a>
+<a class="sourceLine" id="cb96-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="co"># add to prediction surface</span></a>
+<a class="sourceLine" id="cb96-7" data-line-number="7">pred_occ &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(pred_surface, </a>
+<a class="sourceLine" id="cb96-8" data-line-number="8">                      <span class="dt">occ_prob =</span> occ_pred<span class="op">$</span>Predicted, </a>
+<a class="sourceLine" id="cb96-9" data-line-number="9">                      <span class="dt">occ_se =</span> occ_pred<span class="op">$</span>SE) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(latitude, longitude, occ_prob, occ_se)</a></code></pre></div>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Predicting on the full prediction surface will typically take several minutes. As the above code runs, let’s take a short break.</p>
+</div>
+<p>Next, we want to plot these predictions. We’ll convert this data frame to spatial features using <code>sf</code>, then rasterize the points using the prediction surface raster template.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">r_pred &lt;-<span class="st"> </span>pred_occ <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">  </span><span class="co"># convert to spatial features</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="kw">projection</span>(r)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="st">  </span><span class="co"># rasterize</span></a>
+<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="st">  </span><span class="kw">rasterize</span>(r)</a>
+<a class="sourceLine" id="cb97-7" data-line-number="7">r_pred &lt;-<span class="st"> </span>r_pred[[<span class="kw">c</span>(<span class="st">&quot;occ_prob&quot;</span>, <span class="st">&quot;occ_se&quot;</span>)]]</a></code></pre></div>
+<p>Finally, we can map these predictions!</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># project predictions</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">r_pred_proj &lt;-<span class="st"> </span><span class="kw">projectRaster</span>(r_pred, <span class="dt">crs =</span> map_proj<span class="op">$</span>proj4string, <span class="dt">method =</span> <span class="st">&quot;ngb&quot;</span>)</a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="cf">for</span> (nm <span class="cf">in</span> <span class="kw">names</span>(r_pred)) {</a>
+<a class="sourceLine" id="cb98-6" data-line-number="6">  r_plot &lt;-<span class="st"> </span>r_pred_proj[[nm]]</a>
+<a class="sourceLine" id="cb98-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb98-8" data-line-number="8">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb98-9" data-line-number="9">  <span class="co"># set up plot area</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10">  <span class="kw">plot</span>(cmz, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb98-11" data-line-number="11">  <span class="kw">plot</span>(ne_land, <span class="dt">col =</span> <span class="st">&quot;#dddddd&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#888888&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb98-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb98-13" data-line-number="13">  <span class="co"># occupancy probability or standard error</span></a>
+<a class="sourceLine" id="cb98-14" data-line-number="14">  <span class="cf">if</span> (nm <span class="op">==</span><span class="st"> &quot;occ_prob&quot;</span>) {</a>
+<a class="sourceLine" id="cb98-15" data-line-number="15">    title &lt;-<span class="st"> &quot;Australian Ibis Occupancy Probability&quot;</span></a>
+<a class="sourceLine" id="cb98-16" data-line-number="16">    brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb98-17" data-line-number="17">    lbl_brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">11</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-18" data-line-number="18"><span class="st">      </span><span class="kw">round</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb98-19" data-line-number="19">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb98-20" data-line-number="20">    title &lt;-<span class="st"> &quot;Australian Ibis Occupancy Uncertainty (SE)&quot;</span></a>
+<a class="sourceLine" id="cb98-21" data-line-number="21">    mx &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, max)) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb98-22" data-line-number="22">    brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, mx, <span class="dt">length.out =</span> <span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb98-23" data-line-number="23">    lbl_brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, mx, <span class="dt">length.out =</span> <span class="dv">11</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-24" data-line-number="24"><span class="st">      </span><span class="kw">round</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb98-25" data-line-number="25">  }</a>
+<a class="sourceLine" id="cb98-26" data-line-number="26">  pal &lt;-<span class="st"> </span><span class="kw">abundance_palette</span>(<span class="kw">length</span>(brks) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb98-27" data-line-number="27">  <span class="kw">plot</span>(r_plot, </a>
+<a class="sourceLine" id="cb98-28" data-line-number="28">       <span class="dt">col =</span> pal, <span class="dt">breaks =</span> brks, </a>
+<a class="sourceLine" id="cb98-29" data-line-number="29">       <span class="dt">maxpixels =</span> <span class="kw">ncell</span>(r_plot),</a>
+<a class="sourceLine" id="cb98-30" data-line-number="30">       <span class="dt">legend =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb98-31" data-line-number="31">  </a>
+<a class="sourceLine" id="cb98-32" data-line-number="32">  <span class="co"># borders</span></a>
+<a class="sourceLine" id="cb98-33" data-line-number="33">  <span class="kw">plot</span>(cmz, <span class="dt">border =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb98-34" data-line-number="34">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb98-35" data-line-number="35">  <span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb98-36" data-line-number="36">  </a>
+<a class="sourceLine" id="cb98-37" data-line-number="37">  <span class="co"># legend</span></a>
+<a class="sourceLine" id="cb98-38" data-line-number="38">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb98-39" data-line-number="39">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb98-40" data-line-number="40">             <span class="dt">breaks =</span> brks, <span class="dt">col =</span> pal,</a>
+<a class="sourceLine" id="cb98-41" data-line-number="41">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="fl">0.06</span>, <span class="fl">0.09</span>),</a>
+<a class="sourceLine" id="cb98-42" data-line-number="42">             <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb98-43" data-line-number="43">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, <span class="dt">labels =</span> lbl_brks,</a>
+<a class="sourceLine" id="cb98-44" data-line-number="44">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb98-45" data-line-number="45">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb98-46" data-line-number="46">                              <span class="dt">padj =</span> <span class="fl">-1.5</span>),</a>
+<a class="sourceLine" id="cb98-47" data-line-number="47">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
+<a class="sourceLine" id="cb98-48" data-line-number="48">                                <span class="dt">side =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb98-49" data-line-number="49">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb98-50" data-line-number="50">}</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/occupancy-predict-map-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+</div>
+<div id="occupancy-select" class="section level2">
+<h2><span class="header-section-number">12.4</span> Model selection</h2>
+<p>So far, we’ve been using a global model that includes all of the covariates we believe will influence the occupancy and detection probabilities; however, a more thorough approach is to use model selection to compare and rank a set of candidate models, each containing different subsets of the covariates. We’ll use the <code>dredge()</code> function, which evaluates a set of candidate models generated by using different combinations of the terms in the global model. Since we know from prior experience that the effort covariates are almost always important, we’ll lock these variables in, and consider a candidate set consisting of all possible combinations of the ecological covariates in the occupancy submodel.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co"># get list of all possible terms, then subset to those we want to keep</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">det_terms &lt;-<span class="st"> </span><span class="kw">getAllTerms</span>(occ_model) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="st">  </span><span class="co"># retain the detection submodel covariates</span></a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="st">  </span><span class="kw">discard</span>(str_detect, <span class="dt">pattern =</span> <span class="st">&quot;psi&quot;</span>)</a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="co"># fit all possible combinations of the occupancy covariates</span></a>
+<a class="sourceLine" id="cb99-7" data-line-number="7">occ_dredge &lt;-<span class="st"> </span><span class="kw">dredge</span>(occ_model, <span class="dt">fixed =</span> det_terms)</a>
+<a class="sourceLine" id="cb99-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="co"># model comparison</span></a>
+<a class="sourceLine" id="cb99-10" data-line-number="10"><span class="kw">select</span>(occ_dredge, <span class="kw">starts_with</span>(<span class="st">&quot;psi(p&quot;</span>), df, AICc, delta, weight) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate_all</span>(<span class="op">~</span><span class="st"> </span><span class="kw">round</span>(., <span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-12" data-line-number="12"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+psi(pland_02)
+</th>
+<th style="text-align:right;">
+psi(pland_08)
+</th>
+<th style="text-align:right;">
+psi(pland_09)
+</th>
+<th style="text-align:right;">
+psi(pland_13)
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+AICc
+</th>
+<th style="text-align:right;">
+delta
+</th>
+<th style="text-align:right;">
+weight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-3.56
+</td>
+<td style="text-align:right;">
+11.06
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+468
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.329
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-3.18
+</td>
+<td style="text-align:right;">
+12.63
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.733
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+468
+</td>
+<td style="text-align:right;">
+0.365
+</td>
+<td style="text-align:right;">
+0.274
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-3.60
+</td>
+<td style="text-align:right;">
+11.31
+</td>
+<td style="text-align:right;">
+-0.225
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+470
+</td>
+<td style="text-align:right;">
+2.147
+</td>
+<td style="text-align:right;">
+0.112
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-3.01
+</td>
+<td style="text-align:right;">
+12.56
+</td>
+<td style="text-align:right;">
+0.420
+</td>
+<td style="text-align:right;">
+0.911
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+470
+</td>
+<td style="text-align:right;">
+2.383
+</td>
+<td style="text-align:right;">
+0.100
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.90
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+471
+</td>
+<td style="text-align:right;">
+3.014
+</td>
+<td style="text-align:right;">
+0.073
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.67
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.382
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+472
+</td>
+<td style="text-align:right;">
+4.680
+</td>
+<td style="text-align:right;">
+0.032
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.89
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.106
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+473
+</td>
+<td style="text-align:right;">
+5.218
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+11.71
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+1.075
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+474
+</td>
+<td style="text-align:right;">
+6.323
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.43
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.568
+</td>
+<td style="text-align:right;">
+0.635
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+474
+</td>
+<td style="text-align:right;">
+6.415
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+11.15
+</td>
+<td style="text-align:right;">
+0.891
+</td>
+<td style="text-align:right;">
+1.457
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+475
+</td>
+<td style="text-align:right;">
+7.456
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+8.19
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+8.348
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+8.358
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.692
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+8.550
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.941
+</td>
+<td style="text-align:right;">
+1.107
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+477
+</td>
+<td style="text-align:right;">
+9.383
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+8.59
+</td>
+<td style="text-align:right;">
+-0.191
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+478
+</td>
+<td style="text-align:right;">
+10.499
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+478
+</td>
+<td style="text-align:right;">
+10.549
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+</tbody>
+</table>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>To determine which candidate model each row corresponds to, note that he columns beginning with <code>psi(</code> give the model coefficients for each of the habitat covariates in the occupancy submodel; missing values indicate that that covariate was not included in the given model.</p>
+</div>
+<p>The corrected <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion#AICc">Akaike Information Criterion (AICc)</a> measures the performance of each model, relative to the other models in the candidate set, adjusting for the number of parameters. Lower values indicate models with a better fit to the data, penalizing for the number of parameters. Delta is the difference between the AICc values for the given model and that for the top model (i.e. the one with the lowest AICc). Finally, the AIC weight is a transformation of delta that can be interpreted as the likelihood that the given model is the most likely one of the candidate models to have generated the data.</p>
+<p>There doesn’t appear to be a clear single model, or even a small set of models, that are most likely to have generated our data. Given this, we’ll average across the top models (those comprising 95% of the weights), weighted by AICc, to produce a model-averaged prediction.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="co"># select models with the most suport for model averaging</span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">occ_dredge_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(occ_dredge, <span class="dt">subset =</span> <span class="kw">cumsum</span>(weight) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="co"># average models based on model weights </span></a>
+<a class="sourceLine" id="cb100-5" data-line-number="5">occ_avg &lt;-<span class="st"> </span><span class="kw">model.avg</span>(occ_dredge_<span class="dv">95</span>, <span class="dt">fit =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Making model-averaged predictions works in the same way as for making <a href="occupancy.html#occupancy-predict">predictions from a single global model</a>. However, it takes significantly more time to run, so we won’t run the below code or produce maps based on model-averaged predictions during the workshop, instead leaving it as an exercise.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r dontrun"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="co"># </span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2">occ_pred_avg &lt;-<span class="st"> </span><span class="kw">predict</span>(occ_avg, </a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">                        <span class="dt">newdata =</span> <span class="kw">as.data.frame</span>(pred_surface), </a>
+<a class="sourceLine" id="cb101-4" data-line-number="4">                        <span class="dt">type =</span> <span class="st">&quot;state&quot;</span>)</a>
+<a class="sourceLine" id="cb101-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb101-6" data-line-number="6"><span class="co"># add to prediction surface</span></a>
+<a class="sourceLine" id="cb101-7" data-line-number="7">pred_occ_avg &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(pred_surface, </a>
+<a class="sourceLine" id="cb101-8" data-line-number="8">                          <span class="dt">occ_prob =</span> occ_pred_avg<span class="op">$</span>fit, </a>
+<a class="sourceLine" id="cb101-9" data-line-number="9">                          <span class="dt">occ_se =</span> occ_pred_avg<span class="op">$</span>se.fit) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(latitude, longitude, occ_prob, occ_se)</a></code></pre></div>
+<div id="occupancy-select-detection" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Detection model</h3>
+<p>A unique feature of occupancy models, is that we can investigate whether certain covariates influence detection, which wasn’t possible using the machine learning approach in lesson <a href="encounter.html#encounter">11</a>. We included evergreen broadleaf forest (<code>pland_02</code>) and woody savanna (<code>pland_08</code>) as detection covariates in the global model, and we can compare a set of models with and without these covariates to assess their importance.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># define occupancy model formula with only effort in detection submodel</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">det_mod &lt;-<span class="st"> </span><span class="er">~</span><span class="st"> </span>time_observations_started <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span>duration_minutes <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="st">  </span>effort_distance_km <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="st">  </span>number_observers <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-6" data-line-number="6"><span class="st">  </span>protocol_type <span class="op">~</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-7" data-line-number="7"><span class="st">  </span>pland_<span class="dv">13</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">09</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">02</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">08</span></a>
+<a class="sourceLine" id="cb102-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb102-9" data-line-number="9"><span class="co"># create new formulae with landcover covariates added to the detection submodel</span></a>
+<a class="sourceLine" id="cb102-10" data-line-number="10">mods &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">det_mod_null =</span> det_mod, </a>
+<a class="sourceLine" id="cb102-11" data-line-number="11">             <span class="dt">det_mod_for =</span> <span class="kw">update.formula</span>(det_mod, <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>pland_<span class="dv">02</span> <span class="op">~</span><span class="st"> </span>.),</a>
+<a class="sourceLine" id="cb102-12" data-line-number="12">             <span class="dt">det_mod_ws =</span> <span class="kw">update.formula</span>(det_mod, <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>pland_<span class="dv">08</span> <span class="op">~</span><span class="st"> </span>.),</a>
+<a class="sourceLine" id="cb102-13" data-line-number="13">             <span class="dt">global =</span> <span class="kw">update.formula</span>(det_mod, </a>
+<a class="sourceLine" id="cb102-14" data-line-number="14">                                     <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>pland_<span class="dv">02</span> <span class="op">+</span><span class="st"> </span>pland_<span class="dv">08</span> <span class="op">~</span><span class="st"> </span>.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-15" data-line-number="15"><span class="st">  </span><span class="co"># fit candidate models</span></a>
+<a class="sourceLine" id="cb102-16" data-line-number="16"><span class="st">  </span><span class="kw">map</span>(occu, <span class="dt">data =</span> occ_um)</a></code></pre></div>
+<p>Now we can perform model selection on this set to compare the different candidate models.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">mod_sel &lt;-<span class="st"> </span><span class="kw">fitList</span>(<span class="dt">fits =</span> mods) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">modSel</span>()</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">mod_sel</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="co">#&gt;              nPars    AIC delta   AICwt cumltvWt</span></a>
+<a class="sourceLine" id="cb103-5" data-line-number="5"><span class="co">#&gt; det_mod_ws      12 466.16  0.00 0.73060     0.73</span></a>
+<a class="sourceLine" id="cb103-6" data-line-number="6"><span class="co">#&gt; global          13 468.16  2.00 0.26878     1.00</span></a>
+<a class="sourceLine" id="cb103-7" data-line-number="7"><span class="co">#&gt; det_mod_null    11 481.39 15.22 0.00036     1.00</span></a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"><span class="co">#&gt; det_mod_for     12 482.08 15.91 0.00026     1.00</span></a></code></pre></div>
+<p>From these results, it’s clear that including these habitat covariates (especially woody savanna) leads to an improvement in model performance, as shown by the AIC and AIC weights. Let’s look at the coefficients from the global model for these covariates to see how they’re impacting detection and occupancy.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">coef</span>(occ_model) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="st">  </span><span class="kw">enframe</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(name, <span class="st">&quot;pland_&quot;</span>))</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="co">#&gt; # A tibble: 6 x 2</span></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5"><span class="co">#&gt;   name              value</span></a>
+<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="co">#&gt; 1 psi(pland_13)   0.911  </span></a>
+<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="co">#&gt; 2 psi(pland_09)   0.420  </span></a>
+<a class="sourceLine" id="cb104-9" data-line-number="9"><span class="co">#&gt; 3 psi(pland_02)  -3.01   </span></a>
+<a class="sourceLine" id="cb104-10" data-line-number="10"><span class="co">#&gt; 4 psi(pland_08)  12.6    </span></a>
+<a class="sourceLine" id="cb104-11" data-line-number="11"><span class="co">#&gt; 5 p(pland_02)     0.00581</span></a>
+<a class="sourceLine" id="cb104-12" data-line-number="12"><span class="co">#&gt; 6 p(pland_08)   -11.3</span></a></code></pre></div>
+<p>The <code>psi()</code> coefficients are from the occupancy submodel and the <code>p()</code> coefficients are from the detection submodel.</p>
+</div>
+</div>
+<div id="occupancy-exercises" class="section level2">
+<h2><span class="header-section-number">12.5</span> Exercises</h2>
+<p>Now that you’ve completed this lesson, try modifying your script to complete at least one of the following exercises:</p>
+<ol style="list-style-type: decimal">
+<li><p>Try sampling more than a single checklist per grid cell in the spatiotemporal sampling. How does that affect model fit and predictions?</p></li>
+<li><p>What happens to the size of dataset if you only use stationary counts, or reduce the distance traveled to 1 km? How does it impact the results? How does the different input data affect your interpretation of the results?</p></li>
+<li><p>What happens to the size of the dataset if you allow repeat visits to be by multiple observers? How does this impact the results.</p></li>
+<li><p>Produce a map based on model averaged predictions. Note that making these predictions may take up to an hour.</p></li>
+<li><p>Try estimating occupancy for one of the other species in the example data.</p></li>
+</ol>
+
+</div>
+</div>
+<script>
+var coll = document.getElementsByClassName("solution");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="encounter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="abundance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mstrimas/ebp-workshop/edit/master/12_occupancy.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

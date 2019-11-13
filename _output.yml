@@ -1,0 +1,13 @@
+bookdown::gitbook:
+  css: assets/css/style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">eBird Best Practices Workshop</a></li>
+      after: null
+    edit:
+      link: https://github.com/mstrimas/ebp-workshop/edit/master/%s
+      text: "Edit"
+  includes:
+    after_body: assets/js/solution.html

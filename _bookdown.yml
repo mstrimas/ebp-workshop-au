@@ -1,0 +1,7 @@
+book_filename: "ebp-workshop-au"
+delete_merged_file: true
+before_chapter_script: "_common.r"
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Lesson "

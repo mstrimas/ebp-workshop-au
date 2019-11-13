@@ -1,0 +1,157 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Importing Data {#import}
+
+In the [previous lesson](#filter), we extracted a subset of the EBD containing Yellow-rumped Warbler observations from Guatemala. The output file created by `auk_filter()` is a tab-separated text file and could be read into R using `read.delim()` or `readr::read_tsv()`; however, `auk` has a function specifically for reading the EBD. `read_ebd()` does the following:
+
+1. Reads the data using `data.table::fread()`, which is much faster than `read.delim()`.
+2. Sets the correct data types for the columns.
+3. Cleans up the column names so they are all `snake_case`.
+4. Automatically performs some post processing steps, which will be covered later in this lesson.
+
+Let's read in the data!
+
+```{r import-read}
+library(auk)
+library(tidyverse)
+
+ebd <- read_ebd("data/ebd_yerwar.txt", unique = FALSE, rollup = FALSE)
+glimpse(ebd)
+```
+
+We'll cover the use of `unique = FALSE` and `rollup = FALSE` next. For now, let's just look at the data.
+
+<div class="exercise">
+  <h2>Exercise</h2>
+  Take a minute to explore these data using `glimpse()` and `View()`. Familiarize yourself with the columns. Be sure you can find the effort columns and the `observation_count` column.
+</div>
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Do you have the data in a data frame? Does anyone have any questions about the data so far?
+</div>
+
+## Group checklists {#import-group}
+
+eBird allows users to share checklists with other eBird users that they're birding with. This results it multiple copies of some checklists in the database. Group checklists can be identified in the data because they have the `group_identifier` column populated. Let's take a look at some these checklists.
+
+```{r import-group-view}
+ebd %>% 
+  filter(!is.na(group_identifier)) %>% 
+  arrange(group_identifier) %>% 
+  select(sampling_event_identifier, group_identifier) %>% 
+  head()
+```
+
+We see that there are multiple checklists with the same `group_identifier`, implying that these checklists have been shared and are duplicates. Let's look at one of these on the eBird website: https://ebird.org/view/checklist/S20741847
+
+As it turns out, group checklists aren't exact duplicates; once a checklist has been shared the individual checklists can diverge in terms of the species seen, the counts for each species, and even the protocol and effort. For an example, look at [this checklist](https://ebird.org/checklist/S17908640) with six observers each of whom saw a different set of species.
+
+In most cases, you'll only want to retain one of these checklists, but it's not trivial to do so because the checklists are only partial duplicates. The function `auk_unique()` manages this for you. Specifically, for each species, it retains only the first observation of that species, which is typically the one submitted by the primary observer (i.e. the person who submit the checklist to eBird). Note that the resulting "checklist" will be a combination of all the species seen across all copies of the group checklist.
+
+```{r import-group-fix}
+keep_one <- auk_unique(ebd)
+nrow(ebd)
+nrow(keep_one)
+```
+
+When `auk_unique()` is run, a new field is created (`checklist_id`), which is populated with `group_identifier` for group checklists and `sampling_event_identifier` otherwise; this is now a unique identifier for checklists. In addition, the full set of observer and sampling event identifiers has been retained in a comma separated format.
+
+```{r import-group-ids}
+keep_one %>% 
+  filter(!is.na(group_identifier)) %>% 
+  select(checklist_id, sampling_event_identifier, 
+         group_identifier, observer_id) %>% 
+  head()
+```
+
+By default, whenever you import data with `read_ebd()` it calls `auk_unique()` automatically; however, this behavior can be controlled with the `unique` argument. So, for example, the following will import data *and* remove duplicates.
+
+```{r import-group-read}
+ebd <- read_ebd("data/ebd_yerwar.txt", rollup = FALSE)
+```
+
+<div class="tip">
+  <h2>Tip</h2>
+  `auk_unique()` takes a long time to run on large datasets. Consider using `read_ebd(unique = FALSE)` when importing large text files to speed up the process.
+</div>
+
+## Taxonomy {#import-taxonomy}
+
+eBird users can enter data for a wide range of taxa in addition to species. Observations can be reported at a level more granular than species (e.g. subspecies or recognizable forms) or at a higher level than species (e.g. spuhs, slashes, and hybrids). All the different taxa that can be reported are contained in the eBird taxonomy, which is updated every year in August. The eBird Science page has a [subsection with details on the eBird taxonomy](https://ebird.org/science/the-ebird-taxonomy), and the taxonomy itself is available as a data frame in the `auk` package.
+
+```{r import-taxonomy-taxdf}
+glimpse(ebird_taxonomy)
+# you can even report that you saw a generic bird!
+filter(ebird_taxonomy, common_name == "bird sp.")
+```
+
+For taxa below the species level, the `report_as` field specifies the species that this taxa falls under. For example, Myrtle warbler rolls up to Yellow-rumped Warbler.
+
+```{r import-taxonomy-reportas}
+# myrtle warbler
+filter(ebird_taxonomy, common_name == "Yellow-rumped Warbler (Myrtle)") %>% 
+  select(common_name, category, report_as)
+# rolls up to yellow-rumped warbler
+filter(ebird_taxonomy, species_code == "yerwar") %>% 
+  select(common_name, category, report_as)
+```
+
+<div class="exercise">
+  <h2>Exercise</h2>
+  How many different subspecies of Barn Swallow does eBird recognize?
+  
+  <button class="solution">Solution</button>
+<div class="solution-content">
+
+  Start by finding the species code for Barn Swallow, then find records in `ebird_taxonomy` with this code in the `report_as` column.
+
+```{r import-taxonomy-sol1}
+ebird_taxonomy %>% 
+  filter(common_name == "Barn Swallow") %>% 
+  select(common_name, species_code)
+ebird_taxonomy %>% 
+  filter(report_as == "barswa") %>% 
+  select(common_name, category, report_as)
+```
+
+  eBird recognizes six subspecies.
+</div>
+</div>
+
+The EBD contains a subspecies column, which is populated when an observer has identified a bird below species level. In the EBD extract we're working with, we have three different subspecies of Yellow-rumped Warbler:
+
+```{r import-taxonomy-yerwar}
+count(ebd, common_name, subspecies_common_name)
+```
+
+It's even possible to have multiple subspecies of the same species on a single checklist.
+
+```{r import-taxonomy-multiple}
+filter(ebd, checklist_id == "S22725024") %>% 
+  select(checklist_id, common_name, subspecies_common_name, observation_count)
+```
+
+For most uses, you'll want eBird data at the species level, which means dropping higher level taxa and rolling lower level taxa up to species level, making sure to sum the counts if multiple subspecies were present. The function `auk_rollup()` handles these taxonomic matters for you.
+
+```{r import-taxonomy-rollup}
+no_subsp <- auk_rollup(ebd)
+no_subsp %>% 
+  filter(checklist_id == "S22725024") %>% 
+  select(checklist_id, common_name, observation_count)
+```
+
+By default, when you import data with `read_ebd()` it calls `auk_rollup()` automatically; however, this behavior can be controlled with the `rollup` argument. So, for example, the following will import data *and* remove duplicates *and* report all records at species level.
+
+```{r import-group}
+ebd <- read_ebd("data/ebd_yerwar.txt")
+```
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Any questions on data import, taxonomy, or group checklists?
+</div>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 4 Filtering | eBird Best Practices Workshop</title>
+  <meta name="description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 4 Filtering | eBird Best Practices Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="github-repo" content="mstrimas/ebp-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 4 Filtering | eBird Best Practices Workshop" />
+  
+  <meta name="twitter:description" content="Best practices for using eBird data to estimate species distributions" />
+  
+
+<meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="access.html"/>
+<link rel="next" href="import.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">eBird Best Practices Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-data"><i class="fa fa-check"></i><b>1.1</b> Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-setup"><i class="fa fa-check"></i><b>1.3</b> Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#intro-tidyverse"><i class="fa fa-check"></i><b>1.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="part"><span><b>I eBird Data</b></span></li>
+<li class="chapter" data-level="2" data-path="ebird-intro.html"><a href="ebird-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="ebird-intro.html"><a href="ebird-intro.html#the-auk-workflow"><i class="fa fa-check"></i><b>2.1</b> The <code>auk</code> workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="access.html"><a href="access.html"><i class="fa fa-check"></i><b>3</b> Data Access</a></li>
+<li class="chapter" data-level="4" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>4</b> Filtering</a><ul>
+<li class="chapter" data-level="4.1" data-path="filter.html"><a href="filter.html#filter-define"><i class="fa fa-check"></i><b>4.1</b> Defining filters</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="filter.html"><a href="filter.html#filter-define-complete"><i class="fa fa-check"></i><b>4.1.1</b> Complete checklists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="filter.html"><a href="filter.html#filter-execute"><i class="fa fa-check"></i><b>4.2</b> Execute filters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Importing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#import-group"><i class="fa fa-check"></i><b>5.1</b> Group checklists</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-taxonomy"><i class="fa fa-check"></i><b>5.2</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="presabs.html"><a href="presabs.html"><i class="fa fa-check"></i><b>6</b> Presence-absence Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="presabs.html"><a href="presabs.html#presabs-filter"><i class="fa fa-check"></i><b>6.1</b> Filtering</a></li>
+<li class="chapter" data-level="6.2" data-path="presabs.html"><a href="presabs.html#presabs-zerofill"><i class="fa fa-check"></i><b>6.2</b> Zero-filling</a></li>
+<li class="chapter" data-level="6.3" data-path="presabs.html"><a href="presabs.html#presabs-tidy"><i class="fa fa-check"></i><b>6.3</b> Tidying up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="subsampling.html"><a href="subsampling.html"><i class="fa fa-check"></i><b>7</b> Spatiotemporal Subsampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="subsampling.html"><a href="subsampling.html#subsampling-toy"><i class="fa fa-check"></i><b>7.1</b> A toy example</a></li>
+<li class="chapter" data-level="7.2" data-path="subsampling.html"><a href="subsampling.html#subsampling-ebird"><i class="fa fa-check"></i><b>7.2</b> Subsampling eBird data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>8</b> Applications</a><ul>
+<li class="chapter" data-level="8.1" data-path="applications.html"><a href="applications.html#applications-trajectory"><i class="fa fa-check"></i><b>8.1</b> Frequency trajectories</a></li>
+<li class="chapter" data-level="8.2" data-path="applications.html"><a href="applications.html#applications-maps"><i class="fa fa-check"></i><b>8.2</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="9.1" data-path="advanced.html"><a href="advanced.html#advanced-unmarked"><i class="fa fa-check"></i><b>9.1</b> Preparing for occupancy modeling</a></li>
+<li class="chapter" data-level="9.2" data-path="advanced.html"><a href="advanced.html#advanced-modis"><i class="fa fa-check"></i><b>9.2</b> Land cover covariates</a></li>
+<li class="chapter" data-level="9.3" data-path="advanced.html"><a href="advanced.html#advanced-custom"><i class="fa fa-check"></i><b>9.3</b> Custom downloads</a></li>
+<li class="chapter" data-level="9.4" data-path="advanced.html"><a href="advanced.html#advanced-size"><i class="fa fa-check"></i><b>9.4</b> Reducing file size</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="advanced.html"><a href="advanced.html#advanced-size-strict"><i class="fa fa-check"></i><b>9.4.1</b> Stricter filtering</a></li>
+<li class="chapter" data-level="9.4.2" data-path="advanced.html"><a href="advanced.html#advanced-size-columns"><i class="fa fa-check"></i><b>9.4.2</b> Removing columns</a></li>
+<li class="chapter" data-level="9.4.3" data-path="advanced.html"><a href="advanced.html#advanced-size-split"><i class="fa fa-check"></i><b>9.4.3</b> Splitting by species</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Distribution Modeling</b></span></li>
+<li class="chapter" data-level="10" data-path="model-intro.html"><a href="model-intro.html"><i class="fa fa-check"></i><b>10</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1" data-path="model-intro.html"><a href="model-intro.html#model-intro-data"><i class="fa fa-check"></i><b>10.1</b> Example data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="encounter.html"><a href="encounter.html"><i class="fa fa-check"></i><b>11</b> Encounter Rate</a><ul>
+<li class="chapter" data-level="11.1" data-path="encounter.html"><a href="encounter.html#encounter-prep"><i class="fa fa-check"></i><b>11.1</b> Data preparation</a></li>
+<li class="chapter" data-level="11.2" data-path="encounter.html"><a href="encounter.html#encounter-rf"><i class="fa fa-check"></i><b>11.2</b> Random forests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="encounter.html"><a href="encounter.html#encounter-rf-cal"><i class="fa fa-check"></i><b>11.2.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.2.2" data-path="encounter.html"><a href="encounter.html#encounter-rf-assess"><i class="fa fa-check"></i><b>11.2.2</b> Model assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="encounter.html"><a href="encounter.html#encounter-habitat"><i class="fa fa-check"></i><b>11.3</b> Habitat associations</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pi"><i class="fa fa-check"></i><b>11.3.1</b> Predictor importance</a></li>
+<li class="chapter" data-level="11.3.2" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pd"><i class="fa fa-check"></i><b>11.3.2</b> Partial dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="encounter.html"><a href="encounter.html#encounter-predict"><i class="fa fa-check"></i><b>11.4</b> Prediction</a></li>
+<li class="chapter" data-level="11.5" data-path="encounter.html"><a href="encounter.html#encouter-exercises"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="occupancy.html"><a href="occupancy.html"><i class="fa fa-check"></i><b>12</b> Occupancy</a><ul>
+<li class="chapter" data-level="12.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-prep"><i class="fa fa-check"></i><b>12.1</b> Data preparation</a></li>
+<li class="chapter" data-level="12.2" data-path="occupancy.html"><a href="occupancy.html#occupancy-model"><i class="fa fa-check"></i><b>12.2</b> Occupancy modeling</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-model-assess"><i class="fa fa-check"></i><b>12.2.1</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="occupancy.html"><a href="occupancy.html#occupancy-predict"><i class="fa fa-check"></i><b>12.3</b> Prediction</a></li>
+<li class="chapter" data-level="12.4" data-path="occupancy.html"><a href="occupancy.html#occupancy-select"><i class="fa fa-check"></i><b>12.4</b> Model selection</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-select-detection"><i class="fa fa-check"></i><b>12.4.1</b> Detection model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="occupancy.html"><a href="occupancy.html#occupancy-exercises"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="abundance.html"><a href="abundance.html"><i class="fa fa-check"></i><b>13</b> Abundance</a><ul>
+<li class="chapter" data-level="13.1" data-path="abundance.html"><a href="abundance.html#abundance-prep"><i class="fa fa-check"></i><b>13.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="abundance.html"><a href="abundance.html#abundance-explore"><i class="fa fa-check"></i><b>13.2</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="abundance.html"><a href="abundance.html#abundance-model"><i class="fa fa-check"></i><b>13.3</b> Abundance models</a></li>
+<li class="chapter" data-level="13.4" data-path="abundance.html"><a href="abundance.html#abundance-assess"><i class="fa fa-check"></i><b>13.4</b> Asssessment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="abundance.html"><a href="abundance.html#abundance-assess-cov"><i class="fa fa-check"></i><b>13.4.1</b> Assessing covariate effects</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="abundance.html"><a href="abundance.html#abundance-predict"><i class="fa fa-check"></i><b>13.5</b> Prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="abundance.html"><a href="abundance.html#abundance-exercises"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">eBird Best Practices Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="filter" class="section level1">
+<h1><span class="header-section-number">Lesson 4</span> Filtering</h1>
+<p>The EBD is huge, much too large to be read into R. So, if we want to work with these data, we first need to extract a small enough subset that it can be processed in R. This is the main purpose of the <code>auk</code> package: it uses the unix command line utility AWK to extract data from the EBD. There are three steps to this filtering process:</p>
+<ol style="list-style-type: decimal">
+<li>Set up a reference to the EBD text file with <code>auk_ebd()</code>.</li>
+<li>Define a set of filters specifying the subset of data you want to extract.</li>
+<li>Compile those filters into an AWK script and run it to produce a text file with the desired subset of the data.</li>
+</ol>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>Filtering with <code>auk</code> can be fairly coarse, we just need to make the data small enough to read into R. Once the data are in R, they can further filtering can be used to refine the dataset.</p>
+</div>
+<div id="filter-define" class="section level2">
+<h2><span class="header-section-number">4.1</span> Defining filters</h2>
+<p>The types of filters that can be applied to the EBD fall into four categories:</p>
+<ul>
+<li><strong>Species</strong></li>
+<li><strong>Region</strong></li>
+<li><strong>Season</strong></li>
+<li><strong>Protocol</strong> and effort</li>
+</ul>
+<p>Each specific filter is implemented by a different function in <code>auk</code>. Visit the <a href="https://cornelllabofornithology.github.io/auk/reference/index.html#section-filter">documentation on filters</a> on the <code>auk</code> website for a complete list. Each of these functions defines a filter on a column within the EBD. For example, <code>auk_country()</code> will define a filter allowing us to extract data from a subset of countries from the EBD.</p>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>Every filtering function in <code>auk</code> begins with <code>auk_</code> for easy tab completion!</p>
+</div>
+<p>To define a filter, start by creating an <code>auk_ebd</code> object, then pipe this into one of the filtering functions.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(auk)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_country</span>(<span class="st">&quot;Guatemala&quot;</span>)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; Input </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt;   EBD: /Users/mes335/data/ebird/ebd_2014-2015_yucatan.txt </span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt; Output </span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt;   Filters not executed</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; Filters </span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt;   Species: all</span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;   Countries: GT</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt;   States: all</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt;   BCRs: all</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;   Bounding box: full extent</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt;   Date: all</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#&gt;   Start time: all</span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co">#&gt;   Last edited date: all</span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#&gt;   Protocol: all</span></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="co">#&gt;   Project code: all</span></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22"><span class="co">#&gt;   Duration: all</span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23"><span class="co">#&gt;   Distance travelled: all</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co">#&gt;   Records with breeding codes only: no</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="co">#&gt;   Complete checklists only: no</span></a></code></pre></div>
+<p>Notice that when the <code>auk_ebd</code> object is printed, it tells us what filters have been defined. At this point, nothing has been done to the EBD, we’ve just <em>defined</em> the filter, we haven’t executed it yet.</p>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>Consult the <a href="http://CornellLabofOrnithology.github.io/auk/reference/index.html#section-filter">Function Reference</a> section of the <code>auk</code> website for a full list of available filters.</p>
+</div>
+<p>In general, you should think about filtering on region, season, and species, so let’s build upon what we already have and add some more filters. For example, if we wanted all Resplendent Quetzal records from Guatemala in June 2015 we would use the following filters:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">auk_species</span>(<span class="st">&quot;Resplendent Quetzal&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_country</span>(<span class="st">&quot;Guatemala&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_date</span>(<span class="kw">c</span>(<span class="st">&quot;2015-06-01&quot;</span>, <span class="st">&quot;2015-06-30&quot;</span>))</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; Input </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;   EBD: /Users/mes335/data/ebird/ebd_2014-2015_yucatan.txt </span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; Output </span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt;   Filters not executed</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; Filters </span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt;   Species: Pharomachrus mocinno</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt;   Countries: GT</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt;   States: all</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt;   BCRs: all</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt;   Bounding box: full extent</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt;   Date: 2015-06-01 - 2015-06-30</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt;   Start time: all</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt;   Last edited date: all</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="co">#&gt;   Protocol: all</span></a>
+<a class="sourceLine" id="cb11-21" data-line-number="21"><span class="co">#&gt;   Project code: all</span></a>
+<a class="sourceLine" id="cb11-22" data-line-number="22"><span class="co">#&gt;   Duration: all</span></a>
+<a class="sourceLine" id="cb11-23" data-line-number="23"><span class="co">#&gt;   Distance travelled: all</span></a>
+<a class="sourceLine" id="cb11-24" data-line-number="24"><span class="co">#&gt;   Records with breeding codes only: no</span></a>
+<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="co">#&gt;   Complete checklists only: no</span></a></code></pre></div>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>The filtering functions in <code>auk</code> check the arguments you provide and will throw an error if there’s something wrong. Filtering the EBD takes a long time, so it’s better to get an error now rather than realizing you made a mistake after waiting several hours for the extraction process to complete.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="co"># typo in species name</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_species</span>(<span class="st">&quot;Resplendant Quetzal&quot;</span>)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; Error in auk_species.auk_ebd(., &quot;Resplendant Quetzal&quot;): The following species were not found in the eBird taxonomy: </span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;  Resplendant Quetzal</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">  </span><span class="co"># non-sequential dates</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="st">  </span><span class="kw">auk_date</span>(<span class="kw">c</span>(<span class="st">&quot;2015-06-01&quot;</span>, <span class="st">&quot;2014-06-30&quot;</span>))</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; Error: date[1] not less than or equal to date[2]</span></a></code></pre></div>
+</div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Define filters to extract Magnolia Warbler observations from Belize on checklists that started between 5 and 9 am and used either the “Traveling” or “Stationary” protocols. Consult the list of filters to see which ones you’ll need to use.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">auk_species</span>(<span class="st">&quot;Magnolia Warbler&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_country</span>(<span class="st">&quot;BZ&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_protocol</span>(<span class="kw">c</span>(<span class="st">&quot;Traveling&quot;</span>, <span class="st">&quot;Stationary&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw">auk_time</span>(<span class="kw">c</span>(<span class="st">&quot;5:00&quot;</span>, <span class="st">&quot;9:00&quot;</span>))</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; Input </span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt;   EBD: /Users/mes335/data/ebird/ebd_2014-2015_yucatan.txt </span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; Output </span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt;   Filters not executed</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; Filters </span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt;   Species: Setophaga magnolia</span></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt;   Countries: BZ</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt;   States: all</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt;   BCRs: all</span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt;   Bounding box: full extent</span></a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt;   Date: all</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt;   Start time: 05:00-09:00</span></a>
+<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt;   Last edited date: all</span></a>
+<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt;   Protocol: Traveling, Stationary</span></a>
+<a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co">#&gt;   Project code: all</span></a>
+<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt;   Duration: all</span></a>
+<a class="sourceLine" id="cb13-24" data-line-number="24"><span class="co">#&gt;   Distance travelled: all</span></a>
+<a class="sourceLine" id="cb13-25" data-line-number="25"><span class="co">#&gt;   Records with breeding codes only: no</span></a>
+<a class="sourceLine" id="cb13-26" data-line-number="26"><span class="co">#&gt;   Complete checklists only: no</span></a></code></pre></div>
+</div>
+</div>
+<div class="tip">
+<h2>
+Tip
+</h2>
+<p>In general, when using the effort filters like <code>auk_time()</code> or <code>auk_distance()</code>, it’s best to be a bit coarse. You can always refine the filters later once the data are in R, and starting with a coarse filter gives you some wiggle room if you later realize you want to make adjustments. Remember: <strong>the initial filtering with <code>auk</code> takes a long time</strong>, it’s best to limit the number of times you do this.</p>
+</div>
+<p>When filtering by date, you may need to extract records from a given date range <em>regardless of year</em>. For this situation, the <code>auk_date()</code> function can accept wildcards for the year. For example, we can rewrite the above Resplendent Quetzal example to get observations from June of any year.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">auk_species</span>(<span class="st">&quot;Resplendent Quetzal&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_country</span>(<span class="st">&quot;Guatemala&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_date</span>(<span class="kw">c</span>(<span class="st">&quot;*-06-01&quot;</span>, <span class="st">&quot;*-06-30&quot;</span>))</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; Input </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;   EBD: /Users/mes335/data/ebird/ebd_2014-2015_yucatan.txt </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; Output </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;   Filters not executed</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; Filters </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;   Species: Pharomachrus mocinno</span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;   Countries: GT</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;   States: all</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt;   BCRs: all</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt;   Bounding box: full extent</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt;   Date: *-06-01 - *-06-30</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt;   Start time: all</span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;   Last edited date: all</span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;   Protocol: all</span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;   Project code: all</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt;   Duration: all</span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt;   Distance travelled: all</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt;   Records with breeding codes only: no</span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt;   Complete checklists only: no</span></a></code></pre></div>
+<div id="filter-define-complete" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Complete checklists</h3>
+<p>One of the most important filters is <code>auk_complete()</code>, which limits observations to those from complete checklists. As we’ve already seen, with complete checklists we can infer non-detections from the data. For most scientific applications, it’s critical that we have complete checklists, so we can generate presence-absence data.</p>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Define filters to extract Horned Guan and Highland Guan records from complete checklists in Chiapas, Mexico. Hint: look at the help for the <code>auk_state()</code> filter.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<p>States are provided to <code>auk_state()</code> via 4-6 letter state codes. To find the state code, consult the <code>ebird_states</code> data frame or visit the <a href="https://ebird.org/explore">Explore page</a> on the eBird website and enter the state name under Explore Region. The state code will appear after <code>region/</code> in the URL. For example, for Chiapas the URL is <code>https://ebird.org/region/MX-CHP?yr=all</code> and the state code is therefore <code>MX-CHP</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">auk_species</span>(<span class="kw">c</span>(<span class="st">&quot;Horned Guan&quot;</span>, <span class="st">&quot;Highland Guan&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_state</span>(<span class="st">&quot;MX-CHP&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_complete</span>()</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt; Input </span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt;   EBD: /Users/mes335/data/ebird/ebd_2014-2015_yucatan.txt </span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt; Output </span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;   Filters not executed</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt; Filters </span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;   Species: Oreophasis derbianus, Penelopina nigra</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt;   Countries: all</span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt;   States: MX-CHP</span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt;   BCRs: all</span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt;   Bounding box: full extent</span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt;   Date: all</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt;   Start time: all</span></a>
+<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="co">#&gt;   Last edited date: all</span></a>
+<a class="sourceLine" id="cb15-20" data-line-number="20"><span class="co">#&gt;   Protocol: all</span></a>
+<a class="sourceLine" id="cb15-21" data-line-number="21"><span class="co">#&gt;   Project code: all</span></a>
+<a class="sourceLine" id="cb15-22" data-line-number="22"><span class="co">#&gt;   Duration: all</span></a>
+<a class="sourceLine" id="cb15-23" data-line-number="23"><span class="co">#&gt;   Distance travelled: all</span></a>
+<a class="sourceLine" id="cb15-24" data-line-number="24"><span class="co">#&gt;   Records with breeding codes only: no</span></a>
+<a class="sourceLine" id="cb15-25" data-line-number="25"><span class="co">#&gt;   Complete checklists only: yes</span></a></code></pre></div>
+</div>
+</div>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Are there any questions about defining filters on the EBD?</p>
+</div>
+</div>
+</div>
+<div id="filter-execute" class="section level2">
+<h2><span class="header-section-number">4.2</span> Execute filters</h2>
+<p>Once you have an <code>auk_ebd</code> object with a set of filters defined, you can execute those filters with <code>auk_filter()</code>. This function compiles the filters into an AWK script, then runs that script to produce a text file with the defined subset of the EBD. The processing with AWK is done outside of R, line by line, only selecting rows that meet the criteria specified in the various <code>auk</code> filters. We’ll store the output file within the <code>data/</code> subdirectory of the project directory. Note that <strong>filtering on the full EBD will take at least a couple hours</strong>, so be prepared to wait awhile.</p>
+<p>Let’s define filters to extract Yellow-rumped Warbler observations in Guatemala that appear on complete traveling or stationary checklists, then execute those filters.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">ebd_filtered &lt;-<span class="st"> </span><span class="kw">auk_ebd</span>(<span class="st">&quot;ebd_2014-2015_yucatan.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">auk_species</span>(<span class="st">&quot;Yellow-rumped Warbler&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">auk_country</span>(<span class="st">&quot;GT&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">auk_protocol</span>(<span class="kw">c</span>(<span class="st">&quot;Traveling&quot;</span>, <span class="st">&quot;Stationary&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">auk_complete</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">  </span><span class="kw">auk_filter</span>(<span class="dt">file =</span> <span class="st">&quot;data/ebd_yerwar.txt&quot;</span>)</a></code></pre></div>
+<p>Take a look at this file and notice that we’ve drastically reduced the size. It can now be imported into R without any issues.</p>
+<div class="checkpoint">
+<h2>
+Checkpoint
+</h2>
+<p>Were you able to correctly extract the Yellow-rumped Warbler data? Any questions on filtering?</p>
+</div>
+
+</div>
+</div>
+<script>
+var coll = document.getElementsByClassName("solution");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="access.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mstrimas/ebp-workshop/edit/master/04_filter.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

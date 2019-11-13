@@ -1,0 +1,29 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# (PART) eBird Data {-}
+
+# Introduction {#ebird-intro}
+
+We'll start with a short presentation giving an introduction to eBird and the motivation behind the `auk` R package. The presentation can be downloaded in [PowerPoint](https://github.com/mstrimas/ebp-workshop/raw/master/02_ebird-intro.pptx) or [PDF](https://github.com/mstrimas/ebp-workshop/raw/master/02_ebird-intro.pdf) format, or [viewed on SpeakerDeck](https://speakerdeck.com/mstrimas/ebird-best-practices-i).
+
+<iframe src="https://speakerdeck.com/player/8ebf7834a4c5421da9c5359782517cb6" width="700px" height="400px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+
+## The `auk` workflow
+
+Extracting eBird data using `auk` requires proceeding through the following steps, each of which corresponds to a lesson in this document:
+
+1. [Data access](#access)
+2. [Filter](#filter)
+3. [Import](#import)
+4. [Pre-process](#import)
+5. [Produce presence-absence data](#presabs)
+
+After covering these fundamentals, we'll proceed to some applications and more advanced topics, depending on time and interest:
+
+1. [Spatiotemporal subsampling](#subsample)
+2. [Mapping and sumarizing eBird data](#applications)
+3. A variety of more advanced topics, including [assigning land cover covariates](#advanced-landcover) to checklists, [preparing data for occupancy modeling](#advanced-unmarked), and handling some of the [file size issues](#advanced-size) that arise when working with eBird data

@@ -1,0 +1,197 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Presence-absence Data {#presabs}
+
+Up to this point we've been working with presence-only data. The EBD, and eBird checklists in general, only explicitly record positive observations of species. However, if we limit ourselves to complete checklists, we can fill in the implied zero counts for any checklists on which a given species isn't explicitly reported to generate presence-absence data. We refer to this process as **zero-filling** the eBird data.
+
+Zero-filling relies on the Sampling Event Data, which is a tab-seperated text file containing checklist-level information. This file contains the full population of checklists in the eBird database. If we apply exactly the same set of filters to both the EBD and the Sampling Event Data we can assume that any checklist with no observations for a given species in the EBD should get a zero-count record added to the dataset. So, producing presence-absence eBird data is a two-step process:
+
+1. Simultaneously filter the EBD and Sampling Event Data, making sure to only use complete checklists.
+2. Read both files into R and zero-fill the EBD using the full population of checklists from the Sampling Event Data.
+
+<div class="tip">
+  <h2>Tip</h2>
+  When we say "presence-absence" what we really mean by "absence" is that the species was not detected, it's entirely possible that the species was present, but the observer didn't detect it.
+</div>
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Are there any conceptual questions about the process of zero-filling?
+</div>
+
+## Filtering {#presabs-filter}
+
+Simultaneously filtering the EBD and Sampling Event Data is done in almost the exact same way as filtering the EBD alone. The only difference is that we provide both files to `auk_ebd()` and two corresponding output files to `auk_filter()`. For example, we can extract all American Flamingo observations from January in the Mexican state of Yucatán in preparation for zero-filling.
+
+```{r presabs-filter}
+library(auk)
+library(tidyverse)
+
+f_ebd <- "data/ebd_amefla.txt"
+f_sed <- "data/sed_amefla.txt"
+ebd_amefla <- auk_ebd("ebd_2014-2015_yucatan.txt", 
+                      file_sampling = "ebd_sampling_2014-2015_yucatan.txt") %>% 
+  auk_species("American Flamingo") %>% 
+  auk_state("MX-YUC") %>% 
+  auk_date(c("*-01-01", "*-01-31")) %>% 
+  auk_complete() %>% 
+  auk_filter(f_ebd, file_sampling = f_sed)
+```
+
+We now have two output files that have been extracted using the same set of filters, apart from the species filter, which only applies to the EBD. We can read these files into R individually:
+
+```{r presabs-filter-read}
+ebd_only <- read_ebd(f_ebd)
+sed_only <- read_sampling(f_sed)
+nrow(ebd_only)
+nrow(sed_only)
+```
+
+So, we have `r nrow(sed_only)` checklists in the Sampling Event Data and, of those, `r nrow(ebd_only)` have Flamingo observations on them.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Were you able to filter and import the EBD and Sampling Event Data? Did you get the correct number of rows in both files?
+</div>
+
+<div class="exercise">
+  <h2>Exercise</h2>
+  You're studying Hooded Warblers wintering (November-February) in Belize. Extract eBird data in preparation for zero-filling, then read in the results and explore them. Hint: consult the Details section of the documentation for `auk_date()` to see how to filter a range of dates that wrap around the year end.
+  
+  <button class="solution">Solution</button>
+<div class="solution-content">
+
+```{r presabs-filter-sol}
+f_ebd_hw <- "data/ebd_hoowar.txt"
+f_sed_hw <- "data/sed_hoowar.txt"
+# filter
+ebd_hoowar <- auk_ebd("ebd_2014-2015_yucatan.txt", 
+                      file_sampling = "ebd_sampling_2014-2015_yucatan.txt") %>% 
+  auk_species("Hooded Warbler") %>% 
+  auk_country("BZ") %>% 
+  # when using wildcards, dates can wrap around the year end
+  auk_date(c("*-11-01", "*-02-29")) %>% 
+  auk_complete() %>% 
+  auk_filter(f_ebd_hw, file_sampling = f_sed_hw)
+# import the data
+ebd_only_hw <- read_ebd(f_ebd_hw)
+sed_only_hw <- read_sampling(f_sed_hw)
+```
+
+</div>
+</div>
+
+## Zero-filling {#presabs-zerofill}
+
+Now that we have these two datasets–containing checklist and species information, respectively–we can use the function `auk_zerofill()` to combine them to produce presence-absence data. This function also imports the data, and handles group checklists and taxonomic rollup automatically, we just have to pass it the paths to the two files. Let's do this with the American Flamingo data.
+
+```{r presabs-zerofill}
+ebd_zf <- auk_zerofill(f_ebd, sampling_events = f_sed)
+ebd_zf
+```
+
+By default, `auk_zerofill()` returns the data as a list of two dataframes: `sampling_events` contains all the checklist and `observations` contains just the counts and presence-absence data for each species on each checklist. This compact format reduces the size of the data because checklist information isn't replicated for every species observation.
+
+```{r presabs-zerofill-components}
+glimpse(ebd_zf$observations)
+glimpse(ebd_zf$sampling_events)
+```
+
+However, in this case object size isn't an issue, and it's easier to work with a single dataframe, so we can collapse the data with `collapse_zerofill()`.
+
+```{r presabs-zerofill-collapse}
+ebd_zf_df <- collapse_zerofill(ebd_zf)
+glimpse(ebd_zf_df)
+```
+
+Notice that in addition to the `observation_count` column, we now have a binary `species_observered` column specifying whether or not the species was observered on this checklist. You can also automatically collapse the data by using the `collapse = TRUE` argument to `auk_zerofill()`.
+
+<div class="exercise">
+  <h2>Exercise</h2>
+  Zero-fill and collapse the Hooded Warbler data you extracted in the previous exercise. What proportion of checklists detected this species?
+  
+  <button class="solution">Solution</button>
+<div class="solution-content">
+
+```{r presabs-zerofill-sol}
+ebd_zf_hw <- auk_zerofill(f_ebd_hw, f_sed_hw, collapse = TRUE)
+# proportion of checklists
+mean(ebd_zf_hw$species_observed)
+```
+
+</div>
+</div>
+
+<div class="tip">
+  <h2>Tip</h2>
+  Whenever you're zero-filling data it's critical that you think about region and season (i.e. where and when) in addition to just the species. If you don't do that, you'll zero-fill the entire global EBD and your computer will explode! For example, consider a highly localized species like the [Cozumel Vireo](https://ebird.org/species/cozvir1), endemic to the small island of Cozumel off the coast of Mexico. Let's try just filtering on species.
+  
+```{r presabs-zerofill-cozwir}
+ebd_cozvir <- auk_ebd("ebd_2014-2015_yucatan.txt", 
+                    file_sampling = "ebd_sampling_2014-2015_yucatan.txt") %>% 
+  auk_species("Cozumel Vireo") %>% 
+  auk_complete() %>% 
+  auk_filter("data/ebd_cozvir.txt", "data/sed_cozvir.txt") %>% 
+  auk_zerofill(collapse = TRUE)
+table(ebd_cozvir$species_observed)
+```
+
+What we have here is the entire EBD (22 thousand checklists in the example dataset, and 40 million in the full EBD!) for a species that only occurs on one small island. Do we really care that a checklist in Anchorage, Alaska doesn't have Cozumel Vireo? In this situation, you would be better to identify the boundaries of the island and use `auk_bbox()` to spatially subset the data.
+
+```{r presabs-zerofill-cozwir-bbox}
+ebd_cozvir <- auk_ebd("ebd_2014-2015_yucatan.txt", 
+                      file_sampling = "ebd_sampling_2014-2015_yucatan.txt") %>% 
+  auk_species("Cozumel Vireo") %>% 
+  # lng_min, lat_min, lng_max, lat_max
+  auk_bbox(c(-87.1, 20.2, -86.7, 20.6)) %>% 
+  auk_complete() %>% 
+  auk_filter("data/ebd_cozvir.txt", "data/sed_cozvir.txt", overwrite = TRUE) %>% 
+  auk_zerofill(collapse = TRUE)
+table(ebd_cozvir$species_observed)
+```
+
+We have the same number of positive observations, but have now drastically reduced the number of checklists that didn't detect Cozumel Vireo observations.
+
+</div>
+
+## Tidying up {#presabs-tidy}
+
+We now have a zero-filled presence-absence dataset with duplicate group checklists removed and all observations at the species level. There are couple remaining steps that we typically run to clean up the data. First, you may have noticed some cases where `observation_count` is `"X"` in the data. This is what eBirders enter for the count to indicate that they didn't count the number of individuals for a given species. 
+
+```{r zerofill-tidy-x}
+arrange(ebd_zf_df, desc(observation_count)) %>% 
+  select(checklist_id, observation_count) %>% 
+  head(10)
+```
+
+It's more appropriate to have the count as `NA` rather than `"X"` in this scenario. This will also allow us to convert the count column to integer rather than character. At this point, we'll also assign an explicit distance of 0 to stationary checklists.
+
+```{r presabs-tidy-na}
+zf_count <- ebd_zf_df %>% 
+  mutate(observation_count = if_else(observation_count == "X", 
+                                     NA_character_, observation_count),
+         observation_count = as.integer(observation_count),
+         effort_distance_km = if_else(protocol_type == "Stationary", 
+                                      0, effort_distance_km))
+```
+
+Finally, depending on your application, you'll likely want to do some further filtering of the data. For many uses, it's a good idea to reduce the variation in detectability between checklists by imposing some constraints on the effort variables. You can think of this as partially standardizing the observation process in a *post hoc* fashion. For example, in part II of this workshop, we'll restrict observations to those from checklists less than 5 hours long and 5 km in length, and with 10 or fewer observers.
+
+```{r presabs-tidy-effort}
+zf_effort <- zf_count %>% 
+  filter(duration_minutes <= 60 * 5,
+         effort_distance_km <= 5,
+         number_observers <= 10)
+table(zf_count$species_observed)
+table(zf_effort$species_observed)
+```
+
+We've reduced the amount of data, but also decreased the variability in effort, which will lead to better model performance if we use these data to model species distributions. At this point, we can save the resulting processed eBird data, so that we can use it later in our analysis workflow.
+
+```{r presabs-tidy-save}
+write_csv(zf_effort, "data/ebird_amefla_zf.csv")
+```

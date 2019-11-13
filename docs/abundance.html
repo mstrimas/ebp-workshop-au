@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 13 Abundance | eBird Best Practices Workshop</title>
+  <meta name="description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 13 Abundance | eBird Best Practices Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Best practices for using eBird data to estimate species distributions" />
+  <meta name="github-repo" content="mstrimas/ebp-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 13 Abundance | eBird Best Practices Workshop" />
+  
+  <meta name="twitter:description" content="Best practices for using eBird data to estimate species distributions" />
+  
+
+<meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="occupancy.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">eBird Best Practices Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-data"><i class="fa fa-check"></i><b>1.1</b> Data</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-setup"><i class="fa fa-check"></i><b>1.3</b> Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#intro-tidyverse"><i class="fa fa-check"></i><b>1.4</b> Tidyverse</a></li>
+</ul></li>
+<li class="part"><span><b>I eBird Data</b></span></li>
+<li class="chapter" data-level="2" data-path="ebird-intro.html"><a href="ebird-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="ebird-intro.html"><a href="ebird-intro.html#the-auk-workflow"><i class="fa fa-check"></i><b>2.1</b> The <code>auk</code> workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="access.html"><a href="access.html"><i class="fa fa-check"></i><b>3</b> Data Access</a></li>
+<li class="chapter" data-level="4" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>4</b> Filtering</a><ul>
+<li class="chapter" data-level="4.1" data-path="filter.html"><a href="filter.html#filter-define"><i class="fa fa-check"></i><b>4.1</b> Defining filters</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="filter.html"><a href="filter.html#filter-define-complete"><i class="fa fa-check"></i><b>4.1.1</b> Complete checklists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="filter.html"><a href="filter.html#filter-execute"><i class="fa fa-check"></i><b>4.2</b> Execute filters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Importing Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#import-group"><i class="fa fa-check"></i><b>5.1</b> Group checklists</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-taxonomy"><i class="fa fa-check"></i><b>5.2</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="presabs.html"><a href="presabs.html"><i class="fa fa-check"></i><b>6</b> Presence-absence Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="presabs.html"><a href="presabs.html#presabs-filter"><i class="fa fa-check"></i><b>6.1</b> Filtering</a></li>
+<li class="chapter" data-level="6.2" data-path="presabs.html"><a href="presabs.html#presabs-zerofill"><i class="fa fa-check"></i><b>6.2</b> Zero-filling</a></li>
+<li class="chapter" data-level="6.3" data-path="presabs.html"><a href="presabs.html#presabs-tidy"><i class="fa fa-check"></i><b>6.3</b> Tidying up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="subsampling.html"><a href="subsampling.html"><i class="fa fa-check"></i><b>7</b> Spatiotemporal Subsampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="subsampling.html"><a href="subsampling.html#subsampling-toy"><i class="fa fa-check"></i><b>7.1</b> A toy example</a></li>
+<li class="chapter" data-level="7.2" data-path="subsampling.html"><a href="subsampling.html#subsampling-ebird"><i class="fa fa-check"></i><b>7.2</b> Subsampling eBird data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>8</b> Applications</a><ul>
+<li class="chapter" data-level="8.1" data-path="applications.html"><a href="applications.html#applications-trajectory"><i class="fa fa-check"></i><b>8.1</b> Frequency trajectories</a></li>
+<li class="chapter" data-level="8.2" data-path="applications.html"><a href="applications.html#applications-maps"><i class="fa fa-check"></i><b>8.2</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="9.1" data-path="advanced.html"><a href="advanced.html#advanced-unmarked"><i class="fa fa-check"></i><b>9.1</b> Preparing for occupancy modeling</a></li>
+<li class="chapter" data-level="9.2" data-path="advanced.html"><a href="advanced.html#advanced-modis"><i class="fa fa-check"></i><b>9.2</b> Land cover covariates</a></li>
+<li class="chapter" data-level="9.3" data-path="advanced.html"><a href="advanced.html#advanced-custom"><i class="fa fa-check"></i><b>9.3</b> Custom downloads</a></li>
+<li class="chapter" data-level="9.4" data-path="advanced.html"><a href="advanced.html#advanced-size"><i class="fa fa-check"></i><b>9.4</b> Reducing file size</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="advanced.html"><a href="advanced.html#advanced-size-strict"><i class="fa fa-check"></i><b>9.4.1</b> Stricter filtering</a></li>
+<li class="chapter" data-level="9.4.2" data-path="advanced.html"><a href="advanced.html#advanced-size-columns"><i class="fa fa-check"></i><b>9.4.2</b> Removing columns</a></li>
+<li class="chapter" data-level="9.4.3" data-path="advanced.html"><a href="advanced.html#advanced-size-split"><i class="fa fa-check"></i><b>9.4.3</b> Splitting by species</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Distribution Modeling</b></span></li>
+<li class="chapter" data-level="10" data-path="model-intro.html"><a href="model-intro.html"><i class="fa fa-check"></i><b>10</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1" data-path="model-intro.html"><a href="model-intro.html#model-intro-data"><i class="fa fa-check"></i><b>10.1</b> Example data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="encounter.html"><a href="encounter.html"><i class="fa fa-check"></i><b>11</b> Encounter Rate</a><ul>
+<li class="chapter" data-level="11.1" data-path="encounter.html"><a href="encounter.html#encounter-prep"><i class="fa fa-check"></i><b>11.1</b> Data preparation</a></li>
+<li class="chapter" data-level="11.2" data-path="encounter.html"><a href="encounter.html#encounter-rf"><i class="fa fa-check"></i><b>11.2</b> Random forests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="encounter.html"><a href="encounter.html#encounter-rf-cal"><i class="fa fa-check"></i><b>11.2.1</b> Calibration</a></li>
+<li class="chapter" data-level="11.2.2" data-path="encounter.html"><a href="encounter.html#encounter-rf-assess"><i class="fa fa-check"></i><b>11.2.2</b> Model assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="encounter.html"><a href="encounter.html#encounter-habitat"><i class="fa fa-check"></i><b>11.3</b> Habitat associations</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pi"><i class="fa fa-check"></i><b>11.3.1</b> Predictor importance</a></li>
+<li class="chapter" data-level="11.3.2" data-path="encounter.html"><a href="encounter.html#encounter-habitat-pd"><i class="fa fa-check"></i><b>11.3.2</b> Partial dependence</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="encounter.html"><a href="encounter.html#encounter-predict"><i class="fa fa-check"></i><b>11.4</b> Prediction</a></li>
+<li class="chapter" data-level="11.5" data-path="encounter.html"><a href="encounter.html#encouter-exercises"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="occupancy.html"><a href="occupancy.html"><i class="fa fa-check"></i><b>12</b> Occupancy</a><ul>
+<li class="chapter" data-level="12.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-prep"><i class="fa fa-check"></i><b>12.1</b> Data preparation</a></li>
+<li class="chapter" data-level="12.2" data-path="occupancy.html"><a href="occupancy.html#occupancy-model"><i class="fa fa-check"></i><b>12.2</b> Occupancy modeling</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-model-assess"><i class="fa fa-check"></i><b>12.2.1</b> Assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="occupancy.html"><a href="occupancy.html#occupancy-predict"><i class="fa fa-check"></i><b>12.3</b> Prediction</a></li>
+<li class="chapter" data-level="12.4" data-path="occupancy.html"><a href="occupancy.html#occupancy-select"><i class="fa fa-check"></i><b>12.4</b> Model selection</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="occupancy.html"><a href="occupancy.html#occupancy-select-detection"><i class="fa fa-check"></i><b>12.4.1</b> Detection model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="occupancy.html"><a href="occupancy.html#occupancy-exercises"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="abundance.html"><a href="abundance.html"><i class="fa fa-check"></i><b>13</b> Abundance</a><ul>
+<li class="chapter" data-level="13.1" data-path="abundance.html"><a href="abundance.html#abundance-prep"><i class="fa fa-check"></i><b>13.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="abundance.html"><a href="abundance.html#abundance-explore"><i class="fa fa-check"></i><b>13.2</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="abundance.html"><a href="abundance.html#abundance-model"><i class="fa fa-check"></i><b>13.3</b> Abundance models</a></li>
+<li class="chapter" data-level="13.4" data-path="abundance.html"><a href="abundance.html#abundance-assess"><i class="fa fa-check"></i><b>13.4</b> Asssessment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="abundance.html"><a href="abundance.html#abundance-assess-cov"><i class="fa fa-check"></i><b>13.4.1</b> Assessing covariate effects</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="abundance.html"><a href="abundance.html#abundance-predict"><i class="fa fa-check"></i><b>13.5</b> Prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="abundance.html"><a href="abundance.html#abundance-exercises"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">eBird Best Practices Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="abundance" class="section level1">
+<h1><span class="header-section-number">Lesson 13</span> Abundance</h1>
+<p>The previous two lessons focused on modeling occurrence, which was based on presence-absence data. However, in addition to recording which species they observed, most eBirders also specify how many individuals of each species were observed. In this lesson, we’ll take advantage of these counts to model relative abundance.</p>
+<p>So far the lessons have covered random forests with the encounter rate models and occupancy models. Here we use a new type of model to describe variation in relative abundance Generalized Additive Models (GAMs). We will not describe these models in this lesson, rather just use them as a tool. In your own time, there are several resources on the internet to learn more about <a href="https://noamross.github.io/gams-in-r-course/">GAMs</a>.</p>
+<p>Let’s start by loading the packages and data required for this lesson. Note that, unlike the previous lessons, we need to subset the eBird data to remove records for which the observer recorded the presence of Australian Ibis, but didn’t record the number of individuals.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="kw">library</span>(dggridR)</a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"><span class="kw">library</span>(pdp)</a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="kw">library</span>(edarf)</a>
+<a class="sourceLine" id="cb105-7" data-line-number="7"><span class="kw">library</span>(mgcv)</a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="kw">library</span>(fitdistrplus)</a>
+<a class="sourceLine" id="cb105-9" data-line-number="9"><span class="kw">library</span>(viridis)</a>
+<a class="sourceLine" id="cb105-10" data-line-number="10"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb105-11" data-line-number="11"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb105-12" data-line-number="12"><span class="co"># resolve namespace conflicts</span></a>
+<a class="sourceLine" id="cb105-13" data-line-number="13">select &lt;-<span class="st"> </span>dplyr<span class="op">::</span>select</a>
+<a class="sourceLine" id="cb105-14" data-line-number="14">map &lt;-<span class="st"> </span>purrr<span class="op">::</span>map</a>
+<a class="sourceLine" id="cb105-15" data-line-number="15">projection &lt;-<span class="st"> </span>raster<span class="op">::</span>projection</a>
+<a class="sourceLine" id="cb105-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb105-17" data-line-number="17"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb105-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb105-19" data-line-number="19"><span class="co"># ebird data</span></a>
+<a class="sourceLine" id="cb105-20" data-line-number="20">ebird &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ebd_zf_sep_tst.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-21" data-line-number="21"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;Australian Ibis&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-22" data-line-number="22"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">protocol_type =</span> <span class="kw">factor</span>(protocol_type, </a>
+<a class="sourceLine" id="cb105-23" data-line-number="23">                                <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Stationary&quot;</span> , <span class="st">&quot;Traveling&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb105-24" data-line-number="24"><span class="st">  </span><span class="co"># remove observations with no count</span></a>
+<a class="sourceLine" id="cb105-25" data-line-number="25"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(observation_count))</a>
+<a class="sourceLine" id="cb105-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb105-27" data-line-number="27"><span class="co"># modis habitat covariates</span></a>
+<a class="sourceLine" id="cb105-28" data-line-number="28">habitat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/pland-elev_location-year.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-29" data-line-number="29"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))</a>
+<a class="sourceLine" id="cb105-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb105-31" data-line-number="31"><span class="co"># combine ebird and habitat data</span></a>
+<a class="sourceLine" id="cb105-32" data-line-number="32">ebird_habitat &lt;-<span class="st"> </span><span class="kw">inner_join</span>(ebird, habitat, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;locality_id&quot;</span>, <span class="st">&quot;year&quot;</span>))</a>
+<a class="sourceLine" id="cb105-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb105-34" data-line-number="34"><span class="co"># prediction surface</span></a>
+<a class="sourceLine" id="cb105-35" data-line-number="35">pred_surface &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/pland-elev_prediction-surface.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb105-36" data-line-number="36"><span class="co"># latest year of landcover data</span></a>
+<a class="sourceLine" id="cb105-37" data-line-number="37">max_lc_year &lt;-<span class="st"> </span>pred_surface<span class="op">$</span>year[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb105-38" data-line-number="38">r &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;data/prediction-surface.tif&quot;</span>)</a>
+<a class="sourceLine" id="cb105-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb105-40" data-line-number="40"><span class="co"># load gis data for making maps</span></a>
+<a class="sourceLine" id="cb105-41" data-line-number="41">map_proj &lt;-<span class="st"> </span><span class="kw">st_crs</span>(<span class="dv">3577</span>)</a>
+<a class="sourceLine" id="cb105-42" data-line-number="42">ne_land &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;ne_country&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-43" data-line-number="43"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-44" data-line-number="44"><span class="st">  </span><span class="kw">st_geometry</span>()</a>
+<a class="sourceLine" id="cb105-45" data-line-number="45">cmz &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;cmz&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-46" data-line-number="46"><span class="st">  </span><span class="kw">filter</span>(cmz_name <span class="op">==</span><span class="st"> &quot;Eastern Australia Temperate and Subtropical forests&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-47" data-line-number="47"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-48" data-line-number="48"><span class="st">  </span><span class="kw">st_geometry</span>()</a>
+<a class="sourceLine" id="cb105-49" data-line-number="49">ne_state_lines &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/gis-data.gpkg&quot;</span>, <span class="st">&quot;ne_state_lines&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-50" data-line-number="50"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> map_proj) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-51" data-line-number="51"><span class="st">  </span><span class="kw">st_geometry</span>()</a></code></pre></div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Since we’re modeling abundance, we had to remove checklists for which the observer didn’t include a count of the number of Australian Ibis. How many checklists didn’t have counts? What proportion of the data is this?</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="st">&quot;data/ebd_zf_sep_tst.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;Australian Ibis&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_total =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">            <span class="dt">n_nocount =</span> <span class="kw">sum</span>(<span class="kw">is.na</span>(observation_count)),</a>
+<a class="sourceLine" id="cb106-5" data-line-number="5">            <span class="dt">prop =</span> <span class="kw">mean</span>(<span class="kw">is.na</span>(observation_count)))</a>
+<a class="sourceLine" id="cb106-6" data-line-number="6"><span class="co">#&gt; # A tibble: 1 x 3</span></a>
+<a class="sourceLine" id="cb106-7" data-line-number="7"><span class="co">#&gt;   n_total n_nocount   prop</span></a>
+<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="co">#&gt;     &lt;int&gt;     &lt;int&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co">#&gt; 1   12311       203 0.0165</span></a></code></pre></div>
+</div>
+</div>
+<div id="abundance-prep" class="section level2">
+<h2><span class="header-section-number">13.1</span> Data preparation</h2>
+<p>As we learned in <a href="subsampling.html#subsampling">Part I</a> of this workshop, spatiotemporal subsampling can reduce spatial and temporal bias, and class imbalance, provided we sample detections and non-detections separately. So, we’ll apply subsampling prior to fitting the relative abundance model.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="co"># generate hexagonal grid with ~ 5 km betweeen cells</span></a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">dggs &lt;-<span class="st"> </span><span class="kw">dgconstruct</span>(<span class="dt">spacing =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="co"># get hexagonal cell id and week number for each checklist</span></a>
+<a class="sourceLine" id="cb107-4" data-line-number="4">checklist_cell &lt;-<span class="st"> </span>ebird_habitat <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cell =</span> <span class="kw">dgGEO_to_SEQNUM</span>(dggs, longitude, latitude)<span class="op">$</span>seqnum,</a>
+<a class="sourceLine" id="cb107-6" data-line-number="6">         <span class="dt">week =</span> <span class="kw">week</span>(observation_date))</a>
+<a class="sourceLine" id="cb107-7" data-line-number="7"><span class="co"># sample one checklist per grid cell per week</span></a>
+<a class="sourceLine" id="cb107-8" data-line-number="8"><span class="co"># sample detection/non-detection independently </span></a>
+<a class="sourceLine" id="cb107-9" data-line-number="9">ebird_ss &lt;-<span class="st"> </span>checklist_cell <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-10" data-line-number="10"><span class="st">  </span><span class="kw">group_by</span>(species_observed, year, week, cell) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-11" data-line-number="11"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-12" data-line-number="12"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>cell, <span class="op">-</span>week)</a></code></pre></div>
+<p>Finally, we hold 20% of the data aside so we have an independent test set, which we can later use to assess the performance of our model.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># split 80/20</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">ebird_split &lt;-<span class="st"> </span>ebird_ss <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="st">  </span><span class="kw">split</span>(<span class="kw">if_else</span>(<span class="kw">runif</span>(<span class="kw">nrow</span>(.)) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.8</span>, <span class="st">&quot;train&quot;</span>, <span class="st">&quot;test&quot;</span>))</a></code></pre></div>
+</div>
+<div id="abundance-explore" class="section level2">
+<h2><span class="header-section-number">13.2</span> Exploratory data analysis</h2>
+<p>We’ll start by examining the distribution of the count data to get an idea of which error distributions may be appropriate for the GAM model. We’ll also be on the lookout for evidence of zero-inflation, which can arise becuase eBird data often have a very high number of zero counts, since even common bird species are not seen on every checklist.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="co"># counts with zeros</span></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">hist</span>(ebird_ss<span class="op">$</span>observation_count, <span class="dt">main =</span> <span class="st">&quot;Histogram of counts&quot;</span>, </a>
+<a class="sourceLine" id="cb109-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Observed count&quot;</span>)</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="co"># counts without zeros</span></a>
+<a class="sourceLine" id="cb109-6" data-line-number="6">pos_counts &lt;-<span class="st"> </span><span class="kw">keep</span>(ebird_ss<span class="op">$</span>observation_count, <span class="op">~</span><span class="st"> </span>. <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb109-7" data-line-number="7"><span class="kw">hist</span>(pos_counts, <span class="dt">main =</span> <span class="st">&quot;Histogram of counts &gt; 0&quot;</span>, </a>
+<a class="sourceLine" id="cb109-8" data-line-number="8">     <span class="dt">xlab =</span> <span class="st">&quot;Observed non-zero count&quot;</span>)</a>
+<a class="sourceLine" id="cb109-9" data-line-number="9">prop_zero &lt;-<span class="st"> </span><span class="kw">sum</span>(ebird_ss<span class="op">$</span>observation_count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(ebird_ss)</a>
+<a class="sourceLine" id="cb109-10" data-line-number="10">prop_zero</a>
+<a class="sourceLine" id="cb109-11" data-line-number="11"><span class="co">#&gt; [1] 0.76</span></a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/abundance-model-dist-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>After the subsampling, 76.0% of the counts are zeros. The plot that includes zeros (top row) show an extremely zero-inflated and skewed distribution, due to the large number of zero-counts (checklists with no Australian Ibis detections). With zeros removed there is still a distribution of counts with a strong skew.</p>
+</div>
+<div id="abundance-model" class="section level2">
+<h2><span class="header-section-number">13.3</span> Abundance models</h2>
+<p>We’ll be using <a href="https://en.wikipedia.org/wiki/Generalized_additive_model">Generalized Additive Models (GAMs)</a> to model relative abundance. GAMs can flexibly include many covariates while offering a choice of several error distributions suitable for count responses. Prior to fitting a GAM model, we need to construct the model formula. We’ll allow the effect of each individual continuous covariate to vary smoothly across the range its values by specifying a spline smooth with four degrees of freedom (<code>k = 5</code>). The one variable with a different smooth is checklist start time, which is a cyclic variable (i.e. 0 and 24 are both midnight), so we’ll use a cubic cyclic spline (<code>bs = &quot;cc&quot;</code>) with six degrees of freedom (<code>k = 7</code>).</p>
+<p>We include all the effort covariates and four land cover covariates. Deciduous broadleaf forest (<code>pland_04</code>) and mixed forest (<code>pland_05</code>) are known Australian Ibis breeding habitat, and they are known to avoid are croplands (<code>pland_12</code>) and urban (<code>pland_13</code>).</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># gam formula</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">k_time &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">gam_formula &lt;-<span class="st"> </span>observation_count <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(day_of_year, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="st">  </span><span class="kw">s</span>(duration_minutes, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="st">  </span><span class="kw">s</span>(effort_distance_km, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="st">  </span><span class="kw">s</span>(number_observers, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">13</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-8" data-line-number="8"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">09</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">02</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-10" data-line-number="10"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">08</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-11" data-line-number="11"><span class="st">  </span>protocol_type <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-12" data-line-number="12"><span class="st">  </span><span class="kw">s</span>(time_observations_started, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>, <span class="dt">k =</span> k_time)</a>
+<a class="sourceLine" id="cb110-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb110-14" data-line-number="14"><span class="co"># explicitly specify where the knots should occur for time_observations_started</span></a>
+<a class="sourceLine" id="cb110-15" data-line-number="15"><span class="co"># this ensures that the cyclic spline joins the variable at midnight</span></a>
+<a class="sourceLine" id="cb110-16" data-line-number="16"><span class="co"># this won&#39;t happen by default if there are no data near midnight</span></a>
+<a class="sourceLine" id="cb110-17" data-line-number="17">time_knots &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">time_observations_started =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="dt">length.out =</span> k_time))</a></code></pre></div>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Modify the above code to include the two elevation covariates in the model formula.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">gam_formula_elev &lt;-<span class="st"> </span>observation_count <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(day_of_year, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">s</span>(duration_minutes, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="st">  </span><span class="kw">s</span>(effort_distance_km, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="st">  </span><span class="kw">s</span>(number_observers, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">13</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">09</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">02</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="st">  </span><span class="kw">s</span>(pland_<span class="dv">08</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-9" data-line-number="9"><span class="st">  </span><span class="kw">s</span>(elevation_median, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-10" data-line-number="10"><span class="st">  </span><span class="kw">s</span>(elevation_sd, <span class="dt">k =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-11" data-line-number="11"><span class="st">  </span>protocol_type <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-12" data-line-number="12"><span class="st">  </span><span class="kw">s</span>(time_observations_started, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>, <span class="dt">k =</span> k_time)</a></code></pre></div>
+</div>
+</div>
+<p>Now we’ll use this formula to fit GAM models. It can be hard to judge in advance of model fitting which distribution will best describe the count data. So we will testing three count response distributions:</p>
+<ul>
+<li><p><strong>Zero-inflated Poisson:</strong> This distribution effectively fits the data in two parts: (1) a binomial model that determines the variables associated with species <em>presence</em> and (2) a Poisson count model for those places with species presence, that determines the variables associated with species <em>count</em>. This is an effective distribution when there are a large number of zero counts in the data and the positive counts approximate a Poisson distribution.</p></li>
+<li><p><strong>Negative binomial:</strong> The negative binomial distribution is related to the Poisson distribution. However, the Poisson distribution has the variance of the distribution equal to the mean, while the variance can be considerably different from the mean in the negative binomorial distribution. This distribution is appropriate for over-dispersed data when the variance is much larger than the mean—a situation called <em>over-dispersion</em> that is very common in ecological count data.</p></li>
+<li><p><strong>Tweedie distribution:</strong> This is a very flexible distribution that encompasses a wide variety of shapes, including those with extremely high variance relative to the mean and extreme over-dispersion. The Tweedie distribution fit in GAM spans a range of distributions from the Poisson to the gamma.</p></li>
+</ul>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># zero-inflated poisson</span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2">m_ziplss &lt;-<span class="st"> </span><span class="kw">gam</span>(<span class="kw">list</span>(gam_formula,      <span class="co"># count model</span></a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">                     gam_formula[<span class="op">-</span><span class="dv">2</span>]), <span class="co"># presence model</span></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4">                <span class="dt">data =</span> ebird_split<span class="op">$</span>test, </a>
+<a class="sourceLine" id="cb112-5" data-line-number="5">                <span class="dt">family =</span> <span class="st">&quot;ziplss&quot;</span>, </a>
+<a class="sourceLine" id="cb112-6" data-line-number="6">                <span class="dt">knots =</span> time_knots)</a>
+<a class="sourceLine" id="cb112-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb112-8" data-line-number="8"><span class="co"># negative binomial</span></a>
+<a class="sourceLine" id="cb112-9" data-line-number="9">m_nb &lt;-<span class="st"> </span><span class="kw">gam</span>(gam_formula,</a>
+<a class="sourceLine" id="cb112-10" data-line-number="10">            <span class="dt">data =</span> ebird_split<span class="op">$</span>train, </a>
+<a class="sourceLine" id="cb112-11" data-line-number="11">            <span class="dt">family =</span> <span class="st">&quot;nb&quot;</span>,</a>
+<a class="sourceLine" id="cb112-12" data-line-number="12">            <span class="dt">knots =</span> time_knots)</a>
+<a class="sourceLine" id="cb112-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb112-14" data-line-number="14"><span class="co"># tweedie distribution</span></a>
+<a class="sourceLine" id="cb112-15" data-line-number="15">m_tw &lt;-<span class="st"> </span><span class="kw">gam</span>(gam_formula,</a>
+<a class="sourceLine" id="cb112-16" data-line-number="16">            <span class="dt">data =</span> ebird_split<span class="op">$</span>train, </a>
+<a class="sourceLine" id="cb112-17" data-line-number="17">            <span class="dt">family =</span> <span class="st">&quot;tw&quot;</span>,</a>
+<a class="sourceLine" id="cb112-18" data-line-number="18">            <span class="dt">knots =</span> time_knots)</a></code></pre></div>
+</div>
+<div id="abundance-assess" class="section level2">
+<h2><span class="header-section-number">13.4</span> Asssessment</h2>
+<p>To assess the predictive performance of these models, we start by predicting relative abundance on the test data set that we held aside from model fitting. We’ll do this separately for each distribution and compare their performance.</p>
+<p>Care needs to be taken when making predictions from the zero-inflated Poisson model since it has two components: probability of presence and expected count given presence. As a result, the <code>predict()</code> function returns a two column matrix with the count and probability respectively, both on the scale of the link functions. So, we need to back-transform these values, then multiply them to get the predicted counts.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">obs_count &lt;-<span class="st"> </span><span class="kw">select</span>(ebird_split<span class="op">$</span>test, <span class="dt">obs =</span> observation_count)</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="co"># presence probability is on the complimentary log-log scale</span></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="co"># we can get the inverse link function with</span></a>
+<a class="sourceLine" id="cb113-5" data-line-number="5">inv_link &lt;-<span class="st"> </span><span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;cloglog&quot;</span>)<span class="op">$</span>linkinv</a>
+<a class="sourceLine" id="cb113-6" data-line-number="6"><span class="co"># combine ziplss presence and count predictions</span></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7">m_ziplss_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(m_ziplss, ebird_split<span class="op">$</span>test, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-8" data-line-number="8"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb113-9" data-line-number="9"><span class="st">  </span><span class="kw">transmute</span>(<span class="dt">family =</span> <span class="st">&quot;Zero-inflated Poisson&quot;</span>,</a>
+<a class="sourceLine" id="cb113-10" data-line-number="10">            <span class="dt">pred =</span> <span class="kw">inv_link</span>(V2) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(V1)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-11" data-line-number="11"><span class="st">  </span><span class="kw">bind_cols</span>(obs_count)</a>
+<a class="sourceLine" id="cb113-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb113-13" data-line-number="13">m_nb_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(m_nb, ebird_split<span class="op">$</span>test, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-14" data-line-number="14"><span class="st">  </span><span class="kw">tibble</span>(<span class="dt">family =</span> <span class="st">&quot;Negative Binomial&quot;</span>, <span class="dt">pred =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-15" data-line-number="15"><span class="st">  </span><span class="kw">bind_cols</span>(obs_count)</a>
+<a class="sourceLine" id="cb113-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb113-17" data-line-number="17">m_tw_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(m_tw, ebird_split<span class="op">$</span>test, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-18" data-line-number="18"><span class="st">  </span><span class="kw">tibble</span>(<span class="dt">family =</span> <span class="st">&quot;Tweedie&quot;</span>, <span class="dt">pred =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-19" data-line-number="19"><span class="st">  </span><span class="kw">bind_cols</span>(obs_count)</a>
+<a class="sourceLine" id="cb113-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb113-21" data-line-number="21"><span class="co"># combine predictions from all three models</span></a>
+<a class="sourceLine" id="cb113-22" data-line-number="22">test_pred &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(m_ziplss_pred, m_nb_pred, m_tw_pred) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-23" data-line-number="23"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">family =</span> <span class="kw">as_factor</span>(family))</a></code></pre></div>
+<p>Assessing the fit of the models depends considerably on the goals of the model and hence on the most important aspects of the model fit for the intended use. Here we’ll calculate three different metrics, each of which is suitable for assessing performance for a different intended use. There are a variety of other metrics that can be used, but the metrics used to assess fit should be carefully chosen with the model goals in mind.</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient"><strong>Spearman’s Rank Correlation</strong></a>** can be used to assess how each model performs in terms of the ranking of predicted counts. This can be most valuable if we want to understand which sites have highest abundance of the species.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Average_absolute_deviation"><strong>Mean absolute deviation (MAD)</strong></a> is a robust statistic that describes the average deviation between observation and prediction, which gives an overall sense of the quality of the magnitude of the predicted counts. This can be most valuable if we want to understand how close our estimates of counts are to the observed counts.</p></li>
+<li><p>In some cases, we may be particularly concerned with underestimating abundances. The <strong>number and proportion of predictions that are underestimated</strong> by an order of magnitude is one means of assessing performance in this respect. This can be most valuable if we want to understand how prone our model may be to underestimating counts.</p></li>
+</ol>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co"># spearman’s rank correlation</span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">test_pred <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(family) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">rank_cor =</span> <span class="kw">cor.test</span>(obs, pred, </a>
+<a class="sourceLine" id="cb114-5" data-line-number="5">                                <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>, </a>
+<a class="sourceLine" id="cb114-6" data-line-number="6">                                <span class="dt">exact =</span> <span class="ot">FALSE</span>)<span class="op">$</span>estimate,</a>
+<a class="sourceLine" id="cb114-7" data-line-number="7">            <span class="dt">mad =</span> <span class="kw">mean</span>(<span class="kw">abs</span>(obs <span class="op">-</span><span class="st"> </span>pred), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb114-8" data-line-number="8">            <span class="dt">n_under =</span> <span class="kw">sum</span>(obs <span class="op">/</span><span class="st"> </span>pred <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb114-9" data-line-number="9">            <span class="dt">pct_under =</span> <span class="kw">mean</span>(obs <span class="op">/</span><span class="st"> </span>pred <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">4</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+family
+</th>
+<th style="text-align:right;">
+rank_cor
+</th>
+<th style="text-align:right;">
+mad
+</th>
+<th style="text-align:right;">
+n_under
+</th>
+<th style="text-align:right;">
+pct_under
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Zero-inflated Poisson
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+<td style="text-align:right;">
+47.53
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+0.0433
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Negative Binomial
+</td>
+<td style="text-align:right;">
+0.355
+</td>
+<td style="text-align:right;">
+3.76
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.0237
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tweedie
+</td>
+<td style="text-align:right;">
+0.353
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0.0253
+</td>
+</tr>
+</tbody>
+</table>
+<p>Across all metrics, the zero-inflated Poisson model performs the worst: it has the lowest rank correlation, largest number of problematic errors, and the highest MAD. The negative binomial and Tweedie models are very similar in performance, with the negative binomial being slightly better.</p>
+<div class="exercise">
+<h2>
+Exercise
+</h2>
+<p>Imagine for your use case, underestimation is not a major problem, rather you want to avoid <strong>overestimating</strong> abundances. Summarize the test set predictions to indentify the number and proportion of times each model overestimates abundance by at least an order of magnitude. Ignore cases where the observed abundance was zero.</p>
+<button class="solution">Solution</button>
+<div class="solution-content">
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">test_pred <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(family) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_under =</span> <span class="kw">sum</span>(obs <span class="op">/</span><span class="st"> </span>pred <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb115-5" data-line-number="5">            <span class="dt">pct_under =</span> <span class="kw">mean</span>(obs <span class="op">/</span><span class="st"> </span>pred <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"><span class="co">#&gt;   family                n_under pct_under</span></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9"><span class="co">#&gt;   &lt;fct&gt;                   &lt;int&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb115-10" data-line-number="10"><span class="co">#&gt; 1 Zero-inflated Poisson     233     0.815</span></a>
+<a class="sourceLine" id="cb115-11" data-line-number="11"><span class="co">#&gt; 2 Negative Binomial         257     0.899</span></a>
+<a class="sourceLine" id="cb115-12" data-line-number="12"><span class="co">#&gt; 3 Tweedie                   255     0.892</span></a></code></pre></div>
+</div>
+</div>
+<p>We can also assess the quality of the magnitude of abundance estimates by looking at a plot of predicted and observerved counts from the test set. We’ll highlight in red the regions where the predictions are underestimated by more than an order of magnitude. We’ll also overlay the line <span class="math inline">\(y = x\)</span>, which separates overestimates (above the line) from underestimates (below the line), and a blue smoothed fit showing the general trend through all the data.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="co"># plot predicted vs. observed</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2">ticks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb116-3" data-line-number="3">mx &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">max</span>(test_pred<span class="op">$</span>obs))</a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="kw">ggplot</span>(test_pred) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log10</span>(obs <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb116-6" data-line-number="6">      <span class="dt">y =</span> <span class="kw">log10</span>(pred <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">height =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="st">  </span><span class="co"># y = x line</span></a>
+<a class="sourceLine" id="cb116-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-10" data-line-number="10"><span class="st">  </span><span class="co"># area where counts off by a factor of 10</span></a>
+<a class="sourceLine" id="cb116-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data =</span> <span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">log10</span>(<span class="kw">seq</span>(<span class="dv">0</span>, mx <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb116-12" data-line-number="12">                          <span class="dt">y =</span> <span class="kw">log10</span>(<span class="kw">seq</span>(<span class="dv">0</span>, mx <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb116-13" data-line-number="13">            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y),</a>
+<a class="sourceLine" id="cb116-14" data-line-number="14">            <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-15" data-line-number="15"><span class="st">  </span><span class="co"># loess fit</span></a>
+<a class="sourceLine" id="cb116-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, </a>
+<a class="sourceLine" id="cb116-17" data-line-number="17">              <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">span =</span> <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">degree =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-18" data-line-number="18"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">log10</span>(ticks <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dt">labels =</span> ticks) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-19" data-line-number="19"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">log10</span>(ticks <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dt">labels =</span> ticks) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-20" data-line-number="20"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Observed count&quot;</span>,</a>
+<a class="sourceLine" id="cb116-21" data-line-number="21">       <span class="dt">y =</span> <span class="st">&quot;Predicted count&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-22" data-line-number="22"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>family, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/abundance-assess-plot-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>Overall, we see that most of the counts are underestimated, since most points and the blue line are below the gray <span class="math inline">\(y = x\)</span> line. And, of these, many are underestimated by an order of magnitude or more.</p>
+<p>Going forward, we should be aware that many of the estimates of relative abundance are likely to be underestimates. This can be a common model trait when the data are overdispersed or have many zeroes. Taking a holistic view of all the three metrics, the negative binomial appears to be best.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">pred_model &lt;-<span class="st"> </span>m_nb</a></code></pre></div>
+<p>Depending on your focal species and region, as well as the particular goals of your analysis, some aspects of model fit will be more important than others, so it’s important to consider your assessment criteria and make sure they match your application.</p>
+<div id="abundance-assess-cov" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> Assessing covariate effects</h3>
+<p>We recommend assessing the fitted covariate effects to see whether they show biologically plausible relationships between covariates and species counts. Splines can sometimes overfit, notably when sample sizes are very large, and in this cases it is appropriate to reduce the degrees of freedom.</p>
+<p>Calling the <code>plot()</code> function on the GAM object produces plots of the smooth functions for each of the separate predictors, which gives us a sense of the effect of each predictor on the count response.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.25</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="kw">plot</span>(pred_model, <span class="dt">pages =</span> <span class="dv">1</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/abundance-model-cov-plot-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>If these relationships seem too wiggly to be biologically realistic, you should reduce the degrees of freedom for the problematic smooths until a biologically feasible relationship is achieved. In this case, the relationships appear to be reasonable for the negative binomial model, so we will use it for prediction below.</p>
+</div>
+</div>
+<div id="abundance-predict" class="section level2">
+<h2><span class="header-section-number">13.5</span> Prediction</h2>
+<p>Finally, once we have a model we are happy with, we can use the GAM to make a map of Australian Ibis relative abundance in the Temperature and Subtropical Forest CMZ! The data package contains a prediction surface consisting of the PLAND habitat covariates summarized on a regular grid of points across the CMZ. We’ll make predictions of relative abundance at all these points. However, first we need to bring effort variables into this prediction surface. As we did for encounter rate, we’ll make predictions for a <strong>standard eBird checklist</strong>: a 1 km, 1 hour traveling count at the peak time of day for detecting this species.</p>
+<p>To find the time of day with the highest detection probability, we’ll predict abundance and its 95% confidence limits at a series of times throughout the day, then pick the time at which the lower confidence limit is at its maximum. By using the lower confidence limits, we select a time that we are confident has high detectability and thus avoid potentially unrealistic predictions from times of day for which few or no data existed (which is more of a risk with GAMs).</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># create a dataframe of covariates with a range of start times</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">seq_tod &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="dt">length.out =</span> <span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">tod_df &lt;-<span class="st"> </span>ebird_split<span class="op">$</span>train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="st">  </span><span class="co"># find average pland habitat covariates</span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;pland&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"><span class="st">  </span><span class="kw">summarize_all</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="st">  </span><span class="co"># use standard checklist</span></a>
+<a class="sourceLine" id="cb119-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">day_of_year =</span> <span class="kw">yday</span>(<span class="kw">ymd</span>(<span class="kw">str_glue</span>(<span class="st">&quot;{max_lc_year}-06-15&quot;</span>))),</a>
+<a class="sourceLine" id="cb119-10" data-line-number="10">         <span class="dt">duration_minutes =</span> <span class="dv">60</span>,</a>
+<a class="sourceLine" id="cb119-11" data-line-number="11">         <span class="dt">effort_distance_km =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb119-12" data-line-number="12">         <span class="dt">number_observers =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb119-13" data-line-number="13">         <span class="dt">protocol_type =</span> <span class="st">&quot;Traveling&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-14" data-line-number="14"><span class="st">  </span><span class="kw">cbind</span>(<span class="dt">time_observations_started =</span> seq_tod)</a>
+<a class="sourceLine" id="cb119-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb119-16" data-line-number="16"><span class="co"># predict at different start times</span></a>
+<a class="sourceLine" id="cb119-17" data-line-number="17">pred_tod &lt;-<span class="st"> </span><span class="kw">predict</span>(pred_model, <span class="dt">newdata =</span> tod_df, </a>
+<a class="sourceLine" id="cb119-18" data-line-number="18">                    <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, </a>
+<a class="sourceLine" id="cb119-19" data-line-number="19">                    <span class="dt">se.fit =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-20" data-line-number="20"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-21" data-line-number="21"><span class="st">  </span><span class="co"># calculate backtransformed confidence limits</span></a>
+<a class="sourceLine" id="cb119-22" data-line-number="22"><span class="st">  </span><span class="kw">transmute</span>(<span class="dt">time_observations_started =</span> seq_tod,</a>
+<a class="sourceLine" id="cb119-23" data-line-number="23">            <span class="dt">pred =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit),</a>
+<a class="sourceLine" id="cb119-24" data-line-number="24">            <span class="dt">pred_lcl =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.fit),</a>
+<a class="sourceLine" id="cb119-25" data-line-number="25">            <span class="dt">pred_ucl =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.fit))</a>
+<a class="sourceLine" id="cb119-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb119-27" data-line-number="27"><span class="co"># find optimal time of day</span></a>
+<a class="sourceLine" id="cb119-28" data-line-number="28">t_peak &lt;-<span class="st"> </span>pred_tod<span class="op">$</span>time_observations_started[<span class="kw">which.max</span>(pred_tod<span class="op">$</span>pred_lcl)]</a>
+<a class="sourceLine" id="cb119-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb119-30" data-line-number="30"><span class="co"># plot the partial dependence plot</span></a>
+<a class="sourceLine" id="cb119-31" data-line-number="31"><span class="kw">ggplot</span>(pred_tod) <span class="op">+</span></a>
+<a class="sourceLine" id="cb119-32" data-line-number="32"><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> time_observations_started, <span class="dt">y =</span> pred,</a>
+<a class="sourceLine" id="cb119-33" data-line-number="33">      <span class="dt">ymin =</span> pred_lcl, <span class="dt">ymax =</span> pred_ucl) <span class="op">+</span></a>
+<a class="sourceLine" id="cb119-34" data-line-number="34"><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb119-35" data-line-number="35"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb119-36" data-line-number="36"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> t_peak, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb119-37" data-line-number="37"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Hours since midnight&quot;</span>,</a>
+<a class="sourceLine" id="cb119-38" data-line-number="38">       <span class="dt">y =</span> <span class="st">&quot;Predicted relative abundance&quot;</span>,</a>
+<a class="sourceLine" id="cb119-39" data-line-number="39">       <span class="dt">title =</span> <span class="st">&quot;Effect of observation start time on Australian Ibis reporting&quot;</span>,</a>
+<a class="sourceLine" id="cb119-40" data-line-number="40">       <span class="dt">subtitle =</span> <span class="st">&quot;Peak detectability shown as dashed blue line&quot;</span>)</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/abundance-predict-peak-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>So, the peak time of day for detecting Australian Ibis is around 18:28 PM. Now we can add all the effort covariates to the prediciton surface.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># add effort covariates to prediction surface</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">pred_surface_eff &lt;-<span class="st"> </span>pred_surface <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">day_of_year =</span> <span class="kw">yday</span>(<span class="kw">ymd</span>(<span class="kw">str_glue</span>(<span class="st">&quot;{max_lc_year}-06-15&quot;</span>))),</a>
+<a class="sourceLine" id="cb120-4" data-line-number="4">         <span class="dt">time_observations_started =</span> t_peak,</a>
+<a class="sourceLine" id="cb120-5" data-line-number="5">         <span class="dt">duration_minutes =</span> <span class="dv">60</span>,</a>
+<a class="sourceLine" id="cb120-6" data-line-number="6">         <span class="dt">effort_distance_km =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb120-7" data-line-number="7">         <span class="dt">number_observers =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb120-8" data-line-number="8">         <span class="dt">protocol_type =</span> <span class="st">&quot;Traveling&quot;</span>)</a></code></pre></div>
+<p>Then estimate relative abundance, standard error, and 95% confidence limits at these points.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r livecode"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># predict</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(pred_model, <span class="dt">newdata =</span> pred_surface_eff, </a>
+<a class="sourceLine" id="cb121-3" data-line-number="3">                <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, </a>
+<a class="sourceLine" id="cb121-4" data-line-number="4">                <span class="dt">se.fit =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="st">  </span><span class="co"># calculate confidence limits and back transform</span></a>
+<a class="sourceLine" id="cb121-7" data-line-number="7"><span class="st">  </span><span class="kw">transmute</span>(<span class="dt">abd =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit),</a>
+<a class="sourceLine" id="cb121-8" data-line-number="8">            <span class="dt">abd_se =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(se.fit),</a>
+<a class="sourceLine" id="cb121-9" data-line-number="9">            <span class="dt">abd_lcl =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.fit),</a>
+<a class="sourceLine" id="cb121-10" data-line-number="10">            <span class="dt">abd_ucl =</span> pred_model<span class="op">$</span>family<span class="op">$</span><span class="kw">linkinv</span>(fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.fit)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb121-11" data-line-number="11"><span class="st">  </span><span class="co"># add to prediction surface</span></a>
+<a class="sourceLine" id="cb121-12" data-line-number="12"><span class="st">  </span><span class="kw">bind_cols</span>(pred_surface_eff, .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(latitude, longitude, abd, abd_se, abd_lcl, abd_ucl)</a></code></pre></div>
+<p>Next, we’ll convert this data frame to spatial features using <code>sf</code>, then rasterize the points using the prediction surface raster template.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">r_pred &lt;-<span class="st"> </span>pred <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="co"># convert to spatial features</span></a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4326</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(abd, abd_se) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="kw">projection</span>(r)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"><span class="st">  </span><span class="co"># rasterize</span></a>
+<a class="sourceLine" id="cb122-7" data-line-number="7"><span class="st">  </span><span class="kw">rasterize</span>(r)</a>
+<a class="sourceLine" id="cb122-8" data-line-number="8">r_pred &lt;-<span class="st"> </span>r_pred[[<span class="op">-</span><span class="dv">1</span>]]</a></code></pre></div>
+<p>Finally, let’s make maps of both relative abundance and its standard error! For the relative abundance map, we’ll treat very small values of relative abundance as zero.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="co"># any expected abundances below this threshold are set to zero</span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2">zero_threshold &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb123-4" data-line-number="4"><span class="co"># project predictions</span></a>
+<a class="sourceLine" id="cb123-5" data-line-number="5">r_pred_proj &lt;-<span class="st"> </span><span class="kw">projectRaster</span>(r_pred, <span class="dt">crs =</span> map_proj<span class="op">$</span>proj4string, <span class="dt">method =</span> <span class="st">&quot;ngb&quot;</span>)</a>
+<a class="sourceLine" id="cb123-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb123-8" data-line-number="8"><span class="cf">for</span> (nm <span class="cf">in</span> <span class="kw">names</span>(r_pred)) {</a>
+<a class="sourceLine" id="cb123-9" data-line-number="9">  r_plot &lt;-<span class="st"> </span>r_pred_proj[[nm]]</a>
+<a class="sourceLine" id="cb123-10" data-line-number="10">  </a>
+<a class="sourceLine" id="cb123-11" data-line-number="11">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb123-12" data-line-number="12">  <span class="co"># set up plot area</span></a>
+<a class="sourceLine" id="cb123-13" data-line-number="13">  <span class="kw">plot</span>(cmz, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb123-14" data-line-number="14">  <span class="kw">plot</span>(ne_land, <span class="dt">col =</span> <span class="st">&quot;#dddddd&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#888888&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb123-15" data-line-number="15">  </a>
+<a class="sourceLine" id="cb123-16" data-line-number="16">  <span class="co"># modified plasma palette</span></a>
+<a class="sourceLine" id="cb123-17" data-line-number="17">  plasma_rev &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">plasma</span>(<span class="dv">25</span>, <span class="dt">end =</span> <span class="fl">0.9</span>))</a>
+<a class="sourceLine" id="cb123-18" data-line-number="18">  gray_int &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;#dddddd&quot;</span>, plasma_rev[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb123-19" data-line-number="19">  pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">gray_int</span>(<span class="dv">4</span>)[<span class="dv">2</span>], plasma_rev)</a>
+<a class="sourceLine" id="cb123-20" data-line-number="20">  </a>
+<a class="sourceLine" id="cb123-21" data-line-number="21">  <span class="co"># abundance vs. se</span></a>
+<a class="sourceLine" id="cb123-22" data-line-number="22">  <span class="cf">if</span> (nm <span class="op">==</span><span class="st"> &quot;abd&quot;</span>) {</a>
+<a class="sourceLine" id="cb123-23" data-line-number="23">    title &lt;-<span class="st"> &quot;Australian Ibis Relative Abundance&quot;</span></a>
+<a class="sourceLine" id="cb123-24" data-line-number="24">    <span class="co"># set very low values to zero</span></a>
+<a class="sourceLine" id="cb123-25" data-line-number="25">    r_plot[r_plot <span class="op">&lt;=</span><span class="st"> </span>zero_threshold] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb123-26" data-line-number="26">    <span class="co"># log transform</span></a>
+<a class="sourceLine" id="cb123-27" data-line-number="27">    r_plot &lt;-<span class="st"> </span><span class="kw">log10</span>(r_plot)</a>
+<a class="sourceLine" id="cb123-28" data-line-number="28">    <span class="co"># breaks and legend</span></a>
+<a class="sourceLine" id="cb123-29" data-line-number="29">    mx &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, max)) <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb123-30" data-line-number="30">    mn &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, min)) <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb123-31" data-line-number="31">    brks &lt;-<span class="st"> </span><span class="kw">seq</span>(mn, mx, <span class="dt">length.out =</span> <span class="kw">length</span>(pal) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb123-32" data-line-number="32">    lbl_brks &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span><span class="op">:</span><span class="dv">2</span>, mn, mx))</a>
+<a class="sourceLine" id="cb123-33" data-line-number="33">    lbls &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="dv">10</span><span class="op">^</span>lbl_brks, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb123-34" data-line-number="34">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb123-35" data-line-number="35">    title &lt;-<span class="st"> &quot;Australian Ibis Abundance Uncertainty (SE)&quot;</span></a>
+<a class="sourceLine" id="cb123-36" data-line-number="36">    <span class="co"># breaks and legend</span></a>
+<a class="sourceLine" id="cb123-37" data-line-number="37">    mx &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, max)) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb123-38" data-line-number="38">    mn &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, min)) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb123-39" data-line-number="39">    brks &lt;-<span class="st"> </span><span class="kw">seq</span>(mn, mx, <span class="dt">length.out =</span> <span class="kw">length</span>(pal) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb123-40" data-line-number="40">    lbl_brks &lt;-<span class="st"> </span><span class="kw">seq</span>(mn, mx, <span class="dt">length.out =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb123-41" data-line-number="41">    lbls &lt;-<span class="st"> </span><span class="kw">round</span>(lbl_brks, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb123-42" data-line-number="42">  }</a>
+<a class="sourceLine" id="cb123-43" data-line-number="43">  </a>
+<a class="sourceLine" id="cb123-44" data-line-number="44">  <span class="co"># abundance</span></a>
+<a class="sourceLine" id="cb123-45" data-line-number="45">  <span class="kw">plot</span>(r_plot, </a>
+<a class="sourceLine" id="cb123-46" data-line-number="46">       <span class="dt">col =</span> pal, <span class="dt">breaks =</span> brks, </a>
+<a class="sourceLine" id="cb123-47" data-line-number="47">       <span class="dt">maxpixels =</span> <span class="kw">ncell</span>(r_plot),</a>
+<a class="sourceLine" id="cb123-48" data-line-number="48">       <span class="dt">legend =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb123-49" data-line-number="49">  </a>
+<a class="sourceLine" id="cb123-50" data-line-number="50">  <span class="co"># borders</span></a>
+<a class="sourceLine" id="cb123-51" data-line-number="51">  <span class="kw">plot</span>(cmz, <span class="dt">border =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb123-52" data-line-number="52">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb123-53" data-line-number="53">  <span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb123-54" data-line-number="54">  </a>
+<a class="sourceLine" id="cb123-55" data-line-number="55">  <span class="co"># legend</span></a>
+<a class="sourceLine" id="cb123-56" data-line-number="56">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb123-57" data-line-number="57">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> pal,</a>
+<a class="sourceLine" id="cb123-58" data-line-number="58">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="fl">0.06</span>, <span class="fl">0.09</span>),</a>
+<a class="sourceLine" id="cb123-59" data-line-number="59">             <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb123-60" data-line-number="60">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, </a>
+<a class="sourceLine" id="cb123-61" data-line-number="61">                              <span class="dt">labels =</span> lbls,</a>
+<a class="sourceLine" id="cb123-62" data-line-number="62">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb123-63" data-line-number="63">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb123-64" data-line-number="64">                              <span class="dt">padj =</span> <span class="fl">-1.5</span>),</a>
+<a class="sourceLine" id="cb123-65" data-line-number="65">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
+<a class="sourceLine" id="cb123-66" data-line-number="66">                                <span class="dt">side =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb123-67" data-line-number="67">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb123-68" data-line-number="68">}</a></code></pre></div>
+<p><img src="ebp-workshop-au_files/figure-html/abundance-predict-map-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+</div>
+<div id="abundance-exercises" class="section level2">
+<h2><span class="header-section-number">13.6</span> Exercises</h2>
+<p>Now that you’ve completed this lesson, try modifying your script to complete at least one of the following exercises:</p>
+<ol style="list-style-type: decimal">
+<li><p>Refit the model without effort variables and see how model performance changes.</p></li>
+<li><p>Predict from the same model for checklists of 10 minutes duration, instead of 1 hour. Compare the results and consider how the interpretation changes.</p></li>
+<li><p>Change the degrees of freedom for the covariate smooths and compare the fitted relationships.</p></li>
+<li><p>Refit the model with a random forest. Compare the predictions and the fitted relationships with covariates.</p></li>
+<li><p>Compare the encounter rate map to the relative abundance map.</p></li>
+<li><p>Fit an encounter rate random forest model then use the predicted encounter rate as a new covariate in the abundance model. Compare the model performance.</p></li>
+<li><p>Try producing a map of relative abundance using one of the other species in the example data.</p></li>
+</ol>
+
+</div>
+</div>
+<script>
+var coll = document.getElementsByClassName("solution");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="occupancy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mstrimas/ebp-workshop/edit/master/13_abundance.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

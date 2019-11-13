@@ -1,0 +1,153 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction {#intro}
+
+The contents of this website comprise the notes for a workshop on best practices for using eBird data. [Part I](#ebird-intro) of this workshop will focus on extracting and processing eBird data, while [Part II](#model-intro) will cover using these data to model species distributions. The two parts are intentionally designed to be independent, which allows you to attend Part I, Part II, or both depending on your skills, background, and interests.
+
+## Data {#intro-data}
+
+To follow along with the lessons in this workshop [download the workshop data package](https://github.com/mstrimas/ebp-workshop-au/raw/master/raw-data/ebp-workshop.zip). This package contains a variety of datasets for Parts I and II of this workshop. Instructions for how to use each dataset will be given in the relevant lesson.
+
+## Format {#intro-format}
+
+This format of this workshop will be loosely based on [Software Carpentry](https://software-carpentry.org/), the gold standard for workshops teaching scientific computing. As much as possible, the instructor will work through the lessons in real time, entering code live, while you code-along. Interspersed with the live coding will be exercises designed to give you a chance to practice on your own. This approach, known as [participatory live coding](https://carpentries.github.io/instructor-training/14-live/), has been shown to be a much more effective means of learning to code than using slides or a pre-written script.
+
+Another Software Carpentry technique that we've adopted is the use of sticky notes. You should have two sticky notes at your desk, one blue and one yellow. Throughout the workshop, if you've completed an exercise or have passed a checkpoint, put the blue sticky note on your laptop to indicate that you're done. Similarly, if you're lost, stuck, or have a problem and need help, place the yellow sticky on your laptop.
+
+In addition to the instructor, we have several helpers roaming the room helping to troubleshoot problems. The sticky notes are the most effective way of flagging a helper down.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Let's stop here for a quick round on introductions, let us know who you are and how you hope to use eBird data!
+</div>
+
+## Setup {#intro-setup}
+
+Before we dive into writing code, let's take a few minutes to ensure our systems are properly set up with all the correct software and R packages. Devoting some time to this up front will reduce errors and make troubleshooting easier later in the workshop. If you followed the pre-workshop setup instructions, most of this setup should already be complete; however, we include it here to ensure everyone's on the same page.
+
+Start by opening a browser window with four tabs pointing to the following websites:
+
+1. The shared Google Doc for this workshop (your instructor will provide a link). This will act as a collaborative notepad, which we can use to share code and links. Make sure you can edit the document.
+2. The [eBird homepage](https://ebird.org)
+3. The [auk website](https://cornelllabofornithology.github.io/auk/). This `auk` R package is used to access eBird data and we'll be using the website to view the documentation.
+4. The [online lessons](http://strimas.com/ebp-workshop-au) for this workshop.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Are all tabs correctly opened? Can you edit the shared notepad?
+</div>
+
+Next [install or update RStudio](https://www.rstudio.com/products/rstudio/download/#download), then open it. Look at the top line of the console, which gives your R version. If you have a version older than 3.5.0, you should consider [updating R](https://cloud.r-project.org/). 
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Is your R version at least 3.5.0? Do you need help updating R?
+</div>
+
+Create a new RStudio project called `ebird-best-practices`. Next, install all the packages required for this workshop and Part II, by running the following code:
+
+```{r setup-install, eval = FALSE}
+install.packages("remotes")
+remotes::install_github("mstrimas/ebppackages")
+```
+
+The `auk` package uses the unix command line tool AWK to access eBird data. AWK comes installed by default on Mac OS and Linux systems, but Windows users will need to install it. To do so, install the [Cygwin software](https://cygwin.com/install.html) making sure to use the default install location.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Is AWK installed?
+</div>
+
+Run the following code to test that `auk` is installed correctly and AWK is working:
+
+```{r setup-test}
+library(auk)
+library(tidyverse)
+
+tf <- tempfile()
+system.file("extdata/ebd-sample.txt", package = "auk") %>% 
+  auk_ebd() %>%
+  auk_species(species = c("Canada Jay", "Blue Jay")) %>%
+  auk_country(country = c("US", "Canada")) %>%
+  auk_bbox(bbox = c(-100, 37, -80, 52)) %>%
+  auk_date(date = c("2012-01-01", "2012-12-31")) %>%
+  auk_time(start_time = c("06:00", "09:00")) %>%
+  auk_duration(duration = c(0, 60)) %>%
+  auk_complete() %>% 
+  auk_filter(tf) %>% 
+  read_ebd() %>% 
+  pull(common_name) %>% 
+  message()
+unlink(tf)
+```
+
+It should print `Blue Jay`.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Did "Blue Jay" print without errors?
+</div>
+
+If you're running into any setup issues that can't be resolved, use RStudio Cloud for this workshop instead. Your instructor will explain how to connect to RStudio Cloud.
+
+## Tidyverse {#intro-tidyverse}
+
+Throughout this workshop, we'll be using functions from the Tidyverse. This is an opinionated set of packages for working with data in R. Packages such as `dplyr`, `ggplot2`, and `purrr` are part of the Tidyverse. We'll try to explain any functions as they come up; however, there's one important operator from the Tidyverse that needs to be explained up front: the pipe operator `%>%`. The pipe operator takes the expression to the left of it and "pipes" it into the first argument of the expression on the right.
+
+```{r setup-tidyverse-pipe}
+# without pipe
+mean(1:10)
+# with pipe
+1:10 %>% mean()
+```
+
+The value of the pipe operator becomes clear when we have several operations in a row. Using the pipe makes code easier to read and reduces the need for intermediate variables. 
+
+```{r  setup-tidyverse-morepipe}
+# without pipes
+set.seed(1)
+ran_norm <- rnorm(10, sd = 5)
+ran_norm_pos <- abs(ran_norm)
+ran_norm_sort <- sort(ran_norm_pos)
+ran_norm_round <- round(ran_norm_sort, digits = 1)
+ran_norm_round
+# with pipes
+set.seed(1)
+rnorm(10, sd = 5) %>% 
+  abs() %>% 
+  sort() %>% 
+  round(digits = 1)
+```
+
+For those that have never used the pipe, it probably looks strange, but if you stick with it, you'll quickly come to appreciate it.
+
+<div class="checkpoint">
+  <h2>Checkpoint</h2>
+  Any questions about the pipe?
+</div>
+
+<div class="exercise">
+  <h2>Exercise</h2>
+  Rewrite the following code using pipes:
+
+```{r setup-tidyverse-ex, eval = FALSE}
+set.seed(1)
+round(log(runif(10, min = 0.5)), 1)
+```
+
+<button class="solution">Solution</button>
+<div class="solution-content">
+
+```{r setup-tidyverse-sol}
+set.seed(1)
+runif(10, min = 0.5) %>% 
+  log() %>% 
+  round(digits = 1)
+```
+
+</div>
+</div>
