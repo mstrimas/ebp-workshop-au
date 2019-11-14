@@ -256,7 +256,7 @@ par(mfrow = c(2, 1))
 for (nm in names(r_pred)) {
   r_plot <- r_pred_proj[[nm]]
   
-  par(mar = c(0.25, 0.25, 0.25, 4.5))
+  par(mar = c(0.25, 0.25, 0.25, 5))
   # set up plot area
   plot(cmz, col = NA, border = NA)
   plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
@@ -272,7 +272,7 @@ for (nm in names(r_pred)) {
     mx <- ceiling(1000 * cellStats(r_plot, max)) / 1000
     brks <- seq(0, mx, length.out = 21)
     lbl_brks <- seq(0, mx, length.out = 11) %>% 
-      round(2)
+      round(3)
   }
   pal <- abundance_palette(length(brks) - 1)
   plot(r_plot, 
@@ -288,7 +288,7 @@ for (nm in names(r_pred)) {
   par(new = TRUE, mar = c(0, 0, 0, 0))
   image.plot(zlim = range(brks), legend.only = TRUE, 
              breaks = brks, col = pal,
-             smallplot = c(0.90, 0.93, 0.25, 0.75),
+             smallplot = c(0.89, 0.92, 0.25, 0.75),
              horizontal = FALSE,
              axis.args = list(at = lbl_brks, labels = lbl_brks,
                               fg = "black", col.axis = "black",

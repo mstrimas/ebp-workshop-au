@@ -449,10 +449,11 @@ par(mfrow = c(2, 1))
 for (nm in names(r_pred)) {
   r_plot <- r_pred_proj[[nm]]
   
-  par(mar = c(0.25, 0.25, 0.25, 4.5))
+  par(mar = c(0.25, 0.25, 0.25, 5))
   # set up plot area
   plot(cmz, col = NA, border = NA)
   plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
+  plot(cmz, col = "#888888", border = NA, add = TRUE)
   
   # modified plasma palette
   plasma_rev <- rev(plasma(25, end = 0.9))
@@ -467,11 +468,11 @@ for (nm in names(r_pred)) {
     # log transform
     r_plot <- log10(r_plot)
     # breaks and legend
-    mx <- ceiling(100 * cellStats(r_plot, max)) / 100
-    mn <- floor(100 * cellStats(r_plot, min)) / 100
+    mx <- cellStats(r_plot, max)
+    mn <- cellStats(r_plot, min)
     brks <- seq(mn, mx, length.out = length(pal) + 1)
-    lbl_brks <- sort(c(-2:2, mn, mx))
-    lbls <- round(10^lbl_brks, 2)
+    lbl_brks <- c(mn, (mn + mx) / 2, mx)
+    lbls <- round(10^lbl_brks, 3)
   } else {
     title <- "Australian Ibis Abundance Uncertainty (SE)"
     # breaks and legend
@@ -495,7 +496,7 @@ for (nm in names(r_pred)) {
   # legend
   par(new = TRUE, mar = c(0, 0, 0, 0))
   image.plot(zlim = range(brks), legend.only = TRUE, col = pal,
-             smallplot = c(0.90, 0.93, 0.25, 0.75),
+             smallplot = c(0.89, 0.92, 0.25, 0.75),
              horizontal = FALSE,
              axis.args = list(at = lbl_brks, 
                               labels = lbls,

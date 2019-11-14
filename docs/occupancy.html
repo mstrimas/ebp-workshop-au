@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Strimas-Mackey, Alison Johnston, Wesley M. Hochachka, Viviana Ruiz-Gutierrez, Orin J. Robinson, Eliot T. Miller, Tom Auer, Steve Kelling, Daniel Fink" />
 
 
-<meta name="date" content="2019-11-13" />
+<meta name="date" content="2019-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -466,7 +466,7 @@ Checkpoint
 <a class="sourceLine" id="cb98-5" data-line-number="5"><span class="cf">for</span> (nm <span class="cf">in</span> <span class="kw">names</span>(r_pred)) {</a>
 <a class="sourceLine" id="cb98-6" data-line-number="6">  r_plot &lt;-<span class="st"> </span>r_pred_proj[[nm]]</a>
 <a class="sourceLine" id="cb98-7" data-line-number="7">  </a>
-<a class="sourceLine" id="cb98-8" data-line-number="8">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">4.5</span>))</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="dv">5</span>))</a>
 <a class="sourceLine" id="cb98-9" data-line-number="9">  <span class="co"># set up plot area</span></a>
 <a class="sourceLine" id="cb98-10" data-line-number="10">  <span class="kw">plot</span>(cmz, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb98-11" data-line-number="11">  <span class="kw">plot</span>(ne_land, <span class="dt">col =</span> <span class="st">&quot;#dddddd&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#888888&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
@@ -482,7 +482,7 @@ Checkpoint
 <a class="sourceLine" id="cb98-21" data-line-number="21">    mx &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="kw">cellStats</span>(r_plot, max)) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
 <a class="sourceLine" id="cb98-22" data-line-number="22">    brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, mx, <span class="dt">length.out =</span> <span class="dv">21</span>)</a>
 <a class="sourceLine" id="cb98-23" data-line-number="23">    lbl_brks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, mx, <span class="dt">length.out =</span> <span class="dv">11</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb98-24" data-line-number="24"><span class="st">      </span><span class="kw">round</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb98-24" data-line-number="24"><span class="st">      </span><span class="kw">round</span>(<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb98-25" data-line-number="25">  }</a>
 <a class="sourceLine" id="cb98-26" data-line-number="26">  pal &lt;-<span class="st"> </span><span class="kw">abundance_palette</span>(<span class="kw">length</span>(brks) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb98-27" data-line-number="27">  <span class="kw">plot</span>(r_plot, </a>
@@ -498,7 +498,7 @@ Checkpoint
 <a class="sourceLine" id="cb98-37" data-line-number="37">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
 <a class="sourceLine" id="cb98-38" data-line-number="38">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, </a>
 <a class="sourceLine" id="cb98-39" data-line-number="39">             <span class="dt">breaks =</span> brks, <span class="dt">col =</span> pal,</a>
-<a class="sourceLine" id="cb98-40" data-line-number="40">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.90</span>, <span class="fl">0.93</span>, <span class="fl">0.25</span>, <span class="fl">0.75</span>),</a>
+<a class="sourceLine" id="cb98-40" data-line-number="40">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.89</span>, <span class="fl">0.92</span>, <span class="fl">0.25</span>, <span class="fl">0.75</span>),</a>
 <a class="sourceLine" id="cb98-41" data-line-number="41">             <span class="dt">horizontal =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb98-42" data-line-number="42">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, <span class="dt">labels =</span> lbl_brks,</a>
 <a class="sourceLine" id="cb98-43" data-line-number="43">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
