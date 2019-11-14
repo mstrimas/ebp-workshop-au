@@ -677,7 +677,7 @@ Exercise
 <a class="sourceLine" id="cb123-8" data-line-number="8"><span class="cf">for</span> (nm <span class="cf">in</span> <span class="kw">names</span>(r_pred)) {</a>
 <a class="sourceLine" id="cb123-9" data-line-number="9">  r_plot &lt;-<span class="st"> </span>r_pred_proj[[nm]]</a>
 <a class="sourceLine" id="cb123-10" data-line-number="10">  </a>
-<a class="sourceLine" id="cb123-11" data-line-number="11">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb123-11" data-line-number="11">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">4.5</span>))</a>
 <a class="sourceLine" id="cb123-12" data-line-number="12">  <span class="co"># set up plot area</span></a>
 <a class="sourceLine" id="cb123-13" data-line-number="13">  <span class="kw">plot</span>(cmz, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb123-14" data-line-number="14">  <span class="kw">plot</span>(ne_land, <span class="dt">col =</span> <span class="st">&quot;#dddddd&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#888888&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
@@ -717,24 +717,23 @@ Exercise
 <a class="sourceLine" id="cb123-48" data-line-number="48">       <span class="dt">legend =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb123-49" data-line-number="49">  </a>
 <a class="sourceLine" id="cb123-50" data-line-number="50">  <span class="co"># borders</span></a>
-<a class="sourceLine" id="cb123-51" data-line-number="51">  <span class="kw">plot</span>(cmz, <span class="dt">border =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb123-52" data-line-number="52">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb123-53" data-line-number="53">  <span class="kw">box</span>()</a>
-<a class="sourceLine" id="cb123-54" data-line-number="54">  </a>
-<a class="sourceLine" id="cb123-55" data-line-number="55">  <span class="co"># legend</span></a>
-<a class="sourceLine" id="cb123-56" data-line-number="56">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb123-57" data-line-number="57">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> pal,</a>
-<a class="sourceLine" id="cb123-58" data-line-number="58">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="fl">0.06</span>, <span class="fl">0.09</span>),</a>
-<a class="sourceLine" id="cb123-59" data-line-number="59">             <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb123-60" data-line-number="60">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, </a>
-<a class="sourceLine" id="cb123-61" data-line-number="61">                              <span class="dt">labels =</span> lbls,</a>
-<a class="sourceLine" id="cb123-62" data-line-number="62">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb123-63" data-line-number="63">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb123-64" data-line-number="64">                              <span class="dt">padj =</span> <span class="fl">-1.5</span>),</a>
-<a class="sourceLine" id="cb123-65" data-line-number="65">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
-<a class="sourceLine" id="cb123-66" data-line-number="66">                                <span class="dt">side =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb123-67" data-line-number="67">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb123-68" data-line-number="68">}</a></code></pre></div>
+<a class="sourceLine" id="cb123-51" data-line-number="51">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb123-52" data-line-number="52">  <span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb123-53" data-line-number="53">  </a>
+<a class="sourceLine" id="cb123-54" data-line-number="54">  <span class="co"># legend</span></a>
+<a class="sourceLine" id="cb123-55" data-line-number="55">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb123-56" data-line-number="56">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> pal,</a>
+<a class="sourceLine" id="cb123-57" data-line-number="57">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.90</span>, <span class="fl">0.93</span>, <span class="fl">0.25</span>, <span class="fl">0.75</span>),</a>
+<a class="sourceLine" id="cb123-58" data-line-number="58">             <span class="dt">horizontal =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb123-59" data-line-number="59">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, </a>
+<a class="sourceLine" id="cb123-60" data-line-number="60">                              <span class="dt">labels =</span> lbls,</a>
+<a class="sourceLine" id="cb123-61" data-line-number="61">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb123-62" data-line-number="62">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb123-63" data-line-number="63">                              <span class="dt">padj =</span> <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb123-64" data-line-number="64">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
+<a class="sourceLine" id="cb123-65" data-line-number="65">                                <span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb123-66" data-line-number="66">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb123-67" data-line-number="67">}</a></code></pre></div>
 <p><img src="ebp-workshop-au_files/figure-html/abundance-predict-map-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 </div>
 <div id="abundance-exercises" class="section level2">

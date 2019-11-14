@@ -466,7 +466,7 @@ Checkpoint
 <a class="sourceLine" id="cb98-5" data-line-number="5"><span class="cf">for</span> (nm <span class="cf">in</span> <span class="kw">names</span>(r_pred)) {</a>
 <a class="sourceLine" id="cb98-6" data-line-number="6">  r_plot &lt;-<span class="st"> </span>r_pred_proj[[nm]]</a>
 <a class="sourceLine" id="cb98-7" data-line-number="7">  </a>
-<a class="sourceLine" id="cb98-8" data-line-number="8">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">4.5</span>))</a>
 <a class="sourceLine" id="cb98-9" data-line-number="9">  <span class="co"># set up plot area</span></a>
 <a class="sourceLine" id="cb98-10" data-line-number="10">  <span class="kw">plot</span>(cmz, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb98-11" data-line-number="11">  <span class="kw">plot</span>(ne_land, <span class="dt">col =</span> <span class="st">&quot;#dddddd&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#888888&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
@@ -491,24 +491,23 @@ Checkpoint
 <a class="sourceLine" id="cb98-30" data-line-number="30">       <span class="dt">legend =</span> <span class="ot">FALSE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb98-31" data-line-number="31">  </a>
 <a class="sourceLine" id="cb98-32" data-line-number="32">  <span class="co"># borders</span></a>
-<a class="sourceLine" id="cb98-33" data-line-number="33">  <span class="kw">plot</span>(cmz, <span class="dt">border =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb98-34" data-line-number="34">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb98-35" data-line-number="35">  <span class="kw">box</span>()</a>
-<a class="sourceLine" id="cb98-36" data-line-number="36">  </a>
-<a class="sourceLine" id="cb98-37" data-line-number="37">  <span class="co"># legend</span></a>
-<a class="sourceLine" id="cb98-38" data-line-number="38">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb98-39" data-line-number="39">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb98-40" data-line-number="40">             <span class="dt">breaks =</span> brks, <span class="dt">col =</span> pal,</a>
-<a class="sourceLine" id="cb98-41" data-line-number="41">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="fl">0.06</span>, <span class="fl">0.09</span>),</a>
-<a class="sourceLine" id="cb98-42" data-line-number="42">             <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb98-43" data-line-number="43">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, <span class="dt">labels =</span> lbl_brks,</a>
-<a class="sourceLine" id="cb98-44" data-line-number="44">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb98-45" data-line-number="45">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb98-46" data-line-number="46">                              <span class="dt">padj =</span> <span class="fl">-1.5</span>),</a>
-<a class="sourceLine" id="cb98-47" data-line-number="47">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
-<a class="sourceLine" id="cb98-48" data-line-number="48">                                <span class="dt">side =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb98-49" data-line-number="49">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb98-50" data-line-number="50">}</a></code></pre></div>
+<a class="sourceLine" id="cb98-33" data-line-number="33">  <span class="kw">plot</span>(ne_state_lines, <span class="dt">col =</span> <span class="st">&quot;#ffffff&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.75</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb98-34" data-line-number="34">  <span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb98-35" data-line-number="35">  </a>
+<a class="sourceLine" id="cb98-36" data-line-number="36">  <span class="co"># legend</span></a>
+<a class="sourceLine" id="cb98-37" data-line-number="37">  <span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb98-38" data-line-number="38">  <span class="kw">image.plot</span>(<span class="dt">zlim =</span> <span class="kw">range</span>(brks), <span class="dt">legend.only =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb98-39" data-line-number="39">             <span class="dt">breaks =</span> brks, <span class="dt">col =</span> pal,</a>
+<a class="sourceLine" id="cb98-40" data-line-number="40">             <span class="dt">smallplot =</span> <span class="kw">c</span>(<span class="fl">0.90</span>, <span class="fl">0.93</span>, <span class="fl">0.25</span>, <span class="fl">0.75</span>),</a>
+<a class="sourceLine" id="cb98-41" data-line-number="41">             <span class="dt">horizontal =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb98-42" data-line-number="42">             <span class="dt">axis.args =</span> <span class="kw">list</span>(<span class="dt">at =</span> lbl_brks, <span class="dt">labels =</span> lbl_brks,</a>
+<a class="sourceLine" id="cb98-43" data-line-number="43">                              <span class="dt">fg =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb98-44" data-line-number="44">                              <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="dt">lwd.ticks =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb98-45" data-line-number="45">                              <span class="dt">padj =</span> <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb98-46" data-line-number="46">             <span class="dt">legend.args =</span> <span class="kw">list</span>(<span class="dt">text =</span> title,</a>
+<a class="sourceLine" id="cb98-47" data-line-number="47">                                <span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb98-48" data-line-number="48">                                <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">line =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb98-49" data-line-number="49">}</a></code></pre></div>
 <p><img src="ebp-workshop-au_files/figure-html/occupancy-predict-map-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 </div>
 <div id="occupancy-select" class="section level2">

@@ -32,7 +32,7 @@ For all the examples in the following lessons, we'll focus on modeling Australia
 
 The [workshop data package](https://github.com/mstrimas/ebp-workshop-au/raw/master/raw-data/ebp-workshop.zip) discussed in the [Introduction](#intro) contains all the prepared data. If you haven't already done so, download and unzip this file, then move all the files in the `data/` subdirectory to the `data/` subdirectory of your RStudio project. The following map shows the study area and eBird checklists that we'll use. Note that there are several species in this data package; however, we'll be focusing on Austrlian Ibis for the following examples.
 
-```{r model-intro-data, echo=FALSE}
+```{r model-intro-data, echo=FALSE, fig.asp=1}
 library(sf)
 library(tidyverse)
 
@@ -87,7 +87,7 @@ legend("bottomright", bty = "n",
        pch = 19)
 box()
 par(new = TRUE, mar = c(0, 0, 3, 0))
-title("Austrlian Ibis eBird Observations\nJune 2010-2019, BCR 27")
+title("Austrlian Ibis eBird Observations\nSept 2010-2019, BCR 27")
 ```
 
 The code used to generate these data is available in the [eBird Best Practices book](http://strimas.com/ebird-best-practices/) associated with this workshop. Consult the chapter on [eBird Data](http://strimas.com/ebird-best-practices/ebird.html) for details on the eBird data extraction and the chapter on [habitat covariates](http://strimas.com/ebird-best-practices/covariates.html) for details on preparing the land cover and elevation data.

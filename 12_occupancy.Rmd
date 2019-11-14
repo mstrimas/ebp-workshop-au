@@ -248,7 +248,7 @@ r_pred <- r_pred[[c("occ_prob", "occ_se")]]
 
 Finally, we can map these predictions!
 
-```{r occupancy-predict-map, fig.asp=1.236}
+```{r occupancy-predict-map, fig.asp=1.6}
 # project predictions
 r_pred_proj <- projectRaster(r_pred, crs = map_proj$proj4string, method = "ngb")
 
@@ -256,7 +256,7 @@ par(mfrow = c(2, 1))
 for (nm in names(r_pred)) {
   r_plot <- r_pred_proj[[nm]]
   
-  par(mar = c(3.5, 0.25, 0.25, 0.25))
+  par(mar = c(0.25, 0.25, 0.25, 4.5))
   # set up plot area
   plot(cmz, col = NA, border = NA)
   plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
@@ -281,7 +281,6 @@ for (nm in names(r_pred)) {
        legend = FALSE, add = TRUE)
   
   # borders
-  plot(cmz, border = "#000000", col = NA, lwd = 1, add = TRUE)
   plot(ne_state_lines, col = "#ffffff", lwd = 0.75, add = TRUE)
   box()
   
@@ -289,14 +288,14 @@ for (nm in names(r_pred)) {
   par(new = TRUE, mar = c(0, 0, 0, 0))
   image.plot(zlim = range(brks), legend.only = TRUE, 
              breaks = brks, col = pal,
-             smallplot = c(0.25, 0.75, 0.06, 0.09),
-             horizontal = TRUE,
+             smallplot = c(0.90, 0.93, 0.25, 0.75),
+             horizontal = FALSE,
              axis.args = list(at = lbl_brks, labels = lbl_brks,
                               fg = "black", col.axis = "black",
                               cex.axis = 0.75, lwd.ticks = 0.5,
-                              padj = -1.5),
+                              padj = 0),
              legend.args = list(text = title,
-                                side = 3, col = "black",
+                                side = 2, col = "black",
                                 cex = 1, line = 0))
 }
 ```
