@@ -10,7 +10,7 @@ The contents of this website comprise the notes for a workshop on best practices
 
 ## Data {#intro-data}
 
-To follow along with the lessons in this workshop [download the workshop data package](https://github.com/mstrimas/ebp-workshop-au/raw/master/raw-data/ebp-workshop.zip). This package contains a variety of datasets for Parts I and II of this workshop. Instructions for how to use each dataset will be given in the relevant lesson.
+To follow along with the lessons in this workshop [download the workshop data package](https://github.com/mstrimas/ebp-workshop-au/raw/master/raw-data/ebp-workshop-data.zip). This package contains a variety of datasets for Parts I and II of this workshop. Instructions for how to use each dataset will be given in the relevant lesson.
 
 ## Format {#intro-format}
 

@@ -14,7 +14,7 @@ Click on the "Download raw data here" link, then proceed to the eBird Basic Data
 
 ![](assets/img/03_access_ebd.png)
 
-The EBD is huge, so **don't download these files now**. Instead, we'll be working with a small subset of the data today, which is available in the [workshop data package](https://github.com/mstrimas/ebp-workshop/raw/master/raw-data/ebp-workshop.zip) discussed in the [Introduction](#intro). This subset contains data from the Yucatan Peninsula (Guatemala, Belize, and five Mexican sates) from 2014-2015.
+The EBD is huge, so **don't download these files now**. Instead, we'll be working with a small subset of the data today, which is available in the [workshop data package](https://github.com/mstrimas/ebp-workshop/raw/master/raw-data/ebp-workshop-data.zip) discussed in the [Introduction](#intro). This subset contains data from the Yucatan Peninsula (Guatemala, Belize, and five Mexican sates) from 2014-2015.
 
 The EBD and Sampling Event Data are in the `edb/` subdirectory of the data package. Move these two text files to a sensible, central location on your computer (e.g. `~/data/ebird/`). Note that when working with the full dataset, the downloaded files will be in `.tar` format, and you'll need to unarchive them (this may require 7-Zip on Windows). The resulting directory will contain a file with extension `.txt.gz`, this file should be uncompressed to produce a text file, which you should transfer to the central data directory on your computer. The full EBD will be over 200 GB! If this is too large to fit on your computer, it can be stored on an external hard drive. We'll also talk later in the workshop about some ways of avoiding downloading the EBD.
 
