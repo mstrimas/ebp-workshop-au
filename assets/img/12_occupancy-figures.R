@@ -11,11 +11,15 @@ grid <- crossing(x = seq(0.5, 9.5, 1),
          surveyed = FALSE)
 grid$occupied[sample.int(nrow(grid), nrow(grid) * psi)] <- TRUE
 grid$surveyed[sample.int(nrow(grid), nrow(grid) * p_surveyed)] <- TRUE
+
+col_pres <- "#4daf4a"
+col_abs <- "grey80"
+
 g_grid <- ggplot(grid) +
   aes(x = x, y = y) +
   geom_tile(aes(fill = occupied), color = "#000000") +
   scale_fill_manual("Site occupied",
-                    values = c("#999999", "#4daf4a"),
+                    values = c(col_abs, col_pres),
                     labels = c("No", "Yes")) +
   scale_y_continuous(expand = c(0, 0)) +
   coord_equal() +
@@ -35,12 +39,12 @@ survey <- grid %>%
 g_s1 <- ggplot(grid) +
   aes(x = x, y = y) +
   geom_tile(aes(fill = occupied), color = "#000000", show.legend = FALSE) +
-  geom_point(data = survey %>% filter(visit == "Visit 1", !missed), 
-             aes(shape = detected), size = 4) +
-  geom_point(data = survey %>% filter(visit == "Visit 1", missed), 
-             shape = 1, color = "#ffffff", size = 4) +
+  geom_point(data = survey %>% filter(visit == "Visit 1"), 
+             aes(shape = detected), size = 5, stroke = 2) +
+  # geom_point(data = survey %>% filter(visit == "Visit 1", missed), 
+  #            shape = 1, size = 5, stroke = 2) +
   scale_fill_manual("Site occupied",
-                    values = c("#999999", "#4daf4a"),
+                    values = c(col_abs, col_pres),
                     labels = c("No", "Yes")) +
   scale_shape_manual("Species detected",
                      values = c(1, 19),
@@ -57,12 +61,10 @@ ggsave("assets/img/12_occupancy_1survey.svg", g_s1, width = 7, height = 7)
 g_s3 <- ggplot(grid) +
   aes(x = x, y = y) +
   geom_tile(aes(fill = occupied), color = "#000000", show.legend = FALSE) +
-  geom_point(data = survey %>% filter(!missed), 
-             aes(shape = detected), size = 4) +
-  geom_point(data = survey %>% filter(missed), 
-             shape = 1, color = "#ffffff", size = 4) +
+  geom_point(data = survey, 
+             aes(shape = detected), size = 5, stroke = 2) +
   scale_fill_manual("Site occupied",
-                    values = c("#999999", "#4daf4a"),
+                    values = c(col_abs, col_pres),
                     labels = c("No", "Yes")) +
   scale_shape_manual("Species detected",
                      values = c(1, 19),
@@ -76,3 +78,50 @@ g_s3 <- ggplot(grid) +
         legend.title = element_text(size = 22),
         legend.position = "bottom")
 ggsave("assets/img/12_occupancy_3surveys.svg", g_s3, width = 18, height = 6)
+
+
+# observations only
+g_o1 <- ggplot(grid) +
+  aes(x = x, y = y) +
+  geom_tile(aes(fill = occupied), color = "#000000", show.legend = FALSE) +
+  geom_point(data = survey %>% filter(visit == "Visit 1"), 
+             aes(shape = detected), size = 5, stroke = 2) +
+  scale_fill_manual("Site occupied",
+                    values = c("white", "white"),
+                    labels = c("No", "Yes")) +
+  scale_shape_manual("Species detected",
+                     values = c(1, 19),
+                     labels = c("No", "Yes")) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_equal() +
+  theme_void() +
+  theme(legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
+        legend.position = "bottom")
+ggsave("assets/img/12_occupancy_obsonly.svg", g_o1, width = 7, height = 7)
+
+
+# obs only 3 surveys
+g_o3 <- ggplot(grid) +
+  aes(x = x, y = y) +
+  geom_tile(aes(fill = occupied), color = "#000000", show.legend = FALSE) +
+  geom_point(data = survey, 
+             aes(shape = detected), size = 5, stroke = 2) +
+  scale_fill_manual("Site occupied",
+                    values = c("white", "white"),
+                    labels = c("No", "Yes")) +
+  scale_shape_manual("Species detected",
+                     values = c(1, 19),
+                     labels = c("No", "Yes")) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_equal() +
+  facet_wrap(~ visit, nrow = 1) +
+  theme_void() +
+  theme(strip.text = element_text(size = 22),
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
+        legend.position = "bottom")
+ggsave("assets/img/12_occupancy_3surveys_obsonly.svg", g_o3, width = 18, height = 6)
+
+
+
