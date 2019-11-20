@@ -17,7 +17,8 @@ projection <- raster::projection
 set.seed(1)
 
 # ebird data
-ebird <- read_csv("data/ebd_woothr_june_bcr27_zf.csv") %>% 
+ebird <- read_csv("data/ebd_zf_sep_tst.csv") %>% 
+  filter(common_name == "Australian Ibis") %>% 
   mutate(year = year(observation_date),
          # occupancy modeling requires an integer response
          species_observed = as.integer(species_observed))
@@ -36,14 +37,12 @@ max_lc_year <- pred_surface$year[1]
 r <- raster("data/prediction-surface.tif")
 
 # load gis data for making maps
-map_proj <- st_crs(102003)
-ne_land <- read_sf("data/gis-data.gpkg", "ne_land") %>% 
+map_proj <- st_crs(3577)
+ne_land <- read_sf("data/gis-data.gpkg", "ne_country") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
-bcr <- read_sf("data/gis-data.gpkg", "bcr") %>% 
-  st_transform(crs = map_proj) %>% 
-  st_geometry()
-ne_country_lines <- read_sf("data/gis-data.gpkg", "ne_country_lines") %>% 
+cmz <- read_sf("data/gis-data.gpkg", "cmz") %>% 
+  filter(cmz_name == "Eastern Australia Temperate and Subtropical forests") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
 ne_state_lines <- read_sf("data/gis-data.gpkg", "ne_state_lines") %>% 
@@ -95,6 +94,10 @@ occ_ss <- occ_wide_cell %>%
 
 ### LIVE CODE ###
 
+# look at the regression coefficients from the model
+
+### LIVE CODE ###
+
 
 ## ----occupancy-model-assess, eval=FALSE, echo=1:2, class.source="dontrun"----
 occ_gof <- mb.gof.test(occ_model, nsim = 10, plot.hist = FALSE)
@@ -102,6 +105,9 @@ print(occ_gof)
 
 
 ## ----occupancy-predict-predict, eval=FALSE, echo=1:10, class.source="livecode"----
+# make prediction
+
+# add to prediction surface
 
 ### LIVE CODE ###
 
@@ -116,7 +122,7 @@ r_pred <- pred_occ %>%
 r_pred <- r_pred[[c("occ_prob", "occ_se")]]
 
 
-## ----occupancy-predict-map, fig.asp=1.236--------------------------------
+## ----occupancy-predict-map, fig.asp=1.6----------------------------------
 # project predictions
 r_pred_proj <- projectRaster(r_pred, crs = map_proj$proj4string, method = "ngb")
 
@@ -124,23 +130,23 @@ par(mfrow = c(2, 1))
 for (nm in names(r_pred)) {
   r_plot <- r_pred_proj[[nm]]
   
-  par(mar = c(3.5, 0.25, 0.25, 0.25))
+  par(mar = c(0.25, 0.25, 0.25, 5))
   # set up plot area
-  plot(bcr, col = NA, border = NA)
+  plot(cmz, col = NA, border = NA)
   plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
 
   # occupancy probability or standard error
   if (nm == "occ_prob") {
-    title <- "Wood Thrush Occupancy Probability"
+    title <- "Australian Ibis Occupancy Probability"
     brks <- seq(0, 1, length.out = 21)
     lbl_brks <- seq(0, 1, length.out = 11) %>% 
       round(2)
   } else {
-    title <- "Wood Thrush Occupancy Uncertainty (SE)"
+    title <- "Australian Ibis Occupancy Uncertainty (SE)"
     mx <- ceiling(1000 * cellStats(r_plot, max)) / 1000
     brks <- seq(0, mx, length.out = 21)
     lbl_brks <- seq(0, mx, length.out = 11) %>% 
-      round(2)
+      round(3)
   }
   pal <- abundance_palette(length(brks) - 1)
   plot(r_plot, 
@@ -149,48 +155,42 @@ for (nm in names(r_pred)) {
        legend = FALSE, add = TRUE)
   
   # borders
-  plot(bcr, border = "#000000", col = NA, lwd = 1, add = TRUE)
   plot(ne_state_lines, col = "#ffffff", lwd = 0.75, add = TRUE)
-  plot(ne_country_lines, col = "#ffffff", lwd = 1.5, add = TRUE)
   box()
   
   # legend
   par(new = TRUE, mar = c(0, 0, 0, 0))
   image.plot(zlim = range(brks), legend.only = TRUE, 
              breaks = brks, col = pal,
-             smallplot = c(0.25, 0.75, 0.06, 0.09),
-             horizontal = TRUE,
+             smallplot = c(0.89, 0.92, 0.25, 0.75),
+             horizontal = FALSE,
              axis.args = list(at = lbl_brks, labels = lbl_brks,
                               fg = "black", col.axis = "black",
                               cex.axis = 0.75, lwd.ticks = 0.5,
-                              padj = -1.5),
+                              padj = 0),
              legend.args = list(text = title,
-                                side = 3, col = "black",
+                                side = 2, col = "black",
                                 cex = 1, line = 0))
 }
 
 
 ## ----occupancy-model-select-dredge, class.source="livecode"--------------
+# get list of all possible terms, then subset to those we want to keep
+
+# fit all possible combinations of the occupancy covariates
+
+# model comparison
 
 ### LIVE CODE ###
 
 
 ## ----occupancy-model-select-average, class.source="livecode"-------------
+# select models with the most suport for model averaging
+
+
+# average models based on model weights 
 
 ### LIVE CODE ###
-
-
-## ----occupancy-model-select-predict, eval=FALSE, class.source="dontrun"----
-## #
-## occ_pred_avg <- predict(occ_avg,
-##                         newdata = as.data.frame(pred_surface),
-##                         type = "state")
-## 
-## # add to prediction surface
-## pred_occ_avg <- bind_cols(pred_surface,
-##                           occ_prob = occ_pred_avg$fit,
-##                           occ_se = occ_pred_avg$se.fit) %>%
-##   select(latitude, longitude, occ_prob, occ_se)
 
 
 ## ----occupancy-select-detection-define-----------------------------------
@@ -200,14 +200,14 @@ det_mod <- ~ time_observations_started +
   effort_distance_km + 
   number_observers + 
   protocol_type ~ 
-  pland_04 + pland_05 + pland_12 + pland_13
+  pland_13 + pland_09 + pland_02 + pland_08
 
 # create new formulae with landcover covariates added to the detection submodel
 mods <- list(det_mod_null = det_mod, 
-             det_mod_dec = update.formula(det_mod, ~ . + pland_04 ~ .),
-             det_mod_mix = update.formula(det_mod, ~ . + pland_05 ~ .),
+             det_mod_for = update.formula(det_mod, ~ . + pland_02 ~ .),
+             det_mod_ws = update.formula(det_mod, ~ . + pland_08 ~ .),
              global = update.formula(det_mod, 
-                                     ~ . + pland_04 + pland_05 ~ .)) %>% 
+                                     ~ . + pland_02 + pland_08 ~ .)) %>% 
   # fit candidate models
   map(occu, data = occ_um)
 
@@ -221,20 +221,4 @@ mod_sel
 ## ----occupancy-select-detection-coef-------------------------------------
 coef(occ_model) %>% 
   enframe() %>% 
-  filter(str_detect(name, "pland_0"))
-
-
-# Exercises ----
-
-# 1. Try sampling more than a single checklist per grid cell in the
-# spatiotemporal sampling. How does that affect model fit and predictions?
-
-# 2. What happens to the size of dataset if you only use stationary counts, or
-# reduce the distance traveled to 1 km? How does it impact the results? How does
-# the different input data affect your interpretation of the results?
-
-# 3. What happens to the size of the dataset if you allow repeat visits to be by
-# multiple observers? How does this impact the results.
-
-# 4. Produce a map based on model averaged predictions. Note that making these
-# predictions may take up to an hour.
+  filter(str_detect(name, "pland_"))

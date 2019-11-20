@@ -20,7 +20,8 @@ map <- purrr::map
 set.seed(1)
 
 # ebird data
-ebird <- read_csv("data/ebd_woothr_june_bcr27_zf.csv") %>% 
+ebird <- read_csv("data/ebd_zf_sep_tst.csv") %>% 
+  filter(common_name == "Australian Ibis") %>% 
   # year required to join to habitat data
   mutate(year = year(observation_date))
 
@@ -36,14 +37,12 @@ pred_surface <- read_csv("data/pland-elev_prediction-surface.csv")
 r <- raster("data/prediction-surface.tif")
 
 # load gis data for making maps
-map_proj <- st_crs(102003)
-ne_land <- read_sf("data/gis-data.gpkg", "ne_land") %>% 
+map_proj <- st_crs(3577)
+ne_land <- read_sf("data/gis-data.gpkg", "ne_country") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
-bcr <- read_sf("data/gis-data.gpkg", "bcr") %>% 
-  st_transform(crs = map_proj) %>% 
-  st_geometry()
-ne_country_lines <- read_sf("data/gis-data.gpkg", "ne_country_lines") %>% 
+cmz <- read_sf("data/gis-data.gpkg", "cmz") %>% 
+  filter(cmz_name == "Eastern Australia Temperate and Subtropical forests") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
 ne_state_lines <- read_sf("data/gis-data.gpkg", "ne_state_lines") %>% 
@@ -86,8 +85,6 @@ detection_freq <- mean(ebird_split$train$species_observed)
 
 ## ----encounter-rf-fit, class.source="livecode"---------------------------
 # ranger requires a factor response to do classification
-
-### LIVE CODE ###
 
 # grow random forest
 
@@ -165,7 +162,7 @@ metrics_cal <- rf_pred_test %>%
                             st.dev = FALSE)
 
 # combine various performance metrics together
-tibble(
+rf_assessment <- tibble(
   model = c("RF", "Calibrated RF"),
   mse = c(mse_fit, mse_cal),
   sensitivity = c(metrics_fit$sensitivity, metrics_cal$sensitivity),
@@ -173,6 +170,7 @@ tibble(
   auc = c(metrics_fit$AUC, metrics_cal$AUC),
   kappa = c(metrics_fit$Kappa, metrics_cal$Kappa)
 )
+knitr::kable(rf_assessment, digits = 3)
 
 
 ## ----encounter-habitat-pi------------------------------------------------
@@ -193,7 +191,8 @@ ggplot(pi) +
 
 ## ----encounter-habitat-pi-pland, echo=FALSE------------------------------
 read_csv("data/mcd12q1_classes.csv") %>% 
-  select(class, name)
+  select(class, name) %>% 
+  knitr::kable()
 
 
 ## ----encounter-habitat-pd------------------------------------------------
@@ -269,15 +268,9 @@ human_time <- str_glue("{h}:{m} {ap}",
 ## ----encounter-predict-effort, class.source="livecode"-------------------
 # add effort covariates to prediction 
 
-### LIVE CODE ###
-
 # predict
 
-### LIVE CODE ###
-
 # apply calibration models
-
-### LIVE CODE ###
 
 # add to prediction surface
 
@@ -290,13 +283,13 @@ human_time <- str_glue("{h}:{m} {ap}",
 ### LIVE CODE ###
 
 
-## ----encounter-predict-map-----------------------------------------------
+## ----encounter-predict-map, fig.asp=0.8----------------------------------
 # project predictions
 r_pred_proj <- projectRaster(r_pred, crs = map_proj$proj4string, method = "ngb")
 
-par(mar = c(3.5, 0.25, 0.25, 0.25))
+par(mar = c(0.25, 0.25, 0.25, 4.5))
 # set up plot area
-plot(bcr, col = NA, border = NA)
+plot(cmz, col = NA, border = NA)
 plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
 
 # encounter rate
@@ -311,39 +304,20 @@ plot(r_pred_proj,
      legend = FALSE, add = TRUE)
 
 # borders
-plot(bcr, border = "#000000", col = NA, lwd = 1, add = TRUE)
 plot(ne_state_lines, col = "#ffffff", lwd = 0.75, add = TRUE)
-plot(ne_country_lines, col = "#ffffff", lwd = 1.5, add = TRUE)
 box()
 
 # legend
 par(new = TRUE, mar = c(0, 0, 0, 0))
-title <- "Wood Thrush Encounter Rate"
+title <- "Austrlian Ibis Encounter Rate"
 image.plot(zlim = range(brks), legend.only = TRUE, 
            col = pal, breaks = brks,
-           smallplot = c(0.25, 0.75, 0.06, 0.09),
-           horizontal = TRUE,
+           smallplot = c(0.90, 0.93, 0.25, 0.75),
+           horizontal = FALSE,
            axis.args = list(at = lbl_brks, labels = lbl_brks,
                             fg = "black", col.axis = "black",
                             cex.axis = 0.75, lwd.ticks = 0.5,
-                            padj = -1.5),
+                            padj = 0),
            legend.args = list(text = title,
-                              side = 3, col = "black",
+                              side = 2, col = "black",
                               cex = 1, line = 0))
-
-
-# Exercises ----
-
-# 1. How does changing the subsampling grid cell size affect the model
-# performance?
-
-# 2. What happens to the predictions if you make them for an eBirder traveling
-# further than 1 km, or birding for longer than 1 hour?
-
-# 3. Filter the data to only shorter duration checklists or shorter distances
-# traveled. How does this affect model performance?
-
-# 4. An alternative approach to dealing with class imbalance, is to grid sample
-# only the non-detections, while keeping all the detections. Try this
-# subsampling approach and see what the affect is on the predictive performance
-# metrics.

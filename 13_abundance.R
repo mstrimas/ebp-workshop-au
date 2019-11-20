@@ -18,7 +18,8 @@ projection <- raster::projection
 set.seed(1)
 
 # ebird data
-ebird <- read_csv("data/ebd_woothr_june_bcr27_zf.csv") %>% 
+ebird <- read_csv("data/ebd_zf_sep_tst.csv") %>% 
+  filter(common_name == "Australian Ibis") %>% 
   mutate(protocol_type = factor(protocol_type, 
                                 levels = c("Stationary" , "Traveling"))) %>%
   # remove observations with no count
@@ -38,26 +39,17 @@ max_lc_year <- pred_surface$year[1]
 r <- raster("data/prediction-surface.tif")
 
 # load gis data for making maps
-map_proj <- st_crs(102003)
-ne_land <- read_sf("data/gis-data.gpkg", "ne_land") %>% 
+map_proj <- st_crs(3577)
+ne_land <- read_sf("data/gis-data.gpkg", "ne_country") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
-bcr <- read_sf("data/gis-data.gpkg", "bcr") %>% 
-  st_transform(crs = map_proj) %>% 
-  st_geometry()
-ne_country_lines <- read_sf("data/gis-data.gpkg", "ne_country_lines") %>% 
+cmz <- read_sf("data/gis-data.gpkg", "cmz") %>% 
+  filter(cmz_name == "Eastern Australia Temperate and Subtropical forests") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
 ne_state_lines <- read_sf("data/gis-data.gpkg", "ne_state_lines") %>% 
   st_transform(crs = map_proj) %>% 
   st_geometry()
-
-
-## ----abundance-nocount-sol-----------------------------------------------
-read_csv("data/ebd_woothr_june_bcr27_zf.csv") %>% 
-  summarize(n_total = n(),
-            n_nocount = sum(is.na(observation_count)),
-            prop = mean(is.na(observation_count)))
 
 
 ## ----abundance-prep-sss, results="hide"----------------------------------
@@ -98,8 +90,6 @@ prop_zero
 ## ----abundance-model-formula, class.source="livecode"--------------------
 # gam formula
 
-### LIVE CODE ###
-
 # explicitly specify where the knots should occur for time_observations_started
 # this ensures that the cyclic spline joins the variable at midnight
 # this won't happen by default if there are no data near midnight
@@ -107,30 +97,15 @@ prop_zero
 ### LIVE CODE ###
 
 
-## ----abundance-model-formula-sol-----------------------------------------
-gam_formula_elev <- observation_count ~ s(day_of_year, k = 5) + 
-  s(duration_minutes, k = 5) + 
-  s(effort_distance_km, k = 5) + 
-  s(number_observers, k = 5) + 
-  s(pland_04, k = 5) + 
-  s(pland_05, k = 5) + 
-  s(pland_12, k = 5) + 
-  s(pland_13, k = 5) + 
-  s(elevation_median, k = 5) + 
-  s(elevation_sd, k = 5) + 
-  protocol_type + 
-  s(time_observations_started, bs = "cc", k = k_time)
-
-
 ## ----abundance-model-gams, class.source="livecode"-----------------------
 # zero-inflated poisson
-### LIVE CODE ###
+
 
 # negative binomial
-### LIVE CODE ###
+
 
 # tweedie distribution
-### LIVE CODE ###
+
 
 
 ## ----abundance-assess-pred-----------------------------------------------
@@ -161,16 +136,8 @@ test_pred <- bind_rows(m_ziplss_pred, m_nb_pred, m_tw_pred) %>%
 
 ## ----abundance-assess-metrics, class.source="livecode"-------------------
 # spearman’s rank correlation
+
 ### LIVE CODE ###
-
-
-## ----abundance-assess-metrics-sol----------------------------------------
-test_pred %>% 
-  filter(obs > 0) %>% 
-  group_by(family) %>% 
-  summarise(n_under = sum(obs / pred < 10),
-            pct_under = mean(obs / pred < 10)) %>% 
-  ungroup()
 
 
 ## ----abundance-assess-plot-----------------------------------------------
@@ -246,15 +213,8 @@ ggplot(pred_tod) +
   geom_vline(xintercept = t_peak, color = "blue", linetype = "dashed") +
   labs(x = "Hours since midnight",
        y = "Predicted relative abundance",
-       title = "Effect of observation start time on Wood Thrush reporting",
+       title = "Effect of observation start time on Australian Ibis reporting",
        subtitle = "Peak detectability shown as dashed blue line")
-
-
-## ----abundance-predict-readable, echo=FALSE------------------------------
-human_time <- str_glue("{h}:{m} {ap}", 
-                       h = floor(t_peak),
-                       m = str_pad(round((t_peak %% 1) * 60), 2, pad = "0"),
-                       ap = ifelse(t_peak > 12, "PM", "AM"))
 
 
 ## ----abundance-predict-effort--------------------------------------------
@@ -270,6 +230,7 @@ pred_surface_eff <- pred_surface %>%
 
 ## ----abundance-predict-pred, class.source="livecode"---------------------
 # predict
+
 ### LIVE CODE ###
 
 
@@ -284,7 +245,7 @@ r_pred <- pred %>%
 r_pred <- r_pred[[-1]]
 
 
-## ----abundance-predict-map, fig.asp=1.236--------------------------------
+## ----abundance-predict-map, fig.asp=2------------------------------------
 # any expected abundances below this threshold are set to zero
 zero_threshold <- 0.05
 
@@ -295,10 +256,11 @@ par(mfrow = c(2, 1))
 for (nm in names(r_pred)) {
   r_plot <- r_pred_proj[[nm]]
   
-  par(mar = c(3.5, 0.25, 0.25, 0.25))
+  par(mar = c(0.25, 0.25, 0.25, 5))
   # set up plot area
-  plot(bcr, col = NA, border = NA)
+  plot(cmz, col = NA, border = NA)
   plot(ne_land, col = "#dddddd", border = "#888888", lwd = 0.5, add = TRUE)
+  plot(cmz, col = "#888888", border = NA, add = TRUE)
   
   # modified plasma palette
   plasma_rev <- rev(plasma(25, end = 0.9))
@@ -307,19 +269,19 @@ for (nm in names(r_pred)) {
   
   # abundance vs. se
   if (nm == "abd") {
-    title <- "Wood Thrush Relative Abundance"
+    title <- "Australian Ibis Relative Abundance"
     # set very low values to zero
     r_plot[r_plot <= zero_threshold] <- NA
     # log transform
     r_plot <- log10(r_plot)
     # breaks and legend
-    mx <- ceiling(100 * cellStats(r_plot, max)) / 100
-    mn <- floor(100 * cellStats(r_plot, min)) / 100
+    mx <- cellStats(r_plot, max)
+    mn <- cellStats(r_plot, min)
     brks <- seq(mn, mx, length.out = length(pal) + 1)
-    lbl_brks <- sort(c(-2:2, mn, mx))
-    lbls <- round(10^lbl_brks, 2)
+    lbl_brks <- c(mn, (mn + mx) / 2, mx)
+    lbls <- round(10^lbl_brks, 3)
   } else {
-    title <- "Wood Thrush Abundance Uncertainty (SE)"
+    title <- "Australian Ibis Abundance Uncertainty (SE)"
     # breaks and legend
     mx <- ceiling(1000 * cellStats(r_plot, max)) / 1000
     mn <- floor(1000 * cellStats(r_plot, min)) / 1000
@@ -335,41 +297,20 @@ for (nm in names(r_pred)) {
        legend = FALSE, add = TRUE)
   
   # borders
-  plot(bcr, border = "#000000", col = NA, lwd = 1, add = TRUE)
   plot(ne_state_lines, col = "#ffffff", lwd = 0.75, add = TRUE)
-  plot(ne_country_lines, col = "#ffffff", lwd = 1.5, add = TRUE)
   box()
   
   # legend
   par(new = TRUE, mar = c(0, 0, 0, 0))
   image.plot(zlim = range(brks), legend.only = TRUE, col = pal,
-             smallplot = c(0.25, 0.75, 0.06, 0.09),
-             horizontal = TRUE,
+             smallplot = c(0.89, 0.92, 0.25, 0.75),
+             horizontal = FALSE,
              axis.args = list(at = lbl_brks, 
                               labels = lbls,
                               fg = "black", col.axis = "black",
                               cex.axis = 0.75, lwd.ticks = 0.5,
-                              padj = -1.5),
+                              padj = 0),
              legend.args = list(text = title,
-                                side = 3, col = "black",
+                                side = 2, col = "black",
                                 cex = 1, line = 0))
 }
-
-# Exercises ----
-
-# 1. Refit the model without effort variables and see how model performance
-# changes.
-
-# 2. Predict from the same model for checklists of 10 minutes duration, instead
-# of 1 hour. Compare the results and consider how the interpretation changes.
-
-# 3. Change the degrees of freedom for the covariate smooths and compare the
-# fitted relationships.
-
-# 4. Refit the model with a random forest. Compare the predictions and the
-# fitted relationships with covariates.
-
-# 5. Compare the encounter rate map to the relative abundance map.
-
-# 6. Fit an encounter rate random forest model then use the predicted encounter
-# rate as a new covariate in the abundance model. Compare the model performance.
